@@ -7,7 +7,16 @@ const ProductModel = require("../models/ProductModel");
 // Create a Product
 
 router.post("/", authMiddleware, async (req, res) => {
-  const { name, pictures, description, quantity, size, rating } = req.body;
+  const {
+    name,
+    price,
+    pictures,
+    description,
+    quantity,
+    rating,
+    category,
+    discount,
+  } = req.body;
 
   if (name.length < 1 || description.length < 1) {
     return res
@@ -23,6 +32,14 @@ router.post("/", authMiddleware, async (req, res) => {
     return res.status(401).send("Please provide pictures of product");
   }
 
+  if (!price) {
+    return res.status(401).send("Please provide product`s price");
+  }
+
+  if (!category) {
+    return res.status(401).send("Please provide product`s category");
+  }
+
   try {
     const newProduct = {
       user: req.userId,
@@ -30,10 +47,12 @@ router.post("/", authMiddleware, async (req, res) => {
       pictures,
       description,
       quantity,
+      price,
+      category,
     };
 
-    if (size) newProduct.size = size;
     if (rating) newProduct.rating = rating;
+    if (discount) newProduct.discount = discount;
 
     const product = await new ProductModel(newProduct).save();
 
@@ -51,19 +70,34 @@ router.post("/", authMiddleware, async (req, res) => {
 // Get all Product
 
 router.get("/", async (req, res) => {
+  const page = +req.query.page || 1;
+  const limit = +req.query.limit || 40;
+  const skip = (page - 1) * limit;
+
   try {
     const product = await ProductModel.find()
+      .skip(skip)
+      .limit(limit)
       .sort({ createdAt: -1 })
       .populate("user");
 
-    if (product.length === 0) {
-      return res.json([]);
+    if (req.query.page) {
+      const numProducts = await ProductModel.countDocuments();
+      if (skip >= numProducts) throw new Error("This page doesn`t exist");
     }
 
-    return res.json(product);
+    return res.status(200).json({
+      status: "success",
+      results: product.length,
+      data: {
+        data: product,
+      },
+    });
   } catch (error) {
-    console.error(error);
-    return res.status(500).send("Server error");
+    res.status(404).json({
+      status: "fail",
+      message: error,
+    });
   }
 });
 

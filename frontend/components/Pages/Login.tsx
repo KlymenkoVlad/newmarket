@@ -2,8 +2,9 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import Image from "next/image";
 import * as Yup from "yup";
-import { Formik, Field, Form, ErrorMessage, useField } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import Ripples from "react-ripples";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -11,6 +12,7 @@ import { useRouter } from "next/navigation";
 
 import "../styles.scss";
 import baseUrl from "@/utils/baseUrl";
+import Link from "next/link";
 
 const Login = (props: null) => {
   const router = useRouter();
@@ -18,10 +20,12 @@ const Login = (props: null) => {
   return (
     <div className=" mt-16 mb-32 mx-32">
       <div className="flex ">
-        <img
-          src="./signup/signupimg.png"
+        <Image
+          src="/signup/signupimg.png"
           alt="signupimg"
-          className=" w-[805px] h-[781px]"
+          width={805}
+          height={781}
+          // className=" w-[805px] h-[781px]"
         />
 
         <Formik
@@ -46,7 +50,6 @@ const Login = (props: null) => {
 
               Cookies.set("token", res.data);
               router.push("/");
-              window.location.reload();
             } catch (error) {
               console.error(error);
             }
@@ -103,9 +106,9 @@ const Login = (props: null) => {
               />
             </div>
 
-            <a href="/signup" className="mb-5 ">
+            <Link href="/signup" className="mb-5 ">
               <p className="link text-red-500">Do not have account?</p>
-            </a>
+            </Link>
             <div className="inline-flex items-center justify-start">
               <Ripples during={800} color="#6eb9f7">
                 <button

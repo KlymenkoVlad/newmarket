@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import BannerSection from "../Common/BannerSection";
-import Todays from "../Common/Todays";
-import Categories from "../Common/Categories";
-import BestSelling from "../Common/BestSelling";
-import ItemPromo from "../Common/ItemPromo";
-import OurProducts from "../Common/OurProducts";
-import Featured from "../Common/Featured";
-import Benefits from "../Common/Benefits";
+import BannerSection from "../MainPageComponents/BannerSection";
+import Todays from "../MainPageComponents/Todays";
+import Categories from "../MainPageComponents/Categories";
+import BestSelling from "../MainPageComponents/BestSelling";
+import ItemPromo from "../MainPageComponents/ItemPromo";
+import OurProducts from "../MainPageComponents/OurProducts";
+import Featured from "../MainPageComponents/Featured";
+import Benefits from "../MainPageComponents/Benefits";
 
-function MainPage(props) {
+function MainPage() {
   return (
     <div>
       <BannerSection />

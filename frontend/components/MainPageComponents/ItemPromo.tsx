@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Image from "next/image";
 
-const ItemPromo = (props) => {
+const ItemPromo = () => {
   return (
     <div className=" mb-24 relative w-[1170px] h-[500px] mx-auto bg-gradient-to-r from-black to-slate-500 text-white p-16">
       <div className="">
@@ -33,10 +34,12 @@ const ItemPromo = (props) => {
           Buy Now!
         </button>
       </div>
-      <img
+      <Image
         className="absolute right-3 top-6"
-        src="./banners/jbl.png"
+        src="/banners/jbl.png"
         alt="item for sale"
+        width={600}
+        height={420}
       />
     </div>
   );

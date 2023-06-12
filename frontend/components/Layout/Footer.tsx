@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -22,68 +24,94 @@ const Footer = () => {
       </div>
 
       <div>
-        <a className=" block mb-5" href="#">
+        <Link className=" block mb-5" href="me">
           My Account
-        </a>
-        <a className=" block mb-5" href="#">
+        </Link>
+        <Link className=" block mb-5" href="login">
           Login / Register
-        </a>
-        <a className=" block mb-5" href="#">
+        </Link>
+        <Link className=" block mb-5" href="#">
           Cart
-        </a>
-        <a className=" block mb-5" href="#">
+        </Link>
+        <Link className=" block mb-5" href="#">
           Wishlist
-        </a>
-        <a className=" block mb-5" href="#">
+        </Link>
+        <Link className=" block mb-5" href="#">
           Shop
-        </a>
+        </Link>
       </div>
 
       <div>
-        <a className=" block mb-5 " href="#">
+        <Link className=" block mb-5 " href="#">
           Quick Link
-        </a>
-        <a className=" block mb-5" href="#">
+        </Link>
+        <Link className=" block mb-5" href="#">
           Privacy Policy
-        </a>
-        <a className=" block mb-5" href="#">
+        </Link>
+        <Link className=" block mb-5" href="#">
           Terms Of Use
-        </a>
-        <a className=" block mb-5" href="#">
+        </Link>
+        <Link className=" block mb-5" href="#">
           FAQ
-        </a>
-        <a className=" block mb-5" href="#">
+        </Link>
+        <Link className=" block mb-5" href="#">
           Contact
-        </a>
+        </Link>
       </div>
 
       <div>
         <p className="mb-5">Download App</p>
         <p className="mb-3">Save $3 with App New User Only</p>
         <div className="flex mb-5">
-          <img src="./icons/Icon-qrcode.jpg" alt="Qrcode" />
+          <Image
+            src="/icons/Icon-qrcode.jpg"
+            alt="Qrcode"
+            width={76}
+            height={76}
+          />
           <div className="ml-5">
-            <img src="./icons/Icon-googlePlay.png" alt="googleplay" />{" "}
-            <img src="./icons/Icon-AppStore.png" alt="appStore" />
+            <Image
+              src="/icons/Icon-googlePlay.png"
+              alt="googleplay"
+              width={104}
+              height={30}
+            />
+            <Image
+              src="/icons/Icon-AppStore.png"
+              alt="appStore"
+              width={104}
+              height={30}
+            />
           </div>
         </div>
         <div className="flex justify-left mb-5">
-          <img src="./icons/Icon-Insta.png" alt="googleplay" />{" "}
-          <img
+          <Image
+            src="/icons/Icon-Insta.png"
+            alt="googleplay"
+            width={24}
+            height={24}
+          />
+          <Image
+            width={24}
+            height={24}
             className="ml-5"
-            src="./icons/Icon-Facebook.png"
+            src="/icons/Icon-Facebook.png"
             alt="googleplay"
           />
-          <img
+          <Image
+            width={24}
+            height={24}
             className="ml-5"
-            src="./icons/Icon-Linkedin.png"
+            src="/icons/Icon-Linkedin.png"
             alt="googleplay"
           />
-          <img
+          <Image
+            width={24}
+            height={24}
             className="ml-5"
-            src="./icons/Icon-Twitter.png"
+            src="/icons/Icon-Twitter.png"
             alt="googleplay"
-          />{" "}
+          />
         </div>
       </div>
     </div>

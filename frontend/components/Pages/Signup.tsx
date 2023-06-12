@@ -12,6 +12,8 @@ import { useRouter } from "next/navigation";
 
 import "../styles.scss";
 import baseUrl from "@/utils/baseUrl";
+import Image from "next/image";
+import Link from "next/link";
 
 interface initialValues {
   name: string;
@@ -34,10 +36,12 @@ const Signup = (props: null) => {
   return (
     <div className=" mt-16 mb-32 mx-32">
       <div className="flex ">
-        <img
-          src="./signup/signupimg.png"
+        <Image
+          src="/signup/signupimg.png"
           alt="signupimg"
           className=" w-[805px] h-[781px]"
+          width={805}
+          height={781}
         />
 
         <Formik
@@ -178,9 +182,9 @@ const Signup = (props: null) => {
               <ErrorMessage component="div" className="error" name="role" />
             </div>
 
-            <a href="/login" className="mb-5 link text-red-500">
+            <Link href="/login" className="mb-5 link text-red-500">
               Already have an account?
-            </a>
+            </Link>
 
             <label className="mb-2 ">
               <Field name="terms" type="checkbox" className="mr-2" />

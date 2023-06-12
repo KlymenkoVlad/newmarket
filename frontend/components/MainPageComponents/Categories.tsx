@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Image from "next/image";
 
 const Categories = (props) => {
   return (
@@ -14,17 +15,21 @@ const Categories = (props) => {
 
           <div className="ml-64 flex absolute right-4">
             <div className="w-[46px] h-[46px] bg-gray-200 rounded-[100%] mx-3 flex items-center justify-center ">
-              <img
+              <Image
                 className="absolute max-w-full max-h-full"
-                src="./icons/vector.png"
-                alt=""
+                src="/icons/vector.png"
+                alt="icon"
+                width={16}
+                height={14}
               />
             </div>
             <div className="w-[46px] h-[46px] bg-gray-200 rounded-[100%] mx-3 flex items-center justify-center">
-              <img
+              <Image
                 className="absolute max-w-full max-h-full rotate-180"
-                src="./icons/vector.png"
-                alt=""
+                src="/icons/vector.png"
+                alt="icon"
+                width={16}
+                height={14}
               />
             </div>
           </div>
@@ -35,37 +40,67 @@ const Categories = (props) => {
         <div className="flex justify-around items-center mb-12">
           <div className="flex justify-around items-center w-[170px] h-[140px] rounded-md border-gray-200 border-2 border-solid">
             <div>
-              <img src="./categories/CellPhone.png" alt="Category" />
+              <Image
+                width={56}
+                height={56}
+                src="/categories/CellPhone.png"
+                alt="Category"
+              />
               <p className="">Phones</p>
             </div>
           </div>
           <div className="flex justify-around items-center w-[170px] h-[140px] rounded-md border-gray-200 border-2 border-solid">
             <div>
-              <img src="./categories/CellPhone.png" alt="Category" />
+              <Image
+                width={56}
+                height={56}
+                src="/categories/CellPhone.png"
+                alt="Category"
+              />
               <p className="">Phones</p>
             </div>
           </div>
           <div className="flex justify-around items-center w-[170px] h-[140px] rounded-md border-gray-200 border-2 border-solid">
             <div>
-              <img src="./categories/CellPhone.png" alt="Category" />
+              <Image
+                width={56}
+                height={56}
+                src="/categories/CellPhone.png"
+                alt="Category"
+              />
               <p className="">Phones</p>
             </div>
           </div>
           <div className="flex justify-around items-center w-[170px] h-[140px] rounded-md border-gray-200 border-2 border-solid">
             <div>
-              <img src="./categories/CellPhone.png" alt="Category" />
+              <Image
+                width={56}
+                height={56}
+                src="/categories/CellPhone.png"
+                alt="Category"
+              />
               <p className="">Phones</p>
             </div>
           </div>
           <div className="flex justify-around items-center w-[170px] h-[140px] rounded-md border-gray-200 border-2 border-solid">
             <div>
-              <img src="./categories/CellPhone.png" alt="Category" />
+              <Image
+                width={56}
+                height={56}
+                src="/categories/CellPhone.png"
+                alt="Category"
+              />
               <p className="">Phones</p>
             </div>
           </div>
           <div className="flex justify-around items-center w-[170px] h-[140px] rounded-md border-gray-200 border-2 border-solid">
             <div>
-              <img src="./categories/CellPhone.png" alt="Category" />
+              <Image
+                width={56}
+                height={56}
+                src="/categories/CellPhone.png"
+                alt="Category"
+              />
               <p className="">Phones</p>
             </div>
           </div>

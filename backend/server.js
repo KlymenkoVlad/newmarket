@@ -17,7 +17,7 @@ const item = require("./api/item");
 
 dotenv.config({ path: "./.env" });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 connectDb();
 
 app.use(bodyParser.json());
@@ -28,7 +28,7 @@ app.use("/api/signup", signup);
 app.use("/api/auth", auth);
 app.use("/api/item", item);
 
-app.listen(3000, (err) => {
+app.listen(PORT, (err) => {
   if (err) throw err;
   console.warn(`Express server running on ${PORT}`);
 });

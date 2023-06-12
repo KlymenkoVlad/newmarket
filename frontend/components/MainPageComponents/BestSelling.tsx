@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Item from "./Item";
+import Item from "../Common/Item";
 
 const BestSelling = (props) => {
   return (
@@ -16,10 +16,10 @@ const BestSelling = (props) => {
       </div>
 
       <div className="flex justify-around mb-8">
+        {/* <Item />
         <Item />
         <Item />
-        <Item />
-        <Item />
+        <Item /> */}
       </div>
     </div>
   );

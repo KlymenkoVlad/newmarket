@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Item from "./Item";
+import Item from "../Common/Item";
+import Image from "next/image";
 
 const Date = () => {
   return (
@@ -36,17 +37,21 @@ const Todays = (props) => {
 
           <div className="ml-64 flex absolute right-4">
             <div className="w-[46px] h-[46px] bg-gray-200 rounded-[100%] mx-3 flex items-center justify-center ">
-              <img
+              <Image
                 className="absolute max-w-full max-h-full"
-                src="./icons/vector.png"
+                src="/icons/vector.png"
                 alt=""
+                width={16}
+                height={14}
               />
             </div>
             <div className="w-[46px] h-[46px] bg-gray-200 rounded-[100%] mx-3 flex items-center justify-center">
-              <img
+              <Image
                 className="absolute max-w-full max-h-full rotate-180"
-                src="./icons/vector.png"
+                src="/icons/vector.png"
                 alt=""
+                width={16}
+                height={14}
               />
             </div>
           </div>
@@ -54,10 +59,10 @@ const Todays = (props) => {
       </div>
 
       <div className="flex justify-around mb-8">
+        {/* <Item />
         <Item />
         <Item />
-        <Item />
-        <Item />
+        <Item /> */}
       </div>
 
       <div className="flex justify-center mb-12">

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Item from "./Item";
+import Item from "../Common/Item";
 
-const OurProducts = ({ res }) => {
+const OurProducts = () => {
   return (
     <div className="mx-24 relative mb-32">
       <div className="mb-6">
@@ -33,14 +33,14 @@ const OurProducts = ({ res }) => {
       </div>
 
       <div className="grid grid-cols-4 gap-8">
+        {/* <Item />
         <Item />
         <Item />
         <Item />
         <Item />
         <Item />
         <Item />
-        <Item />
-        <Item />
+        <Item /> */}
       </div>
 
       <div className="flex justify-center mt-14">
