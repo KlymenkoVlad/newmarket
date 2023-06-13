@@ -15,7 +15,7 @@ router.post("/", authMiddleware, async (req, res) => {
     quantity,
     rating,
     category,
-    discount,
+    pastPrice,
   } = req.body;
 
   if (name.length < 1 || description.length < 1) {
@@ -52,7 +52,7 @@ router.post("/", authMiddleware, async (req, res) => {
     };
 
     if (rating) newProduct.rating = rating;
-    if (discount) newProduct.discount = discount;
+    if (discount) newProduct.pastPrice = pastPrice;
 
     const product = await new ProductModel(newProduct).save();
 
@@ -70,16 +70,41 @@ router.post("/", authMiddleware, async (req, res) => {
 // Get all Product
 
 router.get("/", async (req, res) => {
-  const page = +req.query.page || 1;
-  const limit = +req.query.limit || 40;
-  const skip = (page - 1) * limit;
-
   try {
-    const product = await ProductModel.find()
+    const queryObj = { ...req.query };
+    const excludeFields = ["page", "sort", "limit", "fields"];
+    excludeFields.forEach((el) => delete queryObj[el]);
+
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = JSON.parse(
+      queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
+    );
+
+    const page = +req.query.page || 1;
+    const limit = +req.query.limit || 40;
+    const skip = (page - 1) * limit;
+
+    let sortBy;
+
+    if (req.query.sort) {
+      sortBy = req.query.sort.split(",").join(" ");
+    } else {
+      sortBy = { createdAt: -1 };
+    }
+
+    let fieldsDel;
+    if (req.query.fields) {
+      fieldsDel = req.query.fields.split(",").join(" ");
+    } else {
+      fieldsDel = "-__v";
+    }
+
+    const product = await ProductModel.find(queryStr)
       .skip(skip)
+      .select(fieldsDel)
       .limit(limit)
-      .sort({ createdAt: -1 })
-      .populate("user");
+      .populate("user")
+      .sort(sortBy);
 
     if (req.query.page) {
       const numProducts = await ProductModel.countDocuments();
@@ -94,6 +119,7 @@ router.get("/", async (req, res) => {
       },
     });
   } catch (error) {
+    console.error(error);
     res.status(404).json({
       status: "fail",
       message: error,

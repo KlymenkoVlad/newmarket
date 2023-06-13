@@ -17,7 +17,7 @@ router.get("/", authMiddleware, async (req, res) => {
   const { userId } = req;
 
   try {
-    const user = await UserModel.findById(userId);
+    const user = await UserModel.findById(userId).select("-__v");
 
     return res.status(200).json({ user });
   } catch (error) {

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "",
+  title: "All Products",
   description: "",
 };
 
@@ -23,25 +23,28 @@ interface User {
 
 interface Data {
   data: {
-    _id: string;
-    user: User;
-    name: string;
-    price: number;
-    pictures: string[];
-    description: string;
-    quantity: number;
-    discount?: number;
-    category: never[] | string[];
-    rating: number;
-    date: string;
-    __v: number;
-  }[];
+    data: {
+      _id: string;
+      user: User;
+      name: string;
+      price: number;
+      mainPicture: string;
+      pictures?: string[];
+      description: string;
+      quantity: number;
+      pastPrice?: number;
+      category: never[] | string[];
+      rating: number;
+      date: string;
+      __v: number;
+    }[];
+  };
 }
 
-async function getData() {
+async function getData(url: string) {
   try {
-    const res = await fetch(`${baseUrl}/api/item?page=1&limit=5`, {
-      next: { revalidate: 420 },
+    const res = await fetch(`${baseUrl}${url}`, {
+      next: { revalidate: 620 },
       method: "GET",
     });
 
@@ -56,10 +59,10 @@ async function getData() {
 }
 
 export default async function Page() {
-  const { data } = await getData();
-  const { data: items }: Data = data; // Destructure 'data' object and rename 'data' property to 'items'
-
-  console.log(items);
+  const { data: items }: Data = await getData("/api/item?page=1&limit=10");
+  const { data: cheapItems }: Data = await getData(
+    "/api/item?limit=5&page=1&sort=price"
+  );
 
   return (
     <div className="flex mb-16">
@@ -109,21 +112,23 @@ export default async function Page() {
             <p className="text-red-500 font-medium ml-5">Hot New Releases</p>
           </div>
           <div className="flex">
-            <h3 className=" font-semibold text-2xl">Explore Our Products</h3>
+            <h3 className=" font-semibold text-2xl">The cheapest</h3>
           </div>
         </div>
 
         <div className="grid grid-cols-5 gap-8 mb-24">
-          {/* <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item /> */}
+          {cheapItems &&
+            cheapItems.data.map((item) => (
+              <Item
+                id={item._id}
+                key={item._id}
+                name={item.name}
+                price={item.price}
+                rating={item.rating}
+                mainPicture={item.mainPicture}
+                pastPrice={item?.pastPrice}
+              />
+            ))}
         </div>
 
         <div className="mb-6">
@@ -138,14 +143,15 @@ export default async function Page() {
 
         <div className="grid grid-cols-5 gap-8">
           {items &&
-            items.map((item) => (
+            items.data.map((item) => (
               <Item
+                id={item._id}
                 key={item._id}
                 name={item.name}
                 price={item.price}
                 rating={item.rating}
-                img={item.pictures}
-                discount={item?.discount}
+                mainPicture={item.mainPicture}
+                pastPrice={item?.pastPrice}
               />
             ))}
         </div>

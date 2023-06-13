@@ -7,7 +7,8 @@ const ProductSchema = new Schema({
 
   name: { type: String, required: true },
   price: { type: Number, required: true },
-  pictures: [{ type: String, required: true }],
+  mainPicture: { type: String, required: true },
+  pictures: [{ type: String }],
   description: { type: String, required: true },
   quantity: { type: Number, required: true },
   category: [{ type: String, required: true }],
@@ -16,7 +17,7 @@ const ProductSchema = new Schema({
     enum: [0, 1, 2, 3, 4, 5],
     default: 0,
   },
-  discount: { type: Number },
+  pastPrice: { type: Number },
 
   date: { type: Date, default: Date.now() },
 });
