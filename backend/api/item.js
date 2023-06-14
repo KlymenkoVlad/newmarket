@@ -10,11 +10,12 @@ router.post("/", authMiddleware, async (req, res) => {
   const {
     name,
     price,
+    mainPicture,
     pictures,
     description,
     quantity,
-    rating,
     category,
+    rating,
     pastPrice,
   } = req.body;
 
@@ -40,6 +41,10 @@ router.post("/", authMiddleware, async (req, res) => {
     return res.status(401).send("Please provide product`s category");
   }
 
+  if (!mainPicture) {
+    return res.status(401).send("Please provide product`s main picture");
+  }
+
   try {
     const newProduct = {
       user: req.userId,
@@ -49,10 +54,12 @@ router.post("/", authMiddleware, async (req, res) => {
       quantity,
       price,
       category,
+      mainPicture,
     };
 
     if (rating) newProduct.rating = rating;
-    if (discount) newProduct.pastPrice = pastPrice;
+    if (pastPrice) newProduct.pastPrice = pastPrice;
+    if (pictures) newProduct.pictures = pictures;
 
     const product = await new ProductModel(newProduct).save();
 

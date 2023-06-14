@@ -1,3 +1,4 @@
+import baseUrl from "@/utils/baseUrl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -22,7 +23,7 @@ const Item: React.FC<ItemProps> = ({
   return (
     <div className="flex justify-center">
       <div>
-        <Link href={`product/${id}-${name}`}>
+        <Link href="/product/[id]-[name]" as={`/product/${id}-${name}`} shallow>
           <div className="w-[270px] h-[250px] bg-gray-100 relative rounded-sm">
             <div className="w-[270px] h-[250px] flex justify-center items-center">
               <img
@@ -33,13 +34,13 @@ const Item: React.FC<ItemProps> = ({
             </div>
             {pastPrice && (
               <div className="w-[55px] h-[26px] bg-red-500 absolute left-4 top-5 rounded-md flex justify-around items-center text-white">
-                <p>-{Math.floor(((price - pastPrice) / price) * 100)}%</p>
+                <p>-{Math.floor(((pastPrice - price) / pastPrice) * 100)}%</p>
               </div>
             )}
             <div className="w-[30px] h-[30px] bg-white rounded-[100%] mx-3 flex items-center justify-center absolute right-1 top-12">
               <img
                 className="w-6 h-6 max-w-full max-h-full"
-                src="./icons/View.png"
+                src="/icons/View.png"
                 alt=""
               />
             </div>
@@ -57,9 +58,9 @@ const Item: React.FC<ItemProps> = ({
         <p className="block text-base font-medium ">{name}</p>
         {pastPrice ? (
           <div className="flex">
-            <p className=" text-red-500 text-base">{pastPrice}$</p>
+            <p className=" text-red-500 text-base">{price}$</p>
             <p className="ml-4 line-through text-gray-500 text-base">
-              {price}$
+              {pastPrice}$
             </p>
           </div>
         ) : (

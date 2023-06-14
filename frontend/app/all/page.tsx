@@ -44,7 +44,7 @@ interface Data {
 async function getData(url: string) {
   try {
     const res = await fetch(`${baseUrl}${url}`, {
-      next: { revalidate: 620 },
+      next: { revalidate: 1 },
       method: "GET",
     });
 
