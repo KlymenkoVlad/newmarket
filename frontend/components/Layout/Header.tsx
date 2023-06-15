@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProfileLink from "./ClientSide/ProfileLink";
 import Cookies from "js-cookie";
+import HeaderLink from "./ClientSide/HeaderLink";
 
 const Header = () => {
   const token = Cookies.get("token");
@@ -21,20 +22,7 @@ const Header = () => {
       </div>
       <div className="h-24 flex justify-around items-center text-black">
         <p className="text-2xl font-medium">Exclusive</p>
-        <div>
-          <Link className={`ml-4 link`} href="/">
-            Home
-          </Link>
-          <Link className={`ml-4 link`} href="/contact">
-            Contact
-          </Link>
-          <Link className={`ml-4 link`} href="/about">
-            About
-          </Link>
-          <Link className={`ml-4 link`} href="/all">
-            All Products
-          </Link>
-        </div>
+        <HeaderLink />
         <div className="flex">
           <input type="text" placeholder="What are you looking for?" />
           <Link href="/wishlist" className="ml-4 h-full w-full cursor-pointer">
@@ -45,11 +33,9 @@ const Header = () => {
               height={32}
             />
           </Link>
-
           <Link href="/cart" className="ml-4 h-full w-full cursor-pointer">
             <Image src="/icons/cart.png" alt="cart" width={32} height={32} />
           </Link>
-
           <ProfileLink token={token} />
         </div>
       </div>

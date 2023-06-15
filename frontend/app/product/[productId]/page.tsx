@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const product: Data = await getData(params.productId.split("-")[0]);
 
-  console.log(product.pictures?.length);
+  const entity: number = product?.pictures?.length!;
 
   return (
     <div className="mx-24">
@@ -88,11 +88,13 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="flex justify-evenly items-center mb-28">
         <div className="flex ">
           <div
-            className={`grid grid-rows-${product.pictures?.length.toString()} grid-flow-col gap-4 mr-12`}
+            className={`grid grid-rows-${
+              product?.pictures?.length + 1
+            } grid-flow-col  gap-4 mr-12`}
           >
             {product.pictures &&
               product.pictures.map((picture) => (
-                <div className="col-span-2 bg-gray-300 m-auto border">
+                <div className="row-span-1 bg-gray-300 m-auto border">
                   <Image
                     src={picture}
                     alt={product.name}
@@ -101,9 +103,7 @@ export default async function BlogPostPage({ params }: Props) {
                   />
                 </div>
               ))}
-            <div
-              className={`row-span-${product.pictures?.length} bg-gray-200 m-auto border`}
-            >
+            <div className={`row-span-4 bg-gray-200 m-auto border`}>
               <Image
                 src={product.mainPicture}
                 alt="Banana"
@@ -114,11 +114,17 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
 
           <div className="">
-            <h1 className="mb-3">{product.name}</h1>
-            <h3 className="mb-3">
-              Rating - {product.rating} |
-              {product.quantity >= 1 ? "In stock" : "Not available"}
-            </h3>
+            <h1 className="mb-3 font-semibold text-lg">{product.name}</h1>
+            <div className="flex mb-3">
+              <h3>Rating - {product.rating} |</h3>
+              <h3
+                className={` ${
+                  product.quantity >= 1 ? "text-green-500" : "text-red-500"
+                }`}
+              >
+                {product.quantity >= 1 ? "In stock" : "Not available"}
+              </h3>
+            </div>
             <h2 className="mb-5">${product.price}</h2>
             <p className="w-[400px] mb-5">{product.description}</p>
             <div className="h-px w-[400px] bg-gray-400 mb-5"></div>
