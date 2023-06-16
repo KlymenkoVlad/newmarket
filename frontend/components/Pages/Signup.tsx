@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import Ripples from "react-ripples";
 import axios from "axios";
-import UserModel from "@/models/UserModel";
 import cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -26,7 +25,7 @@ const Signup = (props: null) => {
   const router = useRouter();
 
   const checkEmail = async (email: string) => {
-    const res = await axios.get(`${baseUrl}/api/auth`);
+    const res = await axios.get(`${baseUrl}/api/signup/${email}`);
 
     if (res.data !== "Available") {
       return console.error("This email is already taken");
@@ -70,11 +69,11 @@ const Signup = (props: null) => {
           })}
           onSubmit={async (user) => {
             try {
+              console.log(user);
               await checkEmail(user.email);
 
-              const res = await axios.post(`${baseUrl}/api/signup`, {
-                user,
-                profilePicUrl: "null",
+              const res = await axios.post(`http://localhost:3001/api/signup`, {
+                user: user,
               });
 
               cookies.set("token", res.data);

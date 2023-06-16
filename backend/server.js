@@ -14,6 +14,8 @@ app.use(cors()); // Add this line before defining your routes
 const signup = require("./api/signup");
 const auth = require("./api/auth");
 const item = require("./api/item");
+const profile = require("./api/profile");
+const buy = require("./api/buy");
 
 dotenv.config({ path: "./.env" });
 
@@ -27,6 +29,8 @@ app.use(cors());
 app.use("/api/signup", signup);
 app.use("/api/auth", auth);
 app.use("/api/item", item);
+app.use("/api/profile", profile);
+app.use("/api/buy", buy);
 
 app.listen(PORT, (err) => {
   if (err) throw err;

@@ -11,98 +11,71 @@ import baseUrl from "@/utils/baseUrl";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
-const FormMe = ({ email, name, role }) => {
+const PasswordForm = () => {
   const router = useRouter();
 
   return (
     <>
       <Formik
         initialValues={{
-          email: "",
-          name: "",
-          role,
+          oldPassword: "",
+          newPassword: "",
+          newPasswordConfirmation: "",
         }}
         validationSchema={Yup.object({
-          email: Yup.string().email("Wrong email"),
-          name: Yup.string().min(2, "Atleast 2 characters"),
-          role: Yup.string(),
+          oldPassword: Yup.string()
+            .required("No password provided.")
+            .min(8, "Password is too short - should be 8 chars minimum.")
+            .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+          newPassword: Yup.string()
+            .required("No password provided.")
+            .min(8, "Password is too short - should be 8 chars minimum.")
+            .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
+            .notOneOf(
+              [Yup.ref("oldPassword")],
+              "New password must be different from the old password."
+            ),
+          newPasswordConfirmation: Yup.string()
+            .oneOf([Yup.ref("newPassword")], "Passwords must match")
+            .required("Please confirm your new password."),
         })}
-        onSubmit={async (user, { resetForm }) => {
+        onSubmit={async (password, { resetForm }) => {
           try {
-            if (
-              (user.email === "" || user.email === email) &&
-              (user.name === "" || user.name === name) &&
-              user.role === role
-            ) {
-              return alert("data are the same or not specified");
-            }
-            try {
-              const token = Cookies.get("token");
+            const token = Cookies.get("token");
+            console.log(password);
 
-              const emailCheckRes = await axios.get(
-                `${baseUrl}/api/signup/${email}`
-              );
+            const res = await axios.post(
+              `${baseUrl}/api/profile/updatePassword`,
+              {
+                oldPassword: password.oldPassword,
+                newPassword: password.newPassword,
+              },
+              { headers: { Authorization: token } }
+            );
 
-              if (emailCheckRes.data !== "Available") {
-                alert("This email is already taken and won`t be changed");
-                user.email = "";
-              }
-              const res = await axios.put(
-                `${baseUrl}/api/profile/update`,
-                { name: user.name, email: user.email, role: user.role },
-                { headers: { Authorization: token } }
-              );
+            resetForm();
 
-              resetForm();
-
-              if (res.status === 200) {
-                alert("Data is successfully updated");
-              } else {
-                alert("Something is went wrong");
-              }
-            } catch (error) {
-              console.error(error);
+            if (res.status === 200) {
+              alert("Data is successfully updated");
+            } else {
+              alert("Something is went wrong");
             }
           } catch (error) {
             console.error(error);
           }
         }}
       >
-        <Form className="  px-8 pt-6 pb-8 flex flex-col m-auto w-[400px] justify-center">
+        <Form className="  px-8 pt-6 pb-8  flex flex-col m-auto w-[400px] justify-center">
           <h2 className=" font-medium text-lg mb-6 text-red-500">
-            Edit Your Profile
+            Edit Your Password
           </h2>
+
           <div className="bg-white mb-10">
             <label
               className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
-              htmlFor="email"
+              htmlFor="oldPassword"
             >
-              Your email
-            </label>
-            <Field
-              className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-      disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-pink-500 invalid:text-pink-600
-      focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
-              id="email"
-              name="email"
-              type="email"
-              placeholder={email}
-            />
-            <ErrorMessage
-              name="email"
-              component="div"
-              className="mt-2 text-red-500"
-            />
-          </div>
-
-          <div className="bg-white mb-10 ">
-            <label
-              className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
-              htmlFor="name"
-            >
-              Your Name
+              Your Old Password
             </label>
             <Field
               className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
@@ -110,39 +83,60 @@ const FormMe = ({ email, name, role }) => {
                 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
                 invalid:border-pink-500 invalid:text-pink-600
                 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
-              id="name"
-              name="name"
-              type="text"
-              placeholder={name}
+              name="oldPassword"
+              type="password"
             />
             <ErrorMessage
-              name="name"
+              name="oldPassword"
               component="div"
               className="mt-2 text-red-500"
             />
           </div>
 
-          <div className="bg-white  mb-10">
+          <div className="bg-white mb-10">
             <label
-              htmlFor="role"
               className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
+              htmlFor="newPassword"
             >
-              Choose your role
+              Your New Password
             </label>
             <Field
-              id="role"
-              name="role"
-              as="select"
-              className=" block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+              className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
                 invalid:border-pink-500 invalid:text-pink-600
                 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+              name="newPassword"
+              type="password"
+            />
+            <ErrorMessage
+              name="newPassword"
+              component="div"
+              className="mt-2 text-red-500"
+            />
+          </div>
+
+          <div className="bg-white mb-10">
+            <label
+              className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
+              htmlFor="newPasswordConfirmation"
             >
-              <option value="user">User</option>
-              <option value="seller">Seller</option>
-            </Field>
-            <ErrorMessage component="div" className="error" name="role" />
+              Confirm Your New Password
+            </label>
+            <Field
+              className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+                invalid:border-pink-500 invalid:text-pink-600
+                focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+              name="newPasswordConfirmation"
+              type="password"
+            />
+            <ErrorMessage
+              name="newPasswordConfirmation"
+              component="div"
+              className="mt-2 text-red-500"
+            />
           </div>
 
           <div className="inline-flex items-center justify-start ">
@@ -161,4 +155,4 @@ const FormMe = ({ email, name, role }) => {
   );
 };
 
-export default FormMe;
+export default PasswordForm;

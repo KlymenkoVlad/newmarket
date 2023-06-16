@@ -1,55 +1,55 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-const authMiddleware = require("../middleware/authMiddleware");
-const UserModel = require("../models/UserModel");
+const authMiddleware = require('../middleware/authMiddleware');
+const UserModel = require('../models/UserModel');
 
-const validateEmail = (email) => {
-  return email.match(
+const validateEmail = (email) =>
+  email.match(
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
-};
 
-router.get("/", authMiddleware, async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
   const { userId } = req;
 
   try {
-    const user = await UserModel.findById(userId).select("-__v");
+    const user = await UserModel.findById(userId).select('-__v');
 
     return res.status(200).json({ user });
   } catch (error) {
     console.error(error);
-    return res.status(500).send("Server error");
+    return res.status(500).send('Server error');
   }
 });
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   const { email, password } = req.body.user;
 
-  if (!validateEmail(email)) return res.status(401).send("Invalid email");
-  if (password.length < 6)
-    return res.status(401).send("Password must be atleast 6 characters");
+  if (!validateEmail(email)) return res.status(401).send('Invalid email');
+  if (password.length < 6) {
+    return res.status(401).send('Password must be atleast 6 characters');
+  }
 
   try {
     const user = await UserModel.findOne({ email: email.toLowerCase() }).select(
-      "+password"
+      '+password'
     );
 
-    if (!user) return res.status(401).json({ error: "No such user" });
+    if (!user) return res.status(401).json({ error: 'No such user' });
 
     const isPassword = await bcrypt.compare(password, user.password);
 
-    if (!isPassword) return res.status(401).send("Invalid credential");
+    if (!isPassword) return res.status(401).send('Invalid credential');
 
     const payload = { userId: user._id };
 
     jwt.sign(
       payload,
       process.env.jwtSecret,
-      { expiresIn: "24d" },
+      { expiresIn: '24d' },
       (err, token) => {
         if (err) throw err;
         res.status(200).json(token);
@@ -57,7 +57,7 @@ router.post("/", async (req, res) => {
     );
   } catch (error) {
     console.error(error);
-    return res.status(500).send("Server error");
+    return res.status(500).send('Server error');
   }
 });
 
