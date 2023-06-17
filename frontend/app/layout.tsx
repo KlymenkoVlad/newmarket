@@ -1,11 +1,10 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import axios from "axios";
-import { parseCookies, destroyCookie } from "nookies";
-import baseUrl from "../utils/baseUrl";
-import { redirectUser } from "../utils/authUser";
+import { Toaster } from "react-hot-toast";
+
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
+import { StateContext } from "@/context/StateContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
+        <StateContext>
+          <Header />
+          <Toaster />
+          {children}
 
-        {children}
-
-        <Footer />
+          <Footer />
+        </StateContext>
       </body>
     </html>
   );

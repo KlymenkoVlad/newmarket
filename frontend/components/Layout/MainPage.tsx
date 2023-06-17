@@ -8,10 +8,12 @@ import ItemPromo from "../MainPageComponents/ItemPromo";
 import OurProducts from "../MainPageComponents/OurProducts";
 import Featured from "../MainPageComponents/Featured";
 import Benefits from "../MainPageComponents/Benefits";
+import Modal from "@/app/Modal";
 
 function MainPage() {
   return (
     <div>
+      <Modal />
       <BannerSection />
       <Todays />
       <Categories />

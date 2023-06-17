@@ -2,6 +2,7 @@ import Button from "@/components/Common/Button";
 import Item from "@/components/Common/Item";
 import baseUrl from "@/utils/baseUrl";
 import Image from "next/image";
+import Btn from "./Btn";
 
 async function getData(params: string) {
   try {
@@ -130,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="h-px w-[400px] bg-gray-400 mb-5"></div>
 
             <div className="flex justify-around mb-6">
-              <Button text={"buy"} />
+              <Btn text={"buy"} productId={product._id} />
               <button type="submit">
                 <div className="w-[40px] h-[40px] border flex justify-center items-center hover:bg-neutral-300 transition-colors duration-500 ease-in-out">
                   <Image
