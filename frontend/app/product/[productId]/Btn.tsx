@@ -1,25 +1,31 @@
 "use client";
 import baseUrl from "@/utils/baseUrl";
 import Ripples from "react-ripples";
+import { useStateContext } from "@/context/StateContext";
+import { Product } from "@/types/types";
 
 interface ItemProps {
   text: string;
-  productId: string;
+  product: Product;
 }
 
-export default function Btn({ text, productId }: ItemProps) {
+export default function Btn({ text, product }: ItemProps) {
+  const { onAdd, quantities, setShowCart } = useStateContext();
+
+  const handleBuyNow = () => {
+    onAdd(product, quantities);
+
+    setShowCart(true);
+  };
+
   return (
     <div className="inline-flex items-center justify-start">
-      <Ripples>
-        <form
-          action={`${baseUrl}/api/buy/create-checkout-session/${productId}`}
-          method="POST"
-        >
-          <button className="border-0 rounded-md px-4 py-2 text-base font-medium text-white uppercase transition-colors duration-500 ease-in-out bg-red-500 shadow-md focus:outline-none hover:bg-red-600 active:bg-red-400">
-            {text}
-          </button>
-        </form>
-      </Ripples>
+      <button
+        onClick={handleBuyNow}
+        className=" transition-colors duration-500 ease-in-out text-red-700 hover:text-white border border-red-700 hover:bg-red-800  focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 "
+      >
+        {text}
+      </button>
     </div>
   );
 }

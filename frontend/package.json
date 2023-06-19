@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^1.54.0",
     "@types/cookie": "^0.5.1",
     "@types/js-cookie": "^3.0.3",
     "@types/node": "20.2.4",

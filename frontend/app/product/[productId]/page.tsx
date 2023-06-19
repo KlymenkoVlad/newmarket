@@ -3,6 +3,10 @@ import Item from "@/components/Common/Item";
 import baseUrl from "@/utils/baseUrl";
 import Image from "next/image";
 import Btn from "./Btn";
+import IncDecBtn from "./IncDecBtn";
+import AddToCartBtn from "./AddToCartBtn";
+
+import { Product } from "@/types/types";
 
 async function getData(params: string) {
   try {
@@ -21,63 +25,19 @@ async function getData(params: string) {
   }
 }
 
-interface User {
-  user: {
-    createdAt: string;
-    email: string;
-    name: string;
-    profilePicUrl: string;
-    role: string;
-    updatedAt: string;
-    __v: number;
-    _id: string;
-  };
-}
-
-interface Data {
-  _id: string;
-  user: User;
-  name: string;
-  price: number;
-  mainPicture: string;
-  pictures?: string[];
-  description: string;
-  quantity: number;
-  pastPrice?: number;
-  category: never[] | string[];
-  rating: number;
-  date: string;
-  __v: number;
-}
-
 interface Props {
   params: { productId: string };
 }
 
-interface DataItem {
+interface ProductData {
   data: {
-    data: {
-      _id: string;
-      user: User;
-      name: string;
-      price: number;
-      mainPicture: string;
-      pictures?: string[];
-      description: string;
-      quantity: number;
-      pastPrice?: number;
-      category: never[] | string[];
-      rating: number;
-      date: string;
-      __v: number;
-    }[];
+    data: Product[];
   };
 }
-
 export default async function BlogPostPage({ params }: Props) {
-  const { data: relatedItems }: DataItem = await getData("/?page=1&limit=5");
+  const { data: relatedItems }: ProductData = await getData("/?page=1&limit=5");
 
-  const product: Data = await getData(params.productId.split("-")[0]);
+  const product: Product = await getData(params.productId.split("-")[0]);
 
   const entity: number = product?.pictures?.length!;
 
@@ -90,7 +50,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="flex ">
           <div
             className={`grid grid-rows-${
-              product?.pictures?.length + 1
+              product?.pictures && product.pictures.length + 1
             } grid-flow-col  gap-4 mr-12`}
           >
             {product.pictures &&
@@ -130,18 +90,26 @@ export default async function BlogPostPage({ params }: Props) {
             <p className="w-[400px] mb-5">{product.description}</p>
             <div className="h-px w-[400px] bg-gray-400 mb-5"></div>
 
+            <div className="flex justify-center items-center mb-6">
+              <div className="flex justify-center">
+                <IncDecBtn />
+
+                <button type="submit" className="ml-10">
+                  <div className="w-[40px] h-[40px] border flex justify-center items-center hover:bg-neutral-300 transition-colors duration-500 ease-in-out">
+                    <Image
+                      src="/icons/wishlist.png"
+                      alt="wishlist"
+                      width={32}
+                      height={32}
+                    />
+                  </div>
+                </button>
+              </div>
+            </div>
+
             <div className="flex justify-around mb-6">
-              <Btn text={"buy"} productId={product._id} />
-              <button type="submit">
-                <div className="w-[40px] h-[40px] border flex justify-center items-center hover:bg-neutral-300 transition-colors duration-500 ease-in-out">
-                  <Image
-                    src="/icons/wishlist.png"
-                    alt="wishlist"
-                    width={32}
-                    height={32}
-                  />
-                </div>
-              </button>
+              <Btn text={"Buy Now"} product={product} />
+              <AddToCartBtn text={"Add to Cart"} product={product} />
             </div>
 
             <div className="border">

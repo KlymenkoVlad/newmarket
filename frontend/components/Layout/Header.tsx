@@ -6,6 +6,8 @@ import Link from "next/link";
 import ProfileLink from "./ClientSide/ProfileLink";
 import Cookies from "js-cookie";
 import HeaderLink from "./ClientSide/HeaderLink";
+import Cart from "./ClientSide/Cart";
+import CartBtn from "./ClientSide/CartBtn";
 
 const Header = () => {
   const token = Cookies.get("token");
@@ -33,11 +35,10 @@ const Header = () => {
               height={32}
             />
           </Link>
-          <Link href="/cart" className="ml-4 h-full w-full cursor-pointer">
-            <Image src="/icons/cart.png" alt="cart" width={32} height={32} />
-          </Link>
+          <CartBtn />
           <ProfileLink token={token} />
         </div>
+        <Cart />
       </div>
       <div className="h-px bg-gray-400"></div>
     </>
