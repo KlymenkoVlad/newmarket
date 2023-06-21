@@ -3,7 +3,7 @@
 import IncDecBtn from "@/app/product/[productId]/IncDecBtn";
 import { useStateContext } from "@/context/StateContext";
 import Image from "next/image";
-import Btn from "./Btn";
+import Btn from "./cartBuyBtn";
 
 export default function Cart() {
   const {

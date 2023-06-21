@@ -4,11 +4,19 @@ import { Product } from "@/types/types";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
+interface contextObject {
+  showCart: boolean;
+  cartItems: Product[];
+  totalPrice: number;
+  totalQuantities: number;
+  quantities: number;
+}
+
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [showCart, setShowCart] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const [showCart, setShowCart] = useState<boolean>(false);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
   const [quantities, setQuantities] = useState(1);
@@ -16,7 +24,7 @@ export const StateContext = ({ children }) => {
   let foundProduct: Product | undefined;
   let index: number;
 
-  const onAdd = (product, quantity) => {
+  const onAdd = (product: Product, quantity: number) => {
     const checkProductInCart = cartItems.find(
       (item) => item._id === product._id
     );
@@ -58,7 +66,7 @@ export const StateContext = ({ children }) => {
     });
   };
 
-  const toggleCartItemQuanitity = (id, value) => {
+  const toggleCartItemQuanitity = (id: string, value: "inc" | "dec") => {
     foundProduct = cartItems.find((item) => item._id === id);
     index = cartItems.findIndex((product) => product._id === id);
     const newCartItems = cartItems.filter((item) => item._id !== id);
@@ -82,7 +90,7 @@ export const StateContext = ({ children }) => {
     }
   };
 
-  const onRemove = (product) => {
+  const onRemove = (product: Product) => {
     foundProduct = cartItems.find((item) => item._id === product._id);
     const newCartItems = cartItems.filter((item) => item._id !== product._id);
 

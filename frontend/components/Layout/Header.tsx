@@ -6,7 +6,7 @@ import Link from "next/link";
 import ProfileLink from "./ClientSide/ProfileLink";
 import Cookies from "js-cookie";
 import HeaderLink from "./ClientSide/HeaderLink";
-import Cart from "./ClientSide/Cart";
+import Cart from "./ClientSide/Cart/Cart";
 import CartBtn from "./ClientSide/CartBtn";
 
 const Header = () => {

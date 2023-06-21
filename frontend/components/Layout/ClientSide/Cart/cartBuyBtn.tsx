@@ -5,6 +5,8 @@ import getStripe from "@/lib/getStripe";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+import { Product } from "@/types/types";
+
 export default function Btn({ cartItems }) {
   const handleCheckout = async () => {
     try {

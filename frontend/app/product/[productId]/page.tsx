@@ -11,7 +11,7 @@ import { Product } from "@/types/types";
 async function getData(params: string) {
   try {
     const res = await fetch(`${baseUrl}/api/item/${params}`, {
-      next: { revalidate: 420 },
+      next: { revalidate: 1 },
       method: "GET",
     });
 
@@ -30,14 +30,15 @@ interface Props {
 }
 
 interface ProductData {
-  data: {
-    data: Product[];
-  };
+  product: Product[];
 }
-export default async function BlogPostPage({ params }: Props) {
-  const { data: relatedItems }: ProductData = await getData("/?page=1&limit=5");
 
+export default async function BlogPostPage({ params }: Props) {
   const product: Product = await getData(params.productId.split("-")[0]);
+
+  const { product: relatedItems }: ProductData = await getData(
+    `/?page=1&limit=5&category=${product.category}`
+  );
 
   const entity: number = product?.pictures?.length!;
 
@@ -158,7 +159,7 @@ export default async function BlogPostPage({ params }: Props) {
       </div>
       <div className="grid grid-cols-5 gap-8 mb-10">
         {relatedItems &&
-          relatedItems.data.map((item) => (
+          relatedItems.map((item) => (
             <Item
               id={item._id}
               key={item._id}

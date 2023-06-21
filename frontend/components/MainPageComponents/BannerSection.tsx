@@ -1,6 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
 import Slider from "./ClientSide/Slider";
+import NavMenu from "../Common/NavMenu";
 
 const BannerSection = () => {
   const slides = [
@@ -24,41 +23,10 @@ const BannerSection = () => {
 
   return (
     <div className="flex mb-16">
-      <div className="flex ml-24">
-        <ul className="mr-20">
-          <li className="mt-6 mb-8">
-            <Link href="woman">Woman’s Fashion</Link>
-          </li>
-          <li className="mb-8">
-            <Link href="men">Men’s Fashion</Link>
-          </li>
-          <li className="mb-8">
-            <Link href="electronic">Electronics</Link>
-          </li>
-          <li className="mb-8">
-            <Link href="home">Home & Lifestyle</Link>
-          </li>
-          <li className="mb-8">
-            <Link href="medicine">Medicine</Link>
-          </li>
-          <li className="mb-8">
-            <Link href="sports">Sports & Outdoor</Link>
-          </li>
-          <li className="mb-8">
-            <Link href="baby">Baby’s & Toys</Link>
-          </li>
-          <li className="mb-8">
-            <Link href="pet">Groceries & Pets</Link>
-          </li>
-          <li className="mb-8">
-            <Link href="beauty">Health & Beauty</Link>
-          </li>
-        </ul>
-        <div className=" h-[500px] w-px bg-gray-400"></div>
-      </div>
+      <NavMenu />
 
       <div className="m-auto h-[500px] w-[892px] py-4 px-4 relative group">
-        <Slider slides={slides} />
+        <Slider slides={slides} />N
       </div>
     </div>
   );

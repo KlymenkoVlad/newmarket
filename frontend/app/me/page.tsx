@@ -20,11 +20,9 @@ interface User {
 }
 
 async function getData() {
-  const cookieStore = cookies();
-  const token = cookieStore.get("token");
-  console.log(token);
-
   try {
+    const cookieStore = cookies();
+    const token = cookieStore.get("token");
     if (!token) {
       throw new Error("Failed to get token");
     }

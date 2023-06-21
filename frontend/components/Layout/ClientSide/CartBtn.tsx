@@ -9,7 +9,7 @@ export default function CartBtn() {
 
   return (
     <button
-      onClick={() => setShowCart(true)}
+      onClick={() => setShowCart(!showCart)}
       className="ml-4 h-full w-full cursor-pointer"
     >
       <Image src="/icons/cart.png" alt="cart" width={32} height={32} />
