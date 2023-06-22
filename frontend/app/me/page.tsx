@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 
 import Link from "next/link";
 import Navigation from "./Navigation";
+import { redirect } from "next/navigation";
 
 interface User {
   user: {
@@ -19,7 +20,15 @@ interface User {
   };
 }
 
-async function getData() {
+const tokenCheck = () => {
+  const cookieStore = cookies();
+  const token = cookieStore.get("token");
+  if (!token) {
+    redirect("login");
+  }
+};
+
+const getData = async () => {
   try {
     const cookieStore = cookies();
     const token = cookieStore.get("token");
@@ -42,9 +51,10 @@ async function getData() {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 export default async function Page() {
+  tokenCheck();
   const { user }: User = await getData();
 
   return (

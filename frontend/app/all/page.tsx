@@ -58,18 +58,7 @@ export default async function Page() {
           </div>
         </div>
         <div className="grid grid-cols-5 gap-8 mb-24">
-          {cheapItems &&
-            cheapItems.map((item) => (
-              <Item
-                id={item._id}
-                key={item._id}
-                name={item.name}
-                price={item.price}
-                rating={item.rating}
-                mainPicture={item.mainPicture}
-                pastPrice={item?.pastPrice}
-              />
-            ))}
+          {cheapItems && cheapItems.map((item) => <Item product={item} />)}
         </div>
         <div className="mb-6">
           <div className="flex items-center mb-6">
@@ -81,18 +70,7 @@ export default async function Page() {
           </div>
         </div>
         <div className="grid grid-cols-5 gap-8">
-          {items &&
-            items.map((item) => (
-              <Item
-                id={item._id}
-                key={item._id}
-                name={item.name}
-                price={item.price}
-                rating={item.rating}
-                mainPicture={item.mainPicture}
-                pastPrice={item?.pastPrice}
-              />
-            ))}
+          {items && items.map((item) => <Item product={item} />)}
         </div>
       </div>
     </div>

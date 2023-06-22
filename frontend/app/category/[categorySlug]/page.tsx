@@ -65,17 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
         <div className="grid grid-cols-5 gap-8 mb-24">
           {products.product &&
-            products.product.map((item) => (
-              <Item
-                id={item._id}
-                key={item._id}
-                name={item.name}
-                price={item.price}
-                rating={item.rating}
-                mainPicture={item.mainPicture}
-                pastPrice={item?.pastPrice}
-              />
-            ))}
+            products.product.map((item) => <Item product={item} />)}
         </div>
       </div>
     </div>

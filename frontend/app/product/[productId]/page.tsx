@@ -5,6 +5,7 @@ import Image from "next/image";
 import Btn from "./Btn";
 import IncDecBtn from "./IncDecBtn";
 import AddToCartBtn from "./AddToCartBtn";
+import WishListBtnAdd from "@/components/Common/WishListBtnAdd";
 
 import { Product } from "@/types/types";
 
@@ -95,16 +96,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="flex justify-center">
                 <IncDecBtn />
 
-                <button type="submit" className="ml-10">
-                  <div className="w-[40px] h-[40px] border flex justify-center items-center hover:bg-neutral-300 transition-colors duration-500 ease-in-out">
-                    <Image
-                      src="/icons/wishlist.png"
-                      alt="wishlist"
-                      width={32}
-                      height={32}
-                    />
-                  </div>
-                </button>
+                <WishListBtnAdd product={product} />
               </div>
             </div>
 
@@ -133,12 +125,14 @@ export default async function BlogPostPage({ params }: Props) {
 
               <div className="flex h-[90px] border items-center ">
                 <div className="h-[40px] mx-5 ">
-                  <Image
-                    src="/icons/Icon-return.svg"
-                    alt="wishlist"
-                    width={40}
-                    height={40}
-                  />
+                  <button type="button">
+                    <Image
+                      src="/icons/Icon-return.svg"
+                      alt="wishlist"
+                      width={40}
+                      height={40}
+                    />
+                  </button>
                 </div>
                 <div>
                   <h4 className=" text-sm font-medium">Return Delivery</h4>
@@ -158,18 +152,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </div>
       <div className="grid grid-cols-5 gap-8 mb-10">
-        {relatedItems &&
-          relatedItems.map((item) => (
-            <Item
-              id={item._id}
-              key={item._id}
-              name={item.name}
-              price={item.price}
-              rating={item.rating}
-              mainPicture={item.mainPicture}
-              pastPrice={item?.pastPrice}
-            />
-          ))}
+        {relatedItems && relatedItems.map((item) => <Item product={item} />)}
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ import Cookies from "js-cookie";
 import HeaderLink from "./ClientSide/HeaderLink";
 import Cart from "./ClientSide/Cart/Cart";
 import CartBtn from "./ClientSide/CartBtn";
+import WishListBtn from "./ClientSide/WishListBtn";
+import WishList from "./ClientSide/WishList/WishList";
 
 const Header = () => {
   const token = Cookies.get("token");
@@ -23,22 +25,16 @@ const Header = () => {
         </Link>
       </div>
       <div className="h-24 flex justify-around items-center text-black">
-        <p className="text-2xl font-medium">Exclusive</p>
+        <p className="text-2xl font-medium">New Market</p>
         <HeaderLink />
         <div className="flex">
           <input type="text" placeholder="What are you looking for?" />
-          <Link href="/wishlist" className="ml-4 h-full w-full cursor-pointer">
-            <Image
-              src="/icons/wishlist.png"
-              alt="wishlist"
-              width={32}
-              height={32}
-            />
-          </Link>
+          <WishListBtn />
           <CartBtn />
           <ProfileLink token={token} />
         </div>
         <Cart />
+        <WishList />
       </div>
       <div className="h-px bg-gray-400"></div>
     </>

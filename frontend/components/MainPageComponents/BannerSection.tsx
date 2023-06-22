@@ -26,7 +26,7 @@ const BannerSection = () => {
       <NavMenu />
 
       <div className="m-auto h-[500px] w-[892px] py-4 px-4 relative group">
-        <Slider slides={slides} />N
+        <Slider slides={slides} />
       </div>
     </div>
   );
