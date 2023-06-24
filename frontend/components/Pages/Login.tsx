@@ -13,8 +13,9 @@ import { useRouter } from "next/navigation";
 import "../styles.scss";
 import baseUrl from "@/utils/baseUrl";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
-const Login = (props: null) => {
+const Login = () => {
   const router = useRouter();
 
   return (
@@ -48,9 +49,11 @@ const Login = (props: null) => {
                 user,
               });
 
+              toast.success("You are successfully log in!");
               Cookies.set("token", res.data);
-              router.push("/");
+              router.push("/me");
             } catch (error) {
+              toast.error("Something is went wrong");
               console.error(error);
             }
           }}

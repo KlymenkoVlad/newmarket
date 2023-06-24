@@ -38,7 +38,7 @@ export default async function BlogPostPage({ params }: Props) {
   const product: Product = await getData(params.productId.split("-")[0]);
 
   const { product: relatedItems }: ProductData = await getData(
-    `/?page=1&limit=5&category=${product.category}`
+    `/?page=1&limit=5&category=${product?.category}`
   );
 
   const entity: number = product?.pictures?.length!;

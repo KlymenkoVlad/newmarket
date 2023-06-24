@@ -87,16 +87,10 @@ router.get('/', async (req, res) => {
       queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
     );
 
-    const page = +req.query.page || 1;
-    const limit = +req.query.limit || 40;
-    const skip = (page - 1) * limit;
-
     let sortBy;
 
     if (req.query.sort) {
       sortBy = req.query.sort.split(',').join(' ');
-    } else {
-      sortBy = { createdAt: -1 };
     }
 
     let fieldsDel;
@@ -106,23 +100,33 @@ router.get('/', async (req, res) => {
       fieldsDel = '-__v';
     }
 
+    const numProducts = await ProductModel.countDocuments();
+
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 100;
+    const skip = (page - 1) * limit;
+
     const product = await ProductModel.find(queryStr)
-      .skip(skip)
       .select(fieldsDel)
-      .limit(limit)
       .populate('user')
+      .skip(skip)
+      .limit(limit)
       .sort(sortBy);
 
     if (req.query.page) {
-      const numProducts = await ProductModel.countDocuments();
-      if (skip >= numProducts) throw new Error('This page doesn`t exist');
+      if (skip > numProducts) {
+        // throw new Error('This page doesn`t exist');
+      }
     }
 
-    return res.status(200).json({
+    res.status(200).json({
       status: 'success',
+      total: numProducts,
       results: product.length,
       product,
     });
+
+    // Set the header X-Total-Count
   } catch (error) {
     console.error(error);
     res.status(404).json({

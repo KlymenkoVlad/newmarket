@@ -12,8 +12,6 @@ import WishListBtn from "./ClientSide/WishListBtn";
 import WishList from "./ClientSide/WishList/WishList";
 
 const Header = () => {
-  const token = Cookies.get("token");
-
   return (
     <>
       <div className="text-center h-12 bg-black text-white flex justify-center items-center p-4">
@@ -31,7 +29,7 @@ const Header = () => {
           <input type="text" placeholder="What are you looking for?" />
           <WishListBtn />
           <CartBtn />
-          <ProfileLink token={token} />
+          <ProfileLink />
         </div>
         <Cart />
         <WishList />
