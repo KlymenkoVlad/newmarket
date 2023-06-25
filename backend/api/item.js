@@ -140,7 +140,9 @@ router.get('/', async (req, res) => {
 
 router.get('/:productId', async (req, res) => {
   try {
-    const product = await ProductModel.findById(req.params.productId);
+    const product = await ProductModel.findById(req.params.productId).populate(
+      'user'
+    );
 
     if (!product) {
       return res.status(404).send('Post not found');

@@ -1,14 +1,12 @@
 export interface User {
-  user: {
-    createdAt: string;
-    email: string;
-    name: string;
-    profilePicUrl: string;
-    role: string;
-    updatedAt: string;
-    __v: number;
-    _id: string;
-  };
+  createdAt: string;
+  email: string;
+  name: string;
+  profilePicUrl: string;
+  role: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
 }
 
 export interface Product {

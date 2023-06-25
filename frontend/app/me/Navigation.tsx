@@ -1,11 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormMe from "./FormMe";
 import PasswordForm from "./PasswordForm";
+import { redirect } from "next/navigation";
 
 const Navigation = ({ name, email, role }) => {
   const [section, setSection] = useState("profile");
+
+  useEffect(() => {
+    if (section === "product") {
+      redirect("create-product");
+    }
+  });
+
   return (
     <div className="flex justify-center">
       <div>
@@ -27,13 +35,17 @@ const Navigation = ({ name, email, role }) => {
               Change Password
             </button>
           </li>
+
           <li
             className={`mt-6 mb-8 ${
-              section === "address" ? "text-red-500" : ""
+              section === "product" ? "text-red-500" : ""
             }`}
           >
-            <button onClick={() => setSection("address")}>Address Book</button>{" "}
+            <button onClick={() => setSection("product")}>
+              Create Product
+            </button>
           </li>
+
           <li
             className={`mt-6 mb-8 ${
               section === "payment" ? "text-red-500" : ""
