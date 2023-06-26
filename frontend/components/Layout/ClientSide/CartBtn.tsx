@@ -13,7 +13,7 @@ export default function CartBtn() {
         setShowCart(!showCart);
         setShowWishList(false);
       }}
-      className="ml-4 h-full w-full cursor-pointer"
+      className="h-[100px] w-[100px] cursor-pointer"
     >
       <Image src="/icons/cart.png" alt="cart" width={32} height={32} />
     </button>

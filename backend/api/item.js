@@ -106,12 +106,25 @@ router.get('/', async (req, res) => {
     const limit = req.query.limit * 1 || 100;
     const skip = (page - 1) * limit;
 
-    const product = await ProductModel.find(queryStr)
-      .select(fieldsDel)
-      .populate('user')
-      .skip(skip)
-      .limit(limit)
-      .sort(sortBy);
+    let product;
+
+    if (req.query.search) {
+      product = await ProductModel.find({
+        $or: [{ name: { $regex: req.query.search } }],
+      })
+        .select(fieldsDel)
+        .populate('user')
+        .skip(skip)
+        .limit(limit)
+        .sort(sortBy);
+    } else {
+      product = await ProductModel.find(queryStr)
+        .select(fieldsDel)
+        .populate('user')
+        .skip(skip)
+        .limit(limit)
+        .sort(sortBy);
+    }
 
     if (req.query.page) {
       if (skip > numProducts) {

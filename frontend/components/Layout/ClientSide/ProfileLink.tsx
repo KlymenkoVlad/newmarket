@@ -7,11 +7,8 @@ import Image from "next/image";
 import Cookies from "js-cookie";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-interface ProfileLinkProps {
-  token: string | undefined;
-}
 
-const ProfileLink: React.FC<ProfileLinkProps> = () => {
+const ProfileLink: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -31,7 +28,7 @@ const ProfileLink: React.FC<ProfileLinkProps> = () => {
     <>
       <Link
         href={hasTokenCookie ? "/me" : "/login"}
-        className="ml-4 mr-7 h-full w-full cursor-pointer flex items-center"
+        className=" mr-7 h-[100px] w-[100px] cursor-pointer flex items-center"
       >
         <Image src="/icons/user.png" alt="user" width={32} height={32} />
         <p className="ml-2">

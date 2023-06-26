@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import "../../styles.scss";
 
 export default function HeaderLink() {
   const pathname = usePathname();

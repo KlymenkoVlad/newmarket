@@ -13,7 +13,7 @@ export default function WishListBtn() {
         setShowWishList(!showWishList);
         setShowCart(false);
       }}
-      className="ml-4 h-full w-full cursor-pointer"
+      className="ml-6 h-[100px] w-[100px] cursor-pointer"
     >
       <Image src="/icons/wishlist.png" alt="wishlist" width={32} height={32} />{" "}
     </button>

@@ -4,6 +4,7 @@ import { Product } from "@/types/types";
 import baseUrl from "@/utils/baseUrl";
 import NavMenu from "@/components/Common/NavMenu";
 import Item from "@/components/Common/Item";
+import InfinitieCategoryProduct from "./InfinitieCategoryProduct";
 
 async function getData(params: string) {
   try {
@@ -34,15 +35,9 @@ interface Props {
   params: { categorySlug: string };
 }
 
-interface ProductData {
-  product: Product[];
-}
-
-export default async function BlogPostPage({ params }: Props) {
-  const categorySlug =
+export default async function Page({ params }: Props) {
+  const categorySlugUpperCase =
     params.categorySlug.charAt(0).toUpperCase() + params.categorySlug.slice(1);
-
-  const products: ProductData = await getData(params.categorySlug);
 
   return (
     <div className="flex mb-16">
@@ -60,13 +55,10 @@ export default async function BlogPostPage({ params }: Props) {
             <p className="text-red-500 font-medium ml-5">Hot New Releases</p>
           </div>
           <div className="flex">
-            <h3 className=" font-semibold text-2xl">{categorySlug}</h3>
+            <h3 className=" font-semibold text-2xl">{categorySlugUpperCase}</h3>
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-8 mb-24">
-          {products.product &&
-            products.product.map((item) => <Item product={item} />)}
-        </div>
+        <InfinitieCategoryProduct params={params} />
       </div>
     </div>
   );
