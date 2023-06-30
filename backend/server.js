@@ -8,7 +8,16 @@ const cors = require('cors');
 
 const dev = process.env.NODE_ENV !== 'production';
 
-const connectDb = require('./utilsServer/connectDb');
+async function connectDb() {
+  try {
+    await mongoose.connect(process.env.MONGO_URL, {});
+    console.warn('Mongodb connected');
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+}
+
 app.use(cors()); // Add this line before defining your routes
 
 const signup = require('./api/signup');
