@@ -5,6 +5,7 @@ const server = require('http').Server(app);
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const dev = process.env.NODE_ENV !== 'production';
 
