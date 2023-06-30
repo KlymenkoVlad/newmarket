@@ -1,14 +1,9 @@
 "use client";
 
-import type { Metadata } from "next";
 import { useEffect } from "react";
 import Link from "next/link";
 
 import { useStateContext } from "@/context/StateContext";
-
-export const metadata: Metadata = {
-  title: "Success",
-};
 
 export default function Page() {
   const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();

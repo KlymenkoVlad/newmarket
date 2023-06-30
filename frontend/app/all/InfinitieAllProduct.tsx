@@ -8,6 +8,7 @@ import baseUrl from "@/utils/baseUrl";
 import type { Metadata } from "next";
 import axios from "axios";
 import ItemLoading from "@/components/Common/ItemLoading";
+import { MouseEvent } from "react";
 
 interface ProductData {
   product: Product[];
@@ -40,12 +41,12 @@ export default function InfinitieAllProduct() {
 
   const limit = 10;
 
-  const scrollHandler = (e: Event) => {
+  const scrollHandler = (e: MouseEvent) => {
     console.log("items.length:", items.length);
     console.log("totalCount", totalCount);
     console.log("items.length - totalCount", items.length - totalCount);
     if (
-      e.target.documentElement.scrollHeight -
+      e.target.documentElement?.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <=
         300 &&
       items.length - totalCount !== 0
