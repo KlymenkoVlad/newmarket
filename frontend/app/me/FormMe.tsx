@@ -68,7 +68,7 @@ const FormMe = ({ email, name, role }) => {
           }
         }}
       >
-        <Form className="  px-8 pt-6 pb-8 flex flex-col m-auto w-[400px] justify-center">
+        <Form className="  px-8 pt-6 pb-8 flex flex-col m-auto sm:w-[400px] ms:w-[300px] w-[270px] justify-center">
           <h2 className=" font-medium text-lg mb-6 text-red-500">
             Edit Your Profile
           </h2>

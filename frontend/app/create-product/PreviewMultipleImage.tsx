@@ -21,16 +21,18 @@ export default function PreviewMultipleImage({ files }) {
   }
 
   return (
-    <div className="flex justify-center ">
-      {previewList.map((preview, index) => (
-        <Image
-          width={120}
-          height={50}
-          key={index}
-          src={preview}
-          alt={`Preview ${index + 1}`}
-        />
-      ))}
+    <div className="flex justify-center">
+      <div className="flex justify-center md:flex-row flex-col">
+        {previewList.map((preview, index) => (
+          <Image
+            width={120}
+            height={50}
+            key={index}
+            src={preview}
+            alt={`Preview ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

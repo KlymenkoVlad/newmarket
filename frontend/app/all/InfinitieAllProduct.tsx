@@ -7,6 +7,7 @@ import { Product } from "@/types/types";
 import baseUrl from "@/utils/baseUrl";
 import type { Metadata } from "next";
 import axios from "axios";
+import ItemLoading from "@/components/Common/ItemLoading";
 
 interface ProductData {
   product: Product[];
@@ -35,10 +36,14 @@ export default function InfinitieAllProduct() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [fetching, setFetching] = useState<boolean>(true);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [end, setEnd] = useState(false);
 
   const limit = 10;
 
   const scrollHandler = (e: Event) => {
+    console.log("items.length:", items.length);
+    console.log("totalCount", totalCount);
+    console.log("items.length - totalCount", items.length - totalCount);
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <=
@@ -46,6 +51,10 @@ export default function InfinitieAllProduct() {
       items.length - totalCount !== 0
     ) {
       setFetching(true);
+    }
+
+    if (items.length - totalCount === 0) {
+      setEnd(true);
     }
   };
 
@@ -79,10 +88,26 @@ export default function InfinitieAllProduct() {
   }, [fetching]);
 
   return (
-    <div className="grid grid-cols-5 gap-8">
-      {items.map((item) => (
-        <Item product={item} key={item._id} />
-      ))}
-    </div>
+    <>
+      <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
+        {items.map((item) => (
+          <Item product={item} key={item._id} />
+        ))}
+        {fetching &&
+          Array.from({ length: 5 }).map((_, i) => <ItemLoading key={i} />)}
+      </div>
+
+      {end && items.length !== 0 && (
+        <h3 className=" text-center my-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
+          That`s All
+        </h3>
+      )}
+
+      {items.length <= 0 && !fetching && (
+        <h3 className=" text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
+          Nothing was found
+        </h3>
+      )}
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import InfinitieCategoryProduct from "./InfinitieCategoryProduct";
 import NavMenu from "@/components/Common/NavMenu";
+import InfinitieSearchProduct from "./InfinitieSearchProduct";
 
 export const metadata: Metadata = {
   title: "Search",
@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 export default function Page({ params }) {
   return (
-    <div className="flex mb-16">
+    <div className="flex mb-16 ms:mt-14 mt-10">
       <NavMenu />
 
-      <InfinitieCategoryProduct params={params} />
+      <InfinitieSearchProduct params={params} />
     </div>
   );
 }

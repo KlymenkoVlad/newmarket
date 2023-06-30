@@ -126,10 +126,11 @@ router.get('/', async (req, res) => {
         .sort(sortBy);
     }
 
-    if (req.query.page) {
-      if (skip > numProducts) {
-        // throw new Error('This page doesn`t exist');
-      }
+    if (skip > numProducts) {
+      return res.status(204).json({
+        status: 'NoItems',
+        results: [],
+      });
     }
 
     res.status(200).json({

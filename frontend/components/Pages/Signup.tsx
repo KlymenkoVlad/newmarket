@@ -33,14 +33,14 @@ const Signup = (props: null) => {
   };
 
   return (
-    <div className=" mt-16 mb-32 mx-32">
+    <div className=" lg:mt-48 mt-20 lg:mb-20 mb-10 md:mx-32 ms:mx-12 mx-3">
       <div className="flex ">
         <Image
           src="/signup/signupimg.png"
           alt="signupimg"
-          className=" w-[805px] h-[781px]"
           width={805}
           height={781}
+          className="2xl:block hidden"
         />
 
         <Formik

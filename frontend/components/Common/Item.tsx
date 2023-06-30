@@ -9,6 +9,14 @@ interface ItemProps {
   product: Product;
 }
 
+function truncateString(str, maxLength) {
+  if (str.length <= maxLength) {
+    return str;
+  } else {
+    return str.slice(0, maxLength) + "...";
+  }
+}
+
 const Item: React.FC<ItemProps> = ({ product }) => {
   return (
     <div className="flex justify-center">
@@ -18,8 +26,8 @@ const Item: React.FC<ItemProps> = ({ product }) => {
           as={`/product/${product._id}-${product.name}`}
           shallow
         >
-          <div className="w-[270px] h-[250px] bg-gray-100 relative rounded-sm">
-            <div className="w-[270px] h-[250px] flex justify-center items-center">
+          <div className="w-[260px] h-[240px] bg-gray-100 relative rounded-sm">
+            <div className="w-[260px] h-[240px] flex justify-center items-center">
               <img
                 className="max-w-full max-h-full"
                 src={product.mainPicture}
@@ -41,7 +49,9 @@ const Item: React.FC<ItemProps> = ({ product }) => {
             <WishListBtnAddItem product={product} />
           </div>
         </Link>
-        <p className="block text-base font-medium ">{product.name}</p>
+        <p className="block text-base font-medium ">
+          {truncateString(product.name, 25)}
+        </p>
         {product.pastPrice ? (
           <div className="flex">
             <p className=" text-red-500 text-base">{product.price}$</p>

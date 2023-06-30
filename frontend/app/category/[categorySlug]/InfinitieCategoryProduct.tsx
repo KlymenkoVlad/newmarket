@@ -5,6 +5,7 @@ import Item from "@/components/Common/Item";
 import { Product } from "@/types/types";
 import baseUrl from "@/utils/baseUrl";
 import axios from "axios";
+import ItemLoading from "@/components/Common/ItemLoading";
 
 interface Props {
   params: { categorySlug: string };
@@ -15,15 +16,16 @@ export default function InfinitieCategoryProduct({ params }: Props) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [fetching, setFetching] = useState<boolean>(true);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [end, setEnd] = useState(false);
 
-  const limit = 10;
+  const limit = 5;
 
   const scrollHandler = (e: Event) => {
     if (
+      !end &&
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <=
-        300 &&
-      items.length - totalCount !== 0
+        300
     ) {
       setFetching(true);
     }
@@ -44,8 +46,11 @@ export default function InfinitieCategoryProduct({ params }: Props) {
           `${baseUrl}/api/item?page=${currentPage}&limit=${limit}&category=${params.categorySlug}`
         );
         setItems((prevItems) => [...prevItems, ...data.product]);
+        if (data.product.length < 1 || data.product.length < limit) {
+          return setEnd(true);
+        }
         setCurrentPage((prevPage) => prevPage + 1);
-        setTotalCount(+data.total);
+        setTotalCount(+data.results);
       } catch (error) {
         console.error(error);
       } finally {
@@ -59,10 +64,26 @@ export default function InfinitieCategoryProduct({ params }: Props) {
   }, [fetching]);
 
   return (
-    <div className="grid grid-cols-5 gap-8 mb-24">
-      {items.map((item) => (
-        <Item product={item} key={item._id} />
-      ))}
-    </div>
+    <>
+      <div className=" grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
+        {items.map((item) => (
+          <Item product={item} key={item._id} />
+        ))}
+        {fetching &&
+          Array.from({ length: 5 }).map((_, i) => <ItemLoading key={i} />)}
+      </div>
+
+      {end && items.length !== 0 && (
+        <h3 className=" text-center my-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
+          That`s All
+        </h3>
+      )}
+
+      {items.length <= 0 && !fetching && (
+        <h3 className=" text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
+          Nothing was found
+        </h3>
+      )}
+    </>
   );
 }

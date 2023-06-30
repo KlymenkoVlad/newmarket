@@ -40,7 +40,7 @@ export default async function Page({ params }: Props) {
     params.categorySlug.charAt(0).toUpperCase() + params.categorySlug.slice(1);
 
   return (
-    <div className="flex mb-16">
+    <div className="flex mb-16 ms:mt-14 mt-10">
       <NavMenu />
 
       <div className="m-auto py-4 px-4 group">

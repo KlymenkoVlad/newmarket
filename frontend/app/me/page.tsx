@@ -58,7 +58,7 @@ export default async function Page() {
   const { user }: User = await getData();
 
   return (
-    <div className=" mx-24 mb-16">
+    <div className="sm:mx-24 mx-6 lg:mt-40 mt-32 mb-16">
       <div className="flex mb-16 ">
         <Link href="/" className="text-gray-500">
           Home

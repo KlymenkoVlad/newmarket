@@ -18,7 +18,7 @@ export default function Page() {
   const router = useRouter();
 
   return (
-    <>
+    <div className="lg:mx-24 md:mx-12 mx-3 lg:mt-40 mt-32 ">
       <Formik
         initialValues={{
           name: "",
@@ -179,14 +179,14 @@ export default function Page() {
       >
         {({ setFieldValue, values, errors }) => (
           <Form
-            className="px-8 pt-6 pb-8 flex flex-col m-auto w-[1000px] justify-center"
+            className="lg:px-8 pt-6 pb-8 flex flex-col m-auto xl:w-[1000px] ms:w-[80%] w-[250px]  justify-center"
             encType="multipart/form-data"
           >
             <h2 className="font-bold text-2xl mb-6 text-red-500">
               Create your product
             </h2>
 
-            <div className="flex justify-center">
+            <div className="xl:flex block justify-center">
               <div className="w-full">
                 <div className="bg-white mb-10 ">
                   <label
@@ -343,62 +343,64 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="ml-5 w-full">
-                <div className="bg-white mb-10">
-                  <label
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    htmlFor="file_input"
-                  >
-                    Choose main picture of product
-                  </label>
-                  <input
-                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-sky-700 dark:border-sky-600 dark:placeholder-gray-400"
-                    id="file_input"
-                    accept="image/*"
-                    name="mainPicture"
-                    type="file"
-                    onChange={(event) => {
-                      setFieldValue("mainPicture", event?.target.files[0]);
-                    }}
-                  />
-                  {errors.mainPicture && (
-                    <div className="mt-2 text-red-500">
-                      {errors.mainPicture}
-                    </div>
-                  )}
+              <div className="ml-5 w-full xl:block flex justify-center">
+                <div className="w-full">
+                  <div className="bg-white mb-10">
+                    <label
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      htmlFor="file_input"
+                    >
+                      Choose main picture of product
+                    </label>
+                    <input
+                      className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-sky-700 dark:border-sky-600 dark:placeholder-gray-400"
+                      id="file_input"
+                      accept="image/*"
+                      name="mainPicture"
+                      type="file"
+                      onChange={(event) => {
+                        setFieldValue("mainPicture", event?.target.files[0]);
+                      }}
+                    />
+                    {errors.mainPicture && (
+                      <div className="mt-2 text-red-500">
+                        {errors.mainPicture}
+                      </div>
+                    )}
 
-                  {values.mainPicture && (
-                    <PreviewImage file={values.mainPicture} />
-                  )}
-                </div>
+                    {values.mainPicture && (
+                      <PreviewImage file={values.mainPicture} />
+                    )}
+                  </div>
 
-                <div className="bg-white mb-10">
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Choose extra pictures(no more than 4)
-                  </label>
-                  <input
-                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-sky-700 dark:border-sky-600 dark:placeholder-gray-400"
-                    id="file_input"
-                    accept="image/*"
-                    type="file"
-                    name="pictures"
-                    multiple
-                    onChange={(event) => {
-                      setFieldValue("pictures", event?.target.files);
-                    }}
-                  />
+                  <div className="bg-white mb-10">
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Choose extra pictures(no more than 4)
+                    </label>
+                    <input
+                      className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-sky-700 dark:border-sky-600 dark:placeholder-gray-400"
+                      id="file_input"
+                      accept="image/*"
+                      type="file"
+                      name="pictures"
+                      multiple
+                      onChange={(event) => {
+                        setFieldValue("pictures", event?.target.files);
+                      }}
+                    />
 
-                  {errors.pictures && (
-                    <div className="mt-2 text-red-500">{errors.pictures}</div>
-                  )}
+                    {errors.pictures && (
+                      <div className="mt-2 text-red-500">{errors.pictures}</div>
+                    )}
 
-                  {values.pictures && (
-                    <PreviewMultipleImage files={values.pictures} />
-                  )}
+                    {values.pictures && (
+                      <PreviewMultipleImage files={values.pictures} />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="inline-flex items-center justify-start">
+            <div className="inline-flex items-center justify-start sm:mx-0 mx-auto">
               <Ripples during={800} color="#6eb9f7">
                 <button
                   className="border-0 rounded-md px-4 py-2 text-base font-medium text-white uppercase transition-colors duration-500 ease-in-out bg-blue-500 shadow-md focus:outline-none hover:bg-blue-600 active:bg-blue-400"
@@ -411,6 +413,6 @@ export default function Page() {
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 }

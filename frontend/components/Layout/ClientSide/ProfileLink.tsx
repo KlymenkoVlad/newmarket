@@ -28,7 +28,7 @@ const ProfileLink: React.FC = () => {
     <>
       <Link
         href={hasTokenCookie ? "/me" : "/login"}
-        className=" mr-7 h-[100px] w-[100px] cursor-pointer flex items-center"
+        className=" h-[100px] w-[100px] cursor-pointer flex items-center"
       >
         <Image src="/icons/user.png" alt="user" width={32} height={32} />
         <p className="ml-2">
@@ -37,12 +37,14 @@ const ProfileLink: React.FC = () => {
       </Link>
 
       {hasTokenCookie && (
-        <div
+        <Image
           onClick={logout}
-          className="ml-4 h-full w-full cursor-pointer flex items-center mt-1"
-        >
-          <Image src="/signup/logout.svg" alt="user" width={22} height={22} />
-        </div>
+          className="ml-1 cursor-pointer flex items-center mt-1"
+          src="/signup/logout.svg"
+          alt="user"
+          width={22}
+          height={22}
+        />
       )}
     </>
   );

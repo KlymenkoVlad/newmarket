@@ -32,9 +32,29 @@ const stats: IStats[] = [
   },
 ];
 
+interface WorkerProps {
+  name: string;
+  desc: string;
+  img: string;
+}
+
+const Worker = ({ name, desc, img }: WorkerProps) => {
+  return (
+    <div className="flex justify-around mb-4">
+      <div>
+        <div className="ms:w-[370px] w-[300px] h-[420px] bg-gray-100 flex justify-center items-end">
+          <Image src={img} width={236} height={391} alt="worker" />
+        </div>
+        <h3 className="text-3xl font-semibold">{name}</h3>
+        <p>{desc}</p>
+      </div>
+    </div>
+  );
+};
+
 export default function Page() {
   return (
-    <div className="mx-24 ">
+    <div className="ms:mx-24 mx-12 lg:mt-40 mt-32">
       <div className="flex mb-16">
         <Link href="/" className="text-gray-500">
           Home
@@ -65,72 +85,49 @@ export default function Page() {
             width={705}
             height={609}
             alt="Our customers"
+            className="ml-4 sm:block hidden"
           />
         </div>
       </div>
-      <div className="flex justify-around mb-20">
-        {stats &&
-          stats.map((statsObj) => (
-            <div className="w-[270px] h-[230px] border flex justify-center flex-col items-center">
-              <div className="w-[80px] h-[80px] bg-gray-500 rounded-[100%] flex justify-around items-center mb-4">
-                <div className="w-[58px] h-[58px] bg-black rounded-[100%] flex justify-around items-center">
-                  <Image
-                    src={statsObj.img}
-                    alt="delivery"
-                    width={35}
-                    height={35}
-                  />
+
+      <div className="flex justify-center">
+        <div className="flex lg:flex-row flex-col justify-around mb-20 ">
+          {stats &&
+            stats.map((statsObj) => (
+              <div className="w-[270px] h-[230px] border flex justify-center flex-col items-center mb-4 mx-4">
+                <div className="w-[80px] h-[80px] bg-gray-500 rounded-[100%] flex justify-around items-center mb-4">
+                  <div className="w-[58px] h-[58px] bg-black rounded-[100%] flex justify-around items-center">
+                    <Image
+                      src={statsObj.img}
+                      alt="delivery"
+                      width={35}
+                      height={35}
+                    />
+                  </div>
                 </div>
+                <p className=" font-bold">{statsObj.header}</p>
+                <p>{statsObj.paragraph}</p>
               </div>
-              <p className=" font-bold">{statsObj.header}</p>
-              <p>{statsObj.paragraph}</p>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
 
-      <div className="flex justify-around mb-24">
-        <div className="flex justify-around">
-          <div>
-            <div className="w-[370px] h-[420px] bg-gray-100 flex justify-center items-end">
-              <Image
-                src="/about/human1.png"
-                width={236}
-                height={391}
-                alt="worker"
-              />
-            </div>
-            <h3 className="text-3xl font-semibold">Emma Watson</h3>
-            <p>Managing Director</p>
-          </div>
-        </div>
-        <div className="flex justify-around">
-          <div>
-            <div className="w-[370px] h-[420px] bg-gray-100 flex justify-center items-end">
-              <Image
-                src="/about/human2.png"
-                width={236}
-                height={391}
-                alt="worker"
-              />
-            </div>
-            <h3 className="text-3xl font-semibold">Will Smith</h3>
-            <p>Product Designer</p>
-          </div>
-        </div>
-        <div className="flex justify-around">
-          <div>
-            <div className="w-[370px] h-[420px] bg-gray-100 flex justify-center items-end">
-              <Image
-                src="/about/human3.png"
-                width={236}
-                height={391}
-                alt="worker"
-              />
-            </div>
-            <h3 className="text-3xl font-semibold">Tom Cruise</h3>
-            <p>Founder & Chairman</p>
-          </div>
-        </div>
+      <div className="flex xl:flex-row flex-col justify-around mb-24">
+        <Worker
+          name="Tom Cruise"
+          desc="Founder & Chairman"
+          img="/about/human3.png"
+        />
+        <Worker
+          name="Emma Watson"
+          desc="Managing Director"
+          img="/about/human2.png"
+        />
+        <Worker
+          name="Will Smith"
+          desc="Product Designer"
+          img="/about/human1.png"
+        />
       </div>
 
       <Benefits />

@@ -22,6 +22,7 @@ export const StateContext = ({ children }) => {
   const [quantities, setQuantities] = useState(1);
 
   const [showWishList, setShowWishList] = useState<boolean>(false);
+  const [showBurgerMenu, setShowBurgerMenu] = useState<boolean>(false);
   const [wishListItems, setWishListItems] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -188,8 +189,10 @@ export const StateContext = ({ children }) => {
         quantities,
         showWishList,
         wishListItems,
+        showBurgerMenu,
 
         setShowWishList,
+        setShowBurgerMenu,
         setShowCart,
         onAdd,
         incrementQuantities,

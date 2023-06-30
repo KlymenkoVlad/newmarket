@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 function Page() {
   return (
-    <div className="flex mb-16">
+    <div className="flex mb-16 ms:mt-14 mt-6">
       <NavMenu />
 
       <div className="m-auto py-4 px-4 group">

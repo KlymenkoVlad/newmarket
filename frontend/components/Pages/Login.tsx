@@ -10,7 +10,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
-import "../styles.scss";
 import baseUrl from "@/utils/baseUrl";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
@@ -19,14 +18,14 @@ const Login = () => {
   const router = useRouter();
 
   return (
-    <div className=" mt-16 mb-32 mx-32">
+    <div className=" mt-48 mb-20 md:mx-32 ms:mx-12 mx-3">
       <div className="flex ">
         <Image
           src="/signup/signupimg.png"
           alt="signupimg"
           width={805}
           height={781}
-          // className=" w-[805px] h-[781px]"
+          className="2xl:block hidden"
         />
 
         <Formik
@@ -110,7 +109,9 @@ const Login = () => {
             </div>
 
             <Link href="/signup" className="mb-5 ">
-              <p className="link text-red-500">Do not have account?</p>
+              <p className="text-black hover:text-red-400 transition-colors duration-600 ease-in-out ">
+                Do not have account?
+              </p>
             </Link>
             <div className="inline-flex items-center justify-start">
               <Ripples during={800} color="#6eb9f7">

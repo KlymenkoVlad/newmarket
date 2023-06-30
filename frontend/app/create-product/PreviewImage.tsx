@@ -13,7 +13,7 @@ export default function PreviewImage({ file }) {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center ">
       <Image src={preview} alt="Your Main Image" width={200} height={150} />
     </div>
   );

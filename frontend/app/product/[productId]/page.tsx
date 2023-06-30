@@ -35,9 +35,8 @@ interface ProductData {
 }
 
 export default async function BlogPostPage({ params }: Props) {
+  // const product: Product = await getData(params.productId.split("-")[0]);
   const product: Product = await getData(params.productId.split("-")[0]);
-
-  console.log(product.user.name);
 
   const { product: relatedItems }: ProductData = await getData(
     `/?page=1&limit=5&category=${product?.category}`
@@ -46,9 +45,9 @@ export default async function BlogPostPage({ params }: Props) {
   const entity: number = product?.pictures?.length!;
 
   return (
-    <div className="mx-24">
+    <div className="mx-24 mt-24">
       <p className="mb-8">
-        Account / {product.category} / {product.name}
+        Account / {product?.category} / {product.name}
       </p>
       <div className="flex justify-evenly items-center mb-28">
         <div className="flex ">
@@ -93,7 +92,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="flex mb-5">
               <h2>
                 <span className="font-bold">${product.price}</span> | Seller:{" "}
-                {product.user.name}
+                {product.user.name ? product.user.name : "Unknown"}
               </h2>
             </div>
             <p className="w-[400px] mb-5">{product.description}</p>

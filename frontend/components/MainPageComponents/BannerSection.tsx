@@ -22,7 +22,7 @@ const BannerSection = () => {
   ];
 
   return (
-    <div className="flex mb-16">
+    <div className="flex my-16">
       <NavMenu />
 
       <div className="m-auto h-[500px] w-[892px] py-4 px-4 relative group">

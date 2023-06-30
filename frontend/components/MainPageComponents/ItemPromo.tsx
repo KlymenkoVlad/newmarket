@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const ItemPromo = () => {
   return (
-    <div className=" mb-24 relative w-[1170px] h-[500px] mx-auto bg-gradient-to-r from-black to-slate-500 text-white p-16">
+    <div className=" mb-24 xl:block relative hidden w-3/4 h-[500px] mx-auto bg-gradient-to-r from-black to-slate-500 text-white p-16">
       <div className="">
         <p className=" mb-7 text-green-600">Categories</p>
         <p className=" text-4xl font-medium">Enhance Your </p>
@@ -36,10 +36,10 @@ const ItemPromo = () => {
       </div>
       <Image
         className="absolute right-3 top-6"
+        width={568}
+        height={330}
         src="/banners/jbl.png"
         alt="item for sale"
-        width={600}
-        height={420}
       />
     </div>
   );

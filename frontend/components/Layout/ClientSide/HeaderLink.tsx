@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import "../../styles.scss";
 
 export default function HeaderLink() {
   const pathname = usePathname();
 
   return (
-    <div className="flex">
-      <Link className={`ml-4 link `} href="/">
+    <div className="flex ml-6">
+      <Link className="ml-4" href="/">
         <p
           className={`${
             pathname == "/" && " text-red-600"
@@ -18,7 +17,7 @@ export default function HeaderLink() {
           Home
         </p>
       </Link>
-      <Link className={`ml-4 link`} href="/contact">
+      <Link className="ml-4" href="/contact">
         <p
           className={`${
             pathname == "/contact" && " text-red-600"
@@ -27,7 +26,7 @@ export default function HeaderLink() {
           Contact
         </p>
       </Link>
-      <Link className={`ml-4 link`} href="/about">
+      <Link className="ml-4" href="/about">
         <p
           className={`${
             pathname == "/about" && " text-red-600"
@@ -36,7 +35,7 @@ export default function HeaderLink() {
           About
         </p>
       </Link>
-      <Link className={`ml-4 link`} href="/all">
+      <Link className="ml-4" href="/all">
         <p
           className={`${
             pathname == "/all" && " text-red-600"

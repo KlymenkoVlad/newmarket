@@ -1,10 +1,11 @@
 import Link from "next/link";
-import "../styles.scss";
 
-const NavMenu: React.FC = () => {
+type NavMenuProps = boolean;
+
+const NavMenu: React.FC = ({ burger = true }: NavMenuProps) => {
   return (
-    <div className="flex ml-[96px]">
-      <ul className="mr-[80px]">
+    <div className={` ml-[40px] mr-5 ${burger ? "lg:flex hidden" : "flex"}`}>
+      <ul className="mr-[30px]">
         <li className="mt-6 mb-8 hover:text-red-400 transition-colors duration-600 ease-in-out">
           <Link
             href="category/womanfashion"
@@ -58,7 +59,7 @@ const NavMenu: React.FC = () => {
           </Link>
         </li>
       </ul>
-      <div className=" h-[500px] w-px bg-gray-400"></div>
+      {burger && <div className=" h-[500px] w-px bg-gray-400 "></div>}
     </div>
   );
 };
