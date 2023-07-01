@@ -129,7 +129,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="flex h-[90px] border items-center ">
                 <div className="h-[40px] mx-5">
                   <Image
-                    src="/icons/Icon-delivery-dark.png"
+                    src="/icons/icon-delivery-dark.png"
                     alt="wishlist"
                     width={40}
                     height={40}

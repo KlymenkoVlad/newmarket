@@ -110,7 +110,7 @@ router.get('/', async (req, res) => {
 
     if (req.query.search) {
       product = await ProductModel.find({
-        $or: [{ name: { $regex: req.query.search } }],
+        $or: [{ name: { $regex: req.query.search, $options: 'i' } }],
       })
         .select(fieldsDel)
         .populate('user')
