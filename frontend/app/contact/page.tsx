@@ -1,6 +1,7 @@
 import Benefits from "@/components/MainPageComponents/Benefits";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/dist/client/link";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -24,6 +25,13 @@ const Worker = ({ name, desc, img }: WorkerProps) => {
 export default function Page() {
   return (
     <div className="ms:mx-24 mx-12 lg:mt-40 mt-32 ">
+      <div className="flex mb-16">
+        <Link href="/" className="text-gray-500">
+          Home
+        </Link>
+        <p className="ml-3 ">/</p>
+        <p className="ml-3">Contact</p>
+      </div>
       <div className="flex md:flex-row flex-col justify-around my-20 ">
         <div className="mb-8 mx-4">
           <div className="flex items-center mb-5">

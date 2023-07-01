@@ -16,7 +16,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-[500px]">
+    <div className=" text-center flex flex-col items-center justify-center h-[500px]">
       <h1 className="text-3xl font-bold mb-6">Canceled</h1>
       <p className="text-lg mb-4">Your purchase was canceled.</p>
 

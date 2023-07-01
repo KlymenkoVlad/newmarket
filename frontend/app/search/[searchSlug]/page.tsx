@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Page({ params }) {
   return (
-    <div className="flex mb-16 ms:mt-14 mt-10">
+    <div className="flex mb-16 ms:mt-36 mt-24">
       <NavMenu />
 
       <InfinitieSearchProduct params={params} />

@@ -61,8 +61,8 @@ export default function WishList() {
                           <div className="w-[80px] h-[80px] bg-gray-100 relative rounded-sm">
                             <div className="w-[80px] h-[80px] flex justify-center items-center">
                               <Image
-                                width={80}
-                                height={80}
+                                width={30}
+                                height={30}
                                 src={item.mainPicture}
                                 alt="Item for Sale"
                               />

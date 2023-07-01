@@ -1,5 +1,6 @@
 "use client";
 
+import baseUrl from "@/utils/baseUrl";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +12,7 @@ export default function Search() {
     const searchValue = event.target.querySelector(
       'input[type="search"]'
     ).value;
-    router.push(`http://localhost:3000/search/${searchValue}`);
+    router.push(`/search/${searchValue}`);
   };
   return (
     <form onSubmit={handleSubmit} className="sm:ml-8 ml-2">

@@ -8,6 +8,7 @@ import AddToCartBtn from "./AddToCartBtn";
 import WishListBtnAdd from "@/components/Common/WishListBtnAdd";
 
 import { Product } from "@/types/types";
+import SliderItemPage from "@/components/Common/SliderItemPage";
 
 async function getData(params: string) {
   try {
@@ -34,50 +35,61 @@ interface ProductData {
   product: Product[];
 }
 
+function truncateString(str, maxLength) {
+  if (str.length <= maxLength) {
+    return str;
+  } else {
+    return str.slice(0, maxLength) + "...";
+  }
+}
+
 export default async function BlogPostPage({ params }: Props) {
   // const product: Product = await getData(params.productId.split("-")[0]);
   const product: Product = await getData(params.productId.split("-")[0]);
 
+  const slides = [];
+  slides.push(product.mainPicture, ...product.pictures);
+
   const { product: relatedItems }: ProductData = await getData(
-    `/?page=1&limit=5&category=${product?.category}`
+    `/?page=1&limit=4&category=${product?.category}`
   );
 
-  const entity: number = product?.pictures?.length!;
+  const entity: string = `xl:grid-cols-${product?.pictures
+    ?.length!} grid-cols-2`;
 
   return (
-    <div className="mx-24 mt-24">
+    <div className="sm:mx-24 mx-6 mb-16 ms:mt-36 mt-24">
       <p className="mb-8">
-        Account / {product?.category} / {product.name}
+        Account / {product?.category} / {truncateString(product.name, 25)}
       </p>
-      <div className="flex justify-evenly items-center mb-28">
+      <div className="flex justify-center mb-28">
         <div className="flex ">
-          <div
-            className={`grid grid-rows-${
-              product?.pictures && product.pictures.length + 1
-            } grid-flow-col  gap-4 mr-12`}
-          >
-            {product.pictures &&
-              product.pictures.map((picture) => (
-                <div className="row-span-1 bg-gray-300 m-auto border">
-                  <Image
-                    src={picture}
-                    alt={product.name}
-                    width={170}
-                    height={138}
-                  />
-                </div>
-              ))}
-            <div className={`row-span-4 bg-gray-200 m-auto border`}>
-              <Image
+          <div className="md:grid hidden gap-4 items-center w-1/2">
+            <div>
+              <img
+                className="h-auto max-w-sm max-h-[400px] rounded-lg mx-auto"
                 src={product.mainPicture}
-                alt="Banana"
-                width={500}
-                height={600}
+                alt={product.name}
               />
+            </div>
+            <div className={`grid ${entity} gap-4 items-center `}>
+              {product.pictures &&
+                product.pictures.map((picture) => (
+                  <div>
+                    <img
+                      className="max-h-28 max-w-[150px] rounded-lg mx-auto"
+                      src={picture}
+                      alt={product.name}
+                    />
+                  </div>
+                ))}
             </div>
           </div>
 
-          <div className="">
+          <div className="xl:ml-24 sm:ml-6 lg:w-1/2 md:w-2/5">
+            <div>
+              <SliderItemPage slides={slides} />
+            </div>
             <h1 className="mb-3 font-semibold text-lg">{product.name}</h1>
             <div className="flex mb-3">
               <h3>Rating - {product.rating} | </h3>
@@ -92,14 +104,16 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="flex mb-5">
               <h2>
                 <span className="font-bold">${product.price}</span> | Seller:{" "}
-                {product.user.name ? product.user.name : "Unknown"}
+                {product?.user?.name ? product.user.name : "Unknown"}
               </h2>
             </div>
-            <p className="w-[400px] mb-5">{product.description}</p>
-            <div className="h-px w-[400px] bg-gray-400 mb-5"></div>
+            <p className="xl:w-[500px] lg:w-[350px] ms:w-[350px] w-[250px] mb-5">
+              {product.description}
+            </p>
+            <div className="h-px lg:w-[400px] w-[300px] bg-gray-400 mb-5"></div>
 
             <div className="flex justify-center items-center mb-6">
-              <div className="flex justify-center">
+              <div className="flex justify-around">
                 <IncDecBtn />
 
                 <WishListBtnAdd product={product} />
@@ -157,7 +171,7 @@ export default async function BlogPostPage({ params }: Props) {
           <p className="text-red-500 font-medium ml-5">Related Item</p>
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-8 mb-10">
+      <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 mb-8">
         {relatedItems && relatedItems.map((item) => <Item product={item} />)}
       </div>
     </div>

@@ -24,7 +24,10 @@ const Featured = (props) => {
             <p className="mb-4">
               Black and White version of the PS5 coming out on sale.
             </p>
-            <Link href="#" className="underline underline-offset-4 flex">
+            <Link
+              href="/product/64a01f7c5904d6a0b0773e84-Playstation%205"
+              className="underline underline-offset-4 flex"
+            >
               Shop Now
               <Image
                 className="ml-2"
@@ -44,7 +47,10 @@ const Featured = (props) => {
             <p className="mb-4">
               Featured woman collections that <br /> give you another vibe.{" "}
             </p>
-            <Link href="#" className="underline underline-offset-4 flex">
+            <Link
+              href="/product/649215cd1df9c54e0b387814-Blazer"
+              className="underline underline-offset-4 flex"
+            >
               Shop Now
               <Image
                 className="ml-2"
@@ -66,8 +72,11 @@ const Featured = (props) => {
           />
           <div className="absolute left-11 bottom-11">
             <p className=" font-semibold text-2xl mb-1">Speakers</p>
-            <p className="mb-4">Amazon wireless speakers </p>
-            <Link href="#" className="underline underline-offset-4 flex">
+            <p className="mb-4">Wireless speakers </p>
+            <Link
+              href="/product/64a01e675904d6a0b0773e65-Jbl"
+              className="underline underline-offset-4 flex"
+            >
               Shop Now
               <Image
                 className="ml-2"
@@ -91,7 +100,10 @@ const Featured = (props) => {
           <div className="absolute left-11 bottom-11">
             <p className=" font-semibold text-2xl mb-1">Perfume</p>
             <p className="mb-4">GUCCI INTENSE OUD EDP </p>
-            <Link href="#" className="underline underline-offset-4 flex">
+            <Link
+              href="/product/64a021095904d6a0b0773f6d-Guilty%20Pour%20Homme"
+              className="underline underline-offset-4 flex"
+            >
               Shop Now
               <Image
                 className="ml-2"
