@@ -1,20 +1,35 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function PreviewImage({ file }) {
-  const [preview, setPreview] = useState({});
+type PreviewImageProps = {
+  file: File | string; // Allow string as well
+};
 
-  if (file) {
+const PreviewImage: React.FC<PreviewImageProps> = ({ file }) => {
+  const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
+
+  if (file instanceof File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       setPreview(reader.result);
     };
+  } else if (typeof file === "string") {
+    setPreview(file);
   }
 
   return (
     <div className="flex justify-center ">
-      <Image src={preview} alt="Your Main Image" width={200} height={150} />
+      {preview && (
+        <Image
+          src={preview.toString()} // Cast preview to string
+          alt="Your Main Image"
+          width={200}
+          height={150}
+        />
+      )}
     </div>
   );
-}
+};
+
+export default PreviewImage;

@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   description: "",
 };
 
+interface WorkerProps {
+  name: string;
+  desc: string;
+  img: string;
+}
+
 const Worker = ({ name, desc, img }: WorkerProps) => {
   return (
     <div className="flex justify-around mb-4">

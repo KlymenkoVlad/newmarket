@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
 
-const Featured = (props) => {
+const Featured = () => {
   return (
     <div className="ms:mx-24 mx-6 relative sm:mb-32 mb-16">
       <div className="mb-6">

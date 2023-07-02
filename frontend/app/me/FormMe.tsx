@@ -11,7 +11,13 @@ import baseUrl from "@/utils/baseUrl";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
-const FormMe = ({ email, name, role }) => {
+interface FormMeProps {
+  name: string;
+  email: string;
+  role: string;
+}
+
+const FormMe = ({ email, name, role }: FormMeProps) => {
   const router = useRouter();
 
   return (

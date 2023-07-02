@@ -35,7 +35,7 @@ interface ProductData {
   product: Product[];
 }
 
-function truncateString(str, maxLength) {
+function truncateString(str: string, maxLength: number) {
   if (str.length <= maxLength) {
     return str;
   } else {
@@ -47,8 +47,11 @@ export default async function BlogPostPage({ params }: Props) {
   // const product: Product = await getData(params.productId.split("-")[0]);
   const product: Product = await getData(params.productId.split("-")[0]);
 
-  const slides = [];
-  slides.push(product.mainPicture, ...product.pictures);
+  const slides = [product.mainPicture];
+
+  if (product.pictures) {
+    slides.push(...product.pictures);
+  }
 
   const { product: relatedItems }: ProductData = await getData(
     `/?page=1&limit=4&category=${product?.category}`

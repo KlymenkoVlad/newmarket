@@ -14,60 +14,76 @@ import baseUrl from "@/utils/baseUrl";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
+interface initialValuesInterface {
+  name: string;
+  mainPicture: File | string;
+  price: string;
+  pastPrice: string;
+  quantity: number;
+  description: string;
+  category: string;
+  pictures: never[] | FileList;
+}
+
+const initialValues: initialValuesInterface = {
+  name: "",
+  mainPicture: "",
+  price: "",
+  pastPrice: "",
+  quantity: 0,
+  description: "",
+  category: "womanfashion",
+  pictures: [],
+};
+
 export default function Page() {
   const router = useRouter();
 
   return (
     <div className="lg:mx-24 md:mx-12 mx-3 lg:mt-40 mt-32 ">
       <Formik
-        initialValues={{
-          name: "",
-          mainPicture: "",
-          price: "",
-          pastPrice: "",
-          quantity: 0,
-          description: "",
-          category: "womanfashion",
-          pictures: [],
-        }}
+        initialValues={initialValues}
         validationSchema={Yup.object({
           mainPicture: Yup.mixed()
             .required("Required")
-            .test(
-              "FILE_SIZE",
-              "Too big!",
-              (value) => value && value.size < 2024 * 2024
-            )
-            .test(
-              "FILE_TYPE",
-              "Invalid",
-              (value) =>
-                value && ["image/png", "image/jpeg"].includes(value.type)
-            ),
+            .test("FILE_SIZE", "Too big!", (value) => {
+              if (value && (value as File).size) {
+                return (value as File).size < 2024 * 2024;
+              }
+              return false;
+            })
+            .test("FILE_TYPE", "Invalid file type", (value) => {
+              if (value && (value as File).type) {
+                return ["image/png", "image/jpeg"].includes(
+                  (value as File).type
+                );
+              }
+              return false;
+            }),
 
           pictures: Yup.mixed()
             .required("Required")
             .test(
               "MAX_IMAGES",
-              "Exceeded maximum number of pictures(4)",
-              (value) => value && value.length <= 4
+              "Exceeded maximum number of pictures (4)",
+              (value) => (value as FileList).length <= 4
             )
             .test("FILE_SIZE", "Too big!", (value) => {
-              if (value) {
-                for (let i = 0; i < value.length; i++) {
-                  if (value[i].size >= 2024 * 2024) {
-                    return false;
-                  }
+              for (let i = 0; i < (value as FileList).length; i++) {
+                if ((value as FileList)[i].size >= 2024 * 2024) {
+                  return false;
                 }
               }
               return true;
             })
             .test("FILE_TYPE", "Invalid", (value) => {
-              if (value) {
-                for (let i = 0; i < value.length; i++) {
-                  if (!["image/png", "image/jpeg"].includes(value[i].type)) {
-                    return false;
-                  }
+              for (let i = 0; i < (value as FileList).length; i++) {
+                if (
+                  !["image/png", "image/jpeg"].includes(
+                    (value as FileList)[i].type
+                  )
+                ) {
+                  return false;
                 }
               }
               return true;
@@ -359,7 +375,10 @@ export default function Page() {
                       name="mainPicture"
                       type="file"
                       onChange={(event) => {
-                        setFieldValue("mainPicture", event?.target.files[0]);
+                        const files = event?.target.files;
+                        if (files && files.length > 0) {
+                          setFieldValue("mainPicture", files[0]);
+                        }
                       }}
                     />
                     {errors.mainPicture && (
@@ -389,12 +408,14 @@ export default function Page() {
                       }}
                     />
 
-                    {errors.pictures && (
+                    {typeof errors.pictures === "string" && (
                       <div className="mt-2 text-red-500">{errors.pictures}</div>
                     )}
 
                     {values.pictures && (
-                      <PreviewMultipleImage files={values.pictures} />
+                      <PreviewMultipleImage
+                        files={values.pictures as FileList}
+                      />
                     )}
                   </div>
                 </div>

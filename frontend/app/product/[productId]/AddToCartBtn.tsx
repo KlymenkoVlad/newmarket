@@ -2,36 +2,11 @@
 import baseUrl from "@/utils/baseUrl";
 import Ripples from "react-ripples";
 import { useStateContext } from "@/context/StateContext";
+import { Product } from "@/types/types";
 
-interface User {
-  user: {
-    createdAt: string;
-    email: string;
-    name: string;
-    profilePicUrl: string;
-    role: string;
-    updatedAt: string;
-    __v: number;
-    _id: string;
-  };
-}
 interface ItemProps {
   text: string;
-  product: {
-    _id: string;
-    user: User;
-    name: string;
-    price: number;
-    mainPicture: string;
-    pictures?: string[];
-    description: string;
-    quantity: number;
-    pastPrice?: number;
-    category: never[] | string[];
-    rating: number;
-    date: string;
-    __v: number;
-  };
+  product: Product;
 }
 
 export default function AddToCartBtn({ text, product }: ItemProps) {

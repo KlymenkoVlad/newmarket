@@ -44,9 +44,12 @@ const Login = () => {
           })}
           onSubmit={async (user) => {
             try {
+              toast.loading("Wait. You are log in...");
               const res = await axios.post(`${baseUrl}/api/auth`, {
                 user,
               });
+
+              toast.dismiss();
 
               toast.success("You are successfully log in!");
               Cookies.set("token", res.data);

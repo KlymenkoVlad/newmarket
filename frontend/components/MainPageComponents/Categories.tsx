@@ -28,7 +28,7 @@ const Category = ({ name, img, link }: CategoryProps) => {
   );
 };
 
-const Categories = (props) => {
+const Categories = () => {
   return (
     <div className="sm:mx-24 mx-6 relative">
       <div className="mb-6">

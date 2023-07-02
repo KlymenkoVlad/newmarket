@@ -4,17 +4,10 @@ import Link from "next/link";
 import React from "react";
 import WishListBtnAddItem from "./WishListBtnAddItem";
 import { Product } from "@/types/types";
+import truncateString from "@/utils/truncateString";
 
 interface ItemProps {
   product: Product;
-}
-
-function truncateString(str, maxLength) {
-  if (str.length <= maxLength) {
-    return str;
-  } else {
-    return str.slice(0, maxLength) + "...";
-  }
 }
 
 const Item: React.FC<ItemProps> = ({ product }) => {

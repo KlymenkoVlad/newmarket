@@ -7,7 +7,11 @@ export const metadata: Metadata = {
   description: "",
 };
 
-export default function Page({ params }) {
+interface PageProps {
+  params: { searchSlug: string };
+}
+
+export default function Page({ params }: PageProps) {
   return (
     <div className="flex mb-16 ms:mt-36 mt-24">
       <NavMenu />

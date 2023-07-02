@@ -7,7 +7,13 @@ import { toast } from "react-hot-toast";
 
 import { Product } from "@/types/types";
 
-export default function Btn({ cartItems }) {
+interface BtnProps {
+  cartItems: Product[];
+}
+
+export default function Btn({ cartItems }: BtnProps) {
+  console.log(cartItems);
+
   const handleCheckout = async () => {
     try {
       toast.loading("Wait...");
@@ -24,7 +30,7 @@ export default function Btn({ cartItems }) {
         }
       );
 
-      if (res.statusCode === 500) return;
+      if (res.status === 500) return;
 
       const data = res.data;
 

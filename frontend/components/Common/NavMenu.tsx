@@ -1,8 +1,10 @@
 import Link from "next/link";
 
-type NavMenuProps = boolean;
+type NavMenuProps = {
+  burger?: boolean;
+};
 
-const NavMenu: React.FC = ({ burger = true }: NavMenuProps) => {
+const NavMenu: React.FC<NavMenuProps> = ({ burger = true }) => {
   return (
     <div className={` ml-[40px] mr-5 ${burger ? "lg:flex hidden" : "flex"}`}>
       <ul className="mr-[30px]">

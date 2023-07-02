@@ -4,17 +4,38 @@ import { Product } from "@/types/types";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
-interface contextObject {
+interface Context {
   showCart: boolean;
   cartItems: Product[];
   totalPrice: number;
   totalQuantities: number;
   quantities: number;
+  showWishList: boolean;
+  wishListItems: Product[];
+  showBurgerMenu: boolean;
+
+  setShowWishList: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowBurgerMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+  setCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
+  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
+  setWishListItems: React.Dispatch<React.SetStateAction<Product[]>>;
+  setTotalQuantities: React.Dispatch<React.SetStateAction<number>>;
+
+  decrementQuantities: () => void;
+  incrementQuantities: () => void;
+  onRemoveWishList: (product: Product) => void;
+  onAddWishList: (product: Product) => void;
+  onRemove: (product: Product) => void;
+  onAdd: (product: Product, quantity: number) => void;
+  toggleCartItemQuanitity: (id: string, value: "inc" | "dec") => void;
 }
 
-const Context = createContext();
+const Context = createContext<Context>({} as Context);
 
-export const StateContext = ({ children }) => {
+export const StateContext: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [showCart, setShowCart] = useState<boolean>(false);
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -22,8 +43,8 @@ export const StateContext = ({ children }) => {
   const [quantities, setQuantities] = useState(1);
 
   const [showWishList, setShowWishList] = useState<boolean>(false);
-  const [showBurgerMenu, setShowBurgerMenu] = useState<boolean>(false);
   const [wishListItems, setWishListItems] = useState<Product[]>([]);
+  const [showBurgerMenu, setShowBurgerMenu] = useState<boolean>(false);
 
   useEffect(() => {
     const storedWishListItems = localStorage.getItem("wishListItems");
@@ -31,6 +52,7 @@ export const StateContext = ({ children }) => {
     if (storedWishListItems) {
       setWishListItems(JSON.parse(storedWishListItems));
     }
+    setShowWishList;
   }, []);
 
   useEffect(() => {
@@ -126,20 +148,22 @@ export const StateContext = ({ children }) => {
     index = cartItems.findIndex((product) => product._id === id);
     const newCartItems = cartItems.filter((item) => item._id !== id);
 
+    if (!foundProduct) return;
+
     if (value === "inc") {
       setCartItems([
         ...newCartItems,
-        { ...foundProduct, quantity: foundProduct.quantity + 1 },
+        { ...foundProduct!, quantity: foundProduct!.quantity + 1 },
       ]);
-      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
+      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct!.price);
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
     } else if (value === "dec") {
-      if (foundProduct.quantity > 1) {
+      if (foundProduct!.quantity > 1) {
         setCartItems([
           ...newCartItems,
-          { ...foundProduct, quantity: foundProduct.quantity - 1 },
+          { ...foundProduct!, quantity: foundProduct!.quantity - 1 },
         ]);
-        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct!.price);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
       }
     }
@@ -159,24 +183,26 @@ export const StateContext = ({ children }) => {
 
   const onRemove = (product: Product) => {
     foundProduct = cartItems.find((item) => item._id === product._id);
-    if (!foundProduct) return;
-    const newCartItems = cartItems.filter((item) => item._id !== product._id);
 
-    setTotalPrice(
-      (prevTotalPrice) =>
-        prevTotalPrice - foundProduct.price * foundProduct.quantity
-    );
-    setTotalQuantities(
-      (prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity
-    );
-    setCartItems(newCartItems);
+    if (foundProduct) {
+      const newCartItems = cartItems.filter((item) => item._id !== product._id);
 
-    localStorage.setItem("cartItems", JSON.stringify(newCartItems));
-    localStorage.setItem(
-      "totalPrice",
-      (totalPrice - foundProduct.price * foundProduct.quantity).toString()
-    );
-    localStorage.setItem("totalQuantities", totalQuantities.toString());
+      setTotalPrice(
+        (prevTotalPrice) =>
+          prevTotalPrice - foundProduct!.price * foundProduct!.quantity
+      );
+      setTotalQuantities(
+        (prevTotalQuantities) => prevTotalQuantities - foundProduct!.quantity
+      );
+      setCartItems(newCartItems);
+
+      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+      localStorage.setItem(
+        "totalPrice",
+        (totalPrice - foundProduct!.price * foundProduct!.quantity).toString()
+      );
+      localStorage.setItem("totalQuantities", totalQuantities.toString());
+    }
   };
 
   return (

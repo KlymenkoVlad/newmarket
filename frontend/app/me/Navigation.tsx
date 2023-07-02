@@ -5,7 +5,13 @@ import FormMe from "./FormMe";
 import PasswordForm from "./PasswordForm";
 import { redirect } from "next/navigation";
 
-const Navigation = ({ name, email, role }) => {
+interface NavigationProps {
+  name: string;
+  email: string;
+  role: string;
+}
+
+const Navigation = ({ name, email, role }: NavigationProps) => {
   const [section, setSection] = useState("profile");
 
   useEffect(() => {

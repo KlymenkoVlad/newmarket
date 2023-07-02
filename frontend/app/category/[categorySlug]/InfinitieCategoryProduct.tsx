@@ -21,10 +21,11 @@ export default function InfinitieCategoryProduct({ params }: Props) {
   const limit = 5;
 
   const scrollHandler = (e: Event) => {
+    if(end) return
     if (
-      !end &&
-      e.target.documentElement.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) <=
+      !end ||
+      document.documentElement?.scrollHeight -
+        (document.documentElement.scrollTop + window.innerHeight) <=
         300
     ) {
       setFetching(true);
@@ -46,7 +47,7 @@ export default function InfinitieCategoryProduct({ params }: Props) {
           `${baseUrl}/api/item?page=${currentPage}&limit=${limit}&category=${params.categorySlug}`
         );
         setItems((prevItems) => [...prevItems, ...data.product]);
-        if (data.product.length < 1 || data.product.length < limit) {
+        if (data.product.length < limit) {
           return setEnd(true);
         }
         setCurrentPage((prevPage) => prevPage + 1);

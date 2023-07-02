@@ -1,30 +1,37 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { arrayBuffer } from "stream/consumers";
 
-export default function PreviewMultipleImage({ files }) {
-  const [previewList, setPreviewList] = useState([]);
+export default function PreviewMultipleImage({ files }: { files: FileList }) {
+  const [previewList, setPreviewList] = useState<string[]>([]);
 
-  if (files) {
-    const readerList = [];
-    const previewListTemp = [];
+  useEffect(() => {
+    if (files) {
+      setPreviewList([]);
+      const readerList = [];
+      const previewListTemp: string[] = [];
 
-    for (let i = 0; i < files.length; i++) {
-      const reader = new FileReader();
-      reader.readAsDataURL(files[i]);
-      reader.onload = () => {
-        previewListTemp[i] = reader.result;
-        setPreviewList([...previewListTemp]);
-      };
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.readAsDataURL(files[i]);
+        reader.onload = () => {
+          previewListTemp[i] = reader.result as string;
 
-      readerList.push(reader);
+          if (typeof previewListTemp[i] === "string") {
+            setPreviewList((prev) => [...prev, previewListTemp[i]]);
+          }
+        };
+
+        readerList.push(reader);
+      }
     }
-  }
+  }, [files]);
 
   return (
     <div className="flex justify-center">
       <div className="flex justify-center md:flex-row flex-col">
         {previewList.map((preview, index) => (
-          <Image
+          <img
             width={120}
             height={50}
             key={index}

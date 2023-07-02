@@ -41,21 +41,16 @@ export default function InfinitieAllProduct() {
 
   const limit = 10;
 
-  const scrollHandler = (e: MouseEvent) => {
-    console.log("items.length:", items.length);
-    console.log("totalCount", totalCount);
-    console.log("items.length - totalCount", items.length - totalCount);
+  const scrollHandler = (e: Event) => {
+    if (end) return;
     if (
-      e.target.documentElement?.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) <=
+      !end ||
+      (document.documentElement?.scrollHeight -
+        (document.documentElement.scrollTop + window.innerHeight) <=
         300 &&
-      items.length - totalCount !== 0
+        items.length - totalCount !== 0)
     ) {
       setFetching(true);
-    }
-
-    if (items.length - totalCount === 0) {
-      setEnd(true);
     }
   };
 
@@ -73,9 +68,13 @@ export default function InfinitieAllProduct() {
         const { data } = await axios.get(
           `${baseUrl}/api/item?page=${currentPage}&limit=${limit}`
         );
+        console.log(data.product.length);
         setItems((prevItems) => [...prevItems, ...data.product]);
         setCurrentPage((prevPage) => prevPage + 1);
         setTotalCount(+data.total);
+        if (data.product.length < limit) {
+          setEnd(true);
+        }
       } catch (error) {
         console.error(error);
       } finally {

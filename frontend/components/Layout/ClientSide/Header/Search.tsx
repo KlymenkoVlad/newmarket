@@ -7,12 +7,14 @@ import { useRouter } from "next/navigation";
 export default function Search() {
   const router = useRouter();
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevents the form from submitting and refreshing the page
-    const searchValue = event.target.querySelector(
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formElement = event.currentTarget as HTMLFormElement;
+    const searchInput = formElement.querySelector(
       'input[type="search"]'
-    ).value;
-    router.push(`/search/${searchValue}`);
+    ) as HTMLInputElement | null;
+    router.push(`/search/${searchInput?.value}`);
+    formElement.reset();
   };
   return (
     <form onSubmit={handleSubmit} className="sm:ml-8 ml-2">

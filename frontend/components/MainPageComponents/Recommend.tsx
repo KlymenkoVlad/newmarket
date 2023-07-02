@@ -6,7 +6,7 @@ import baseUrl from "@/utils/baseUrl";
 import { Product } from "@/types/types";
 import Link from "next/link";
 
-async function getData(sortParam) {
+async function getData(sortParam: string) {
   try {
     const res = await fetch(`${baseUrl}/api/item?sort=${sortParam}&limit=4`, {
       next: { revalidate: 1 },
@@ -23,18 +23,12 @@ async function getData(sortParam) {
   }
 }
 
-interface ProductData {
-  product: Product[];
-}
-
 interface RecommendProps {
   name: string;
-  sortParam: string;
+  items: Product[];
 }
 
-export default async function Recommend({ name, sortParam }: RecommendProps) {
-  const { product: items }: ProductData = await getData(sortParam);
-
+export default function Recommend({ name, items }: RecommendProps) {
   return (
     <div className="sm:mx-24 mx-6 relative">
       <div className="mb-6">
@@ -71,7 +65,6 @@ export default async function Recommend({ name, sortParam }: RecommendProps) {
       <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 mb-8">
         {items && items.map((item) => <Item product={item} />)}
       </div>
-
       <div className="flex justify-center mb-12">
         <Link href="/all">
           <button
