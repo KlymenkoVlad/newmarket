@@ -16,7 +16,7 @@ export default function WishListBtnAddItem({ product }: ItemProps) {
   return (
     <button
       type="submit"
-      className="ml-10"
+      className="ml-10 overflow-visible"
       onClick={() => onAddWishList(product)}
     >
       <div className="w-[30px] h-[30px] bg-white rounded-[100%] mx-3 flex items-center justify-center absolute right-1 top-4">

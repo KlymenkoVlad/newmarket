@@ -11,22 +11,20 @@ const ProductSchema = new Schema({
   pictures: [{ type: String }],
   description: { type: String, required: true },
   quantity: { type: Number, required: true },
-  category: [
-    {
-      type: String,
-      required: true,
-      enum: [
-        'womanfashion',
-        'menfashion',
-        'electronics',
-        'accessories',
-        'furniture',
-        'football',
-        'groceries',
-        'other',
-      ],
-    },
-  ],
+  category: {
+    type: String,
+    required: true,
+    enum: [
+      'womanfashion',
+      'menfashion',
+      'electronics',
+      'accessories',
+      'furniture',
+      'football',
+      'groceries',
+      'other',
+    ],
+  },
   rating: {
     type: Number,
     enum: [0, 1, 2, 3, 4, 5],

@@ -66,7 +66,12 @@ export default async function Page() {
         <p className="ml-3 ">/</p>
         <p className="ml-3">My Account</p>
       </div>
-      <Navigation name={user.name} email={user.email} role={user.role} />
+      <Navigation
+        name={user.name}
+        email={user.email}
+        role={user.role}
+        id={user._id}
+      />
     </div>
   );
 }

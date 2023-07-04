@@ -63,11 +63,11 @@ router.post('/', authMiddleware, async (req, res) => {
 
     const product = await new ProductModel(newProduct).save();
 
-    const postCreated = await ProductModel.findById(product._id).populate(
+    const productCreated = await ProductModel.findById(product._id).populate(
       'user'
     );
 
-    return res.json(postCreated);
+    return res.json(productCreated);
   } catch (error) {
     console.error(error);
     return res.status(500).send('Server error');
@@ -139,8 +139,6 @@ router.get('/', async (req, res) => {
       results: product.length,
       product,
     });
-
-    // Set the header X-Total-Count
   } catch (error) {
     console.error(error);
     res.status(404).json({
@@ -159,13 +157,121 @@ router.get('/:productId', async (req, res) => {
     );
 
     if (!product) {
-      return res.status(404).send('Post not found');
+      return res.status(404).send('Product not found');
     }
 
     return res.json(product);
   } catch (error) {
     console.error(error);
     return res.status(500).send('Server error');
+  }
+});
+
+//Get All Products of user
+
+router.get('/user/:userId', async (req, res) => {
+  try {
+    const queryObj = { ...req.query };
+    const excludeFields = ['page', 'sort', 'limit', 'fields'];
+    excludeFields.forEach((el) => delete queryObj[el]);
+
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = JSON.parse(
+      queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
+    );
+
+    let sortBy;
+
+    if (req.query.sort) {
+      sortBy = req.query.sort.split(',').join(' ');
+    }
+
+    let fieldsDel;
+    if (req.query.fields) {
+      fieldsDel = req.query.fields.split(',').join(' ');
+    } else {
+      fieldsDel = '-__v';
+    }
+
+    const numProducts = await ProductModel.countDocuments();
+
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 100;
+    const skip = (page - 1) * limit;
+
+    let product;
+
+    product = await ProductModel.find(queryStr)
+      .select(fieldsDel)
+      .populate('user')
+      .skip(skip)
+      .limit(limit)
+      .sort(sortBy);
+
+    res.status(200).json({
+      status: 'success',
+      total: numProducts,
+      results: product.length,
+      product,
+    });
+
+    // Set the header X-Total-Count
+  } catch (error) {
+    console.error(error);
+    res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+});
+
+//Update Product
+
+router.put('/:productId', authMiddleware, async (req, res) => {
+  const { userId } = req;
+
+  try {
+    const product = await ProductModel.findById(req.params.productId).populate(
+      'user'
+    );
+
+    if (!product) {
+      return res.status(404).send('Product not found');
+    }
+
+    const isUser = product.user._id.toString() === userId;
+
+    if (!isUser) {
+      return res.status(404).send('You cannot edit this product');
+    }
+
+    const Product = await ProductModel.findByIdAndUpdate(
+      req.params.productId,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    res.status(200).json({
+      status: 'success',
+      data: Product,
+    });
+  } catch (error) {
+    console.error(error);
+
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({
+        status: 'fail',
+        message: error.message,
+      });
+    }
+
+    res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
   }
 });
 

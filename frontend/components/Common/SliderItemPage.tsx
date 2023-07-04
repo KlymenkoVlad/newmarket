@@ -11,8 +11,6 @@ interface SliderProps {
 const SliderItemPage: React.FC<SliderProps> = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  console.log(slides);
-
   // !DONT FORGET TO TURN ON!!!!!!!!----------------------------
   // useEffect(() => {
   //   const timer = setTimeout(() => {

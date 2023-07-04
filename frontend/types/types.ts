@@ -19,7 +19,7 @@ export interface Product {
   description: string;
   quantity: number;
   pastPrice?: number;
-  category: never[] | string[];
+  category: string;
   rating: number;
   date: string;
   __v: number;

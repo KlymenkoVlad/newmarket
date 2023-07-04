@@ -9,16 +9,20 @@ interface NavigationProps {
   name: string;
   email: string;
   role: string;
+  id: string;
 }
 
-const Navigation = ({ name, email, role }: NavigationProps) => {
+const Navigation = ({ name, email, role, id }: NavigationProps) => {
   const [section, setSection] = useState("profile");
 
   useEffect(() => {
     if (section === "product") {
-      redirect("create-product");
+      return redirect("create-product");
     }
-  });
+    if (section === "myproducts") {
+      return redirect(`my-products/${id}`);
+    }
+  }, [section]);
 
   return (
     <div className="md:flex block justify-center">
@@ -57,8 +61,8 @@ const Navigation = ({ name, email, role }: NavigationProps) => {
               section === "payment" ? "text-red-500" : ""
             }`}
           >
-            <button onClick={() => setSection("payment")}>
-              My Payment Options
+            <button onClick={() => setSection("myproducts")}>
+              My Products
             </button>
           </li>
         </ul>
