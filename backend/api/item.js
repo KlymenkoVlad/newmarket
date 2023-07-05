@@ -116,14 +116,14 @@ router.get('/', async (req, res) => {
         .skip(skip)
         .limit(limit)
         .sort(sortBy)
-        .populate('user')
+        .populate('user');
     } else {
       product = await ProductModel.find(queryStr)
         .select(fieldsDel)
         .skip(skip)
         .limit(limit)
         .sort(sortBy)
-        .populate('user')
+        .populate('user');
     }
 
     if (skip > numProducts) {
@@ -171,15 +171,6 @@ router.get('/:productId', async (req, res) => {
 
 router.get('/user/:userId', async (req, res) => {
   try {
-    const queryObj = { ...req.query };
-    const excludeFields = ['page', 'sort', 'limit', 'fields'];
-    excludeFields.forEach((el) => delete queryObj[el]);
-
-    let queryStr = JSON.stringify(queryObj);
-    queryStr = JSON.parse(
-      queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
-    );
-
     let sortBy;
 
     if (req.query.sort) {
@@ -199,14 +190,18 @@ router.get('/user/:userId', async (req, res) => {
     const limit = req.query.limit * 1 || 100;
     const skip = (page - 1) * limit;
 
-    let product;
-
-    product = await ProductModel.find(queryStr)
+    const product = await ProductModel.find({ user: req.params.userId })
       .select(fieldsDel)
       .populate('user')
       .skip(skip)
       .limit(limit)
       .sort(sortBy);
+
+    if (product.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No products found for the specified user' });
+    }
 
     res.status(200).json({
       status: 'success',

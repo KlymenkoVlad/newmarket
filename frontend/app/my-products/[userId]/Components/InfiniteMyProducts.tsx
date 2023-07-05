@@ -46,7 +46,7 @@ export default function InfinitieSearchProduct({ params }: Props) {
     const getProduct = async () => {
       try {
         const { data } = await axios.get(
-          `${baseUrl}/api/item/user/${params.userId}?page=${currentPage}`
+          `${baseUrl}/api/item/user/64a5824154313c36cd551a19?page=1`
         );
         setItems((prevItems) => [...prevItems, ...data.product]);
         if (data.product.length < limit) {
@@ -83,7 +83,7 @@ export default function InfinitieSearchProduct({ params }: Props) {
       )}
 
       {items.length <= 0 && !fetching && (
-        <h3 className=" text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
+        <h3 className=" my-14 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
           I Think you don`t sold anything...
         </h3>
       )}
