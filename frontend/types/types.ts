@@ -10,6 +10,7 @@ export interface User {
 }
 
 export interface Product {
+  [key: string]: any;
   _id: string;
   user: User;
   name: string;

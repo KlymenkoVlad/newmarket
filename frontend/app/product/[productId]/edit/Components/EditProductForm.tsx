@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { Product, User } from "@/types/types";
 
 interface initialValuesInterface {
+  [key: string]: string | number | File | string[] | FileList;
   name: string;
   mainPicture: File | string;
   price: number;
@@ -23,7 +24,7 @@ interface initialValuesInterface {
   quantity: number;
   description: string;
   category: string;
-  pictures: never[] | FileList;
+  pictures: string[] | FileList;
 }
 
 interface PropsEditProductForm {
@@ -140,12 +141,12 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
           category: Yup.string(),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          const sumbitData = async (token) => {
+          const sumbitData = async (token: string) => {
             const formData = new FormData();
             try {
               console.log("smth is go");
-              const editedProduct = {};
-              const imgArr = [];
+              const editedProduct: Partial<initialValuesInterface> = {};
+              const imgArr: string[] = [];
               let mainImg;
               if (values.mainPicture) {
                 formData.append("file", mainPicture);
