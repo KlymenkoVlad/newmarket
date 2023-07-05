@@ -12,14 +12,14 @@ const SliderItemPage: React.FC<SliderProps> = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // !DONT FORGET TO TURN ON!!!!!!!!----------------------------
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     const isLastSlide = currentIndex === slides.length - 1;
-  //     const newIndex = isLastSlide ? 0 : currentIndex + 1;
-  //     setCurrentIndex(newIndex);
-  //   }, 5000);
-  //   return () => clearTimeout(timer);
-  // }, [currentIndex]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const isLastSlide = currentIndex === slides.length - 1;
+      const newIndex = isLastSlide ? 0 : currentIndex + 1;
+      setCurrentIndex(newIndex);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;

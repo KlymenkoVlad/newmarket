@@ -113,17 +113,17 @@ router.get('/', async (req, res) => {
         $or: [{ name: { $regex: req.query.search, $options: 'i' } }],
       })
         .select(fieldsDel)
-        .populate('user')
         .skip(skip)
         .limit(limit)
-        .sort(sortBy);
+        .sort(sortBy)
+        .populate('user')
     } else {
       product = await ProductModel.find(queryStr)
         .select(fieldsDel)
-        .populate('user')
         .skip(skip)
         .limit(limit)
-        .sort(sortBy);
+        .sort(sortBy)
+        .populate('user')
     }
 
     if (skip > numProducts) {

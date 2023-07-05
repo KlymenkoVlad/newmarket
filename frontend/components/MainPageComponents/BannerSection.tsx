@@ -1,7 +1,12 @@
 import Slider from "./ClientSide/Slider";
 import NavMenu from "../Common/NavMenu";
+import { Product } from "@/types/types";
 
-const BannerSection = () => {
+interface BannerSectionProps {
+  slideItems: Product[];
+}
+
+const BannerSection = ({ slideItems }: BannerSectionProps) => {
   const slides = [
     {
       url: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80",
@@ -26,7 +31,7 @@ const BannerSection = () => {
       <NavMenu />
 
       <div className="m-auto h-[500px] w-[892px] py-4 px-4 relative group">
-        <Slider slides={slides} />
+        <Slider slideItems={slideItems} />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 type PreviewImageProps = {
-  file: File | string; // Allow string as well
+  file: File | string;
 };
 
 const PreviewImage: React.FC<PreviewImageProps> = ({ file }) => {
@@ -22,7 +22,7 @@ const PreviewImage: React.FC<PreviewImageProps> = ({ file }) => {
     <div className="flex justify-center ">
       {preview && (
         <Image
-          src={preview.toString()} // Cast preview to string
+          src={preview.toString()}
           alt="Your Main Image"
           width={200}
           height={150}

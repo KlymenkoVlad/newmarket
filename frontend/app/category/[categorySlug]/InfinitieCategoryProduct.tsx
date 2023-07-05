@@ -21,7 +21,8 @@ export default function InfinitieCategoryProduct({ params }: Props) {
   const limit = 5;
 
   const scrollHandler = (e: Event) => {
-    if(end) return
+    if (end) return;
+
     if (
       !end ||
       document.documentElement?.scrollHeight -
@@ -70,6 +71,7 @@ export default function InfinitieCategoryProduct({ params }: Props) {
         {items.map((item) => (
           <Item product={item} key={item._id} />
         ))}
+
         {fetching &&
           Array.from({ length: 5 }).map((_, i) => <ItemLoading key={i} />)}
       </div>

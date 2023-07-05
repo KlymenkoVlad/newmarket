@@ -93,9 +93,11 @@ export default async function BlogPostPage({ params }: Props) {
             <div>
               <SliderItemPage slides={slides} />
             </div>
-            <h1 className="mb-3 font-semibold text-lg">{product.name}</h1>
-            <div className="flex mb-3">
-              <h3>Rating - {product.rating} | </h3>
+            <h1 className="mb-3 font-semibold text-lg ms:text-left text-center">
+              {product.name}
+            </h1>
+            <div className="flex mb-3 ms:text-left text-center">
+              <h3 className="">Rating - {product.rating} | </h3>
               <h3
                 className={` ${
                   product.quantity >= 1 ? "text-green-500" : "text-red-500"
@@ -110,7 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {product?.user?.name ? product.user.name : "Unknown"}
               </h2>
             </div>
-            <p className="xl:w-[500px] lg:w-[350px] ms:w-[350px] w-[250px] mb-5">
+            <p className="xl:w-[500px] lg:w-[350px] ms:w-[350px]r  w-[250px] mb-5">
               {product.description}
             </p>
             <div className="h-px lg:w-[400px] w-[300px] bg-gray-400 mb-5"></div>

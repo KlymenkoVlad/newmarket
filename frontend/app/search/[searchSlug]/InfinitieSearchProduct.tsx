@@ -6,7 +6,6 @@ import { Product } from "@/types/types";
 import baseUrl from "@/utils/baseUrl";
 import axios from "axios";
 import ItemLoading from "@/components/Common/ItemLoading";
-import { toast } from "react-hot-toast";
 
 interface Props {
   params: { searchSlug: string };

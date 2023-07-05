@@ -11,12 +11,15 @@ import ItemPromo from "@/components/MainPageComponents/ItemPromo";
 import Featured from "@/components/MainPageComponents/Featured";
 import Benefits from "@/components/MainPageComponents/Benefits";
 
-async function getData(sortParam: string) {
+async function getData(sortParam: string, limit = 4) {
   try {
-    const res = await fetch(`${baseUrl}/api/item?sort=${sortParam}&limit=4`, {
-      next: { revalidate: 1 },
-      method: "GET",
-    });
+    const res = await fetch(
+      `${baseUrl}/api/item?sort=${sortParam}&limit=${limit}`,
+      {
+        next: { revalidate: 1 },
+        method: "GET",
+      }
+    );
 
     if (!res.ok) {
       throw new Error("Failed to fetch data");
@@ -35,11 +38,15 @@ interface ProductData {
 const page = async ({}) => {
   const { product: cheapItems }: ProductData = await getData("price");
   const { product: newItems }: ProductData = await getData("-date");
+  const { product: slideItems }: ProductData = await getData(
+    "price&category=groceries",
+    5
+  );
 
   return (
     <div className="ms:mt-20 mt-6">
       <Modal />
-      <BannerSection />
+      <BannerSection slideItems={slideItems} />
       <Recommend name="The cheapest" items={cheapItems} />
       <Categories />
       <ItemPromo />
