@@ -24,7 +24,7 @@ export default function WishListBtn() {
         className="ml-10 h-[50px] w-[50px] cursor-pointer"
       >
         <Image
-          src="/icons/wishlist.png"
+          src="./icons/Icon-wishlist.svg"
           alt="wishlist"
           width={32}
           height={32}
