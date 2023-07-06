@@ -1,30 +1,8 @@
 import type { Metadata } from "next";
 
-import { Product } from "@/types/types";
 import baseUrl from "@/utils/baseUrl";
 import NavMenu from "@/components/Common/NavMenu";
-import Item from "@/components/Common/Item";
 import InfinitiveScroll from "@/components/Common/Scroll/InfinitiveScroll";
-
-async function getData(params: string) {
-  try {
-    const res = await fetch(
-      `${baseUrl}/api/item?page=1&limit=5&category=${params}`,
-      {
-        next: { revalidate: 1 },
-        method: "GET",
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    return res.json();
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 export const metadata: Metadata = {
   title: "Category",

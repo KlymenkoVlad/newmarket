@@ -16,7 +16,7 @@ async function getData(sortParam: string, limit = 4) {
     const res = await fetch(
       `${baseUrl}/api/item?sort=${sortParam}&limit=${limit}`,
       {
-        next: { revalidate: 1 },
+        next: { revalidate: 420 },
         method: "GET",
       }
     );

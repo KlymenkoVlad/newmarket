@@ -20,7 +20,7 @@ export default function WishListBtnAddForPage({ product }: ItemProps) {
     >
       <div className="w-[40px] h-[40px] border flex justify-center items-center hover:bg-neutral-300 transition-colors duration-500 ease-in-out">
         <Image
-          src="/icons/wishlist.png"
+          src="/icons/Icon-wishlist.svg"
           alt="wishlist"
           width={32}
           height={32}

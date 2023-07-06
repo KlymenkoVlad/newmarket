@@ -8,7 +8,7 @@ import ItemsDisplay from "./ItemsDisplay";
 async function getData(url: string) {
   try {
     const res = await fetch(`${baseUrl}/api${url}`, {
-      next: { revalidate: 1 },
+      next: { revalidate: 420 },
       method: "GET",
     });
 

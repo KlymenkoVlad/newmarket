@@ -1,27 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Item from "../Common/Item";
-import Image from "next/image";
-import baseUrl from "@/utils/baseUrl";
 import { Product } from "@/types/types";
 import Link from "next/link";
-
-async function getData(sortParam: string) {
-  try {
-    const res = await fetch(`${baseUrl}/api/item?sort=${sortParam}&limit=4`, {
-      next: { revalidate: 1 },
-      method: "GET",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    return res.json();
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 interface RecommendProps {
   name: string;

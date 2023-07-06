@@ -1,4 +1,3 @@
-import Button from "@/components/Common/Button";
 import Item from "@/components/Common/Item";
 import baseUrl from "@/utils/baseUrl";
 import Image from "next/image";
@@ -13,7 +12,7 @@ import SliderItemPage from "@/app/product/[productId]/SliderItemPage";
 async function getData(params: string) {
   try {
     const res = await fetch(`${baseUrl}/api/item/${params}`, {
-      next: { revalidate: 1 },
+      next: { revalidate: 420 },
       method: "GET",
     });
 
