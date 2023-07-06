@@ -9,7 +9,7 @@ interface ItemProps {
   product: Product;
 }
 
-export default function WishListBtnAdd({ product }: ItemProps) {
+export default function WishListBtnAddForPage({ product }: ItemProps) {
   const { onAddWishList } = useStateContext();
 
   return (

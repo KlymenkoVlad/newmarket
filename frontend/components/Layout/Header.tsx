@@ -3,7 +3,6 @@ import React from "react";
 import ProfileLink from "./ClientSide/ProfileLink";
 import HeaderLink from "./ClientSide/HeaderLink";
 import Cart from "./ClientSide/Cart/Cart";
-import CartBtn from "./ClientSide/CartBtn";
 import WishListBtn from "./ClientSide/WishListAndCartBtn";
 import WishList from "./ClientSide/WishList/WishList";
 import Search from "./ClientSide/Header/Search";

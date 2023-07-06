@@ -1,13 +1,13 @@
 import { Product } from "@/types/types";
 import baseUrl from "@/utils/baseUrl";
-import EditProductForm from "./Components/EditProductForm";
+import EditProductForm from "./EditProductForm";
 import Item from "@/components/Common/Item";
 import Image from "next/image";
 import IncDecBtn from "../IncDecBtn";
-import WishListBtnAdd from "@/components/Common/WishListBtnAdd";
+import WishListBtnAddForPage from "@/components/Common/WishListBtnForPage";
 import Btn from "../Btn";
 import AddToCartBtn from "../AddToCartBtn";
-import SliderItemPage from "@/components/Common/SliderItemPage";
+import SliderItemPage from "@/app/product/[productId]/SliderItemPage";
 
 interface Props {
   params: { productId: string };
@@ -109,7 +109,7 @@ export default async function Page({ params }: Props) {
               <div className="flex justify-around">
                 <IncDecBtn />
 
-                <WishListBtnAdd product={product} />
+                <WishListBtnAddForPage product={product} />
               </div>
             </div>
 

@@ -87,6 +87,14 @@ export const StateContext: React.FC<{ children: React.ReactNode }> = ({
   let index: number;
 
   const onAddWishList = (product: Product) => {
+    const checkUpdatedWishListItems = wishListItems.find(
+      (item) => item._id === product._id
+    );
+
+    if (checkUpdatedWishListItems) {
+      return toast.error("Already added to the wish list", { duration: 4000 });
+    }
+
     const updatedWishListItems = [...wishListItems, { ...product }];
 
     setWishListItems(updatedWishListItems);

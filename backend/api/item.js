@@ -184,13 +184,24 @@ router.get('/user/:userId', async (req, res) => {
       fieldsDel = '-__v';
     }
 
-    const numProducts = await ProductModel.countDocuments();
+    const queryObj = { ...req.query };
+    const excludeFields = ['page', 'sort', 'limit', 'fields'];
+    excludeFields.forEach((el) => delete queryObj[el]);
+
+    queryObj.user = req.params.userId;
+
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = JSON.parse(
+      queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
+    );
+
+    const numProducts = await ProductModel.countDocuments(queryStr);
 
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 100;
     const skip = (page - 1) * limit;
 
-    const product = await ProductModel.find({ user: req.params.userId })
+    const product = await ProductModel.find(queryStr)
       .select(fieldsDel)
       .populate('user')
       .skip(skip)
@@ -209,8 +220,6 @@ router.get('/user/:userId', async (req, res) => {
       results: product.length,
       product,
     });
-
-    // Set the header X-Total-Count
   } catch (error) {
     console.error(error);
     res.status(404).json({

@@ -59,12 +59,20 @@ export default async function Page() {
 
   return (
     <div className="sm:mx-24 mx-6 lg:mt-40 mt-32 mb-16">
-      <div className="flex mb-16 ">
-        <Link href="/" className="text-gray-500">
-          Home
-        </Link>
-        <p className="ml-3 ">/</p>
-        <p className="ml-3">My Account</p>
+      <div className="flex justify-between mb-16 ">
+        <div className="flex">
+          <Link href="/" className="text-gray-500">
+            Home
+          </Link>
+          <p className="ml-3 ">/</p>
+          <p className="ml-3">My Account</p>
+        </div>
+
+        <div>
+          <p>
+            Hi, {user.name} ({user.role})
+          </p>
+        </div>
       </div>
       <Navigation
         name={user.name}

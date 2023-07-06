@@ -8,15 +8,22 @@ import truncateString from "@/utils/truncateString";
 
 interface ItemProps {
   product: Product;
+  itemForEdit?: boolean;
 }
 
-const Item: React.FC<ItemProps> = ({ product }) => {
+const Item: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
   return (
     <div className="flex justify-center">
       <div>
         <Link
-          href="/product/[id]-[name]"
-          as={`/product/${product._id}-${product.name}`}
+          href={
+            itemForEdit ? `/product/[id]-[name]/edit` : `/product/[id]-[name]`
+          }
+          as={
+            itemForEdit
+              ? `/product/${product._id}-${product.name}/edit`
+              : `/product/${product._id}-${product.name}`
+          }
           shallow
         >
           <div className="w-[260px] h-[240px] bg-gray-100 relative rounded-sm">

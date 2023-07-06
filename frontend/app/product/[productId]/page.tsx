@@ -5,10 +5,10 @@ import Image from "next/image";
 import Btn from "./Btn";
 import IncDecBtn from "./IncDecBtn";
 import AddToCartBtn from "./AddToCartBtn";
-import WishListBtnAdd from "@/components/Common/WishListBtnAdd";
+import WishListBtnAddForPage from "@/components/Common/WishListBtnForPage";
 
 import { Product } from "@/types/types";
-import SliderItemPage from "@/components/Common/SliderItemPage";
+import SliderItemPage from "@/app/product/[productId]/SliderItemPage";
 
 async function getData(params: string) {
   try {
@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="flex justify-around">
                 <IncDecBtn />
 
-                <WishListBtnAdd product={product} />
+                <WishListBtnAddForPage product={product} />
               </div>
             </div>
 

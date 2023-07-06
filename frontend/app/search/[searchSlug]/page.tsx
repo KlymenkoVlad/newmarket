@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import NavMenu from "@/components/Common/NavMenu";
-import InfinitieSearchProduct from "./InfinitieSearchProduct";
+import InfinitiveScroll from "@/components/Common/Scroll/InfinitiveScroll";
 
 export const metadata: Metadata = {
   title: "Search",
@@ -16,7 +16,7 @@ export default function Page({ params }: PageProps) {
     <div className="flex mb-16 ms:mt-36 mt-24">
       <NavMenu />
 
-      <InfinitieSearchProduct params={params} />
+      <InfinitiveScroll params={params} type="search" />
     </div>
   );
 }

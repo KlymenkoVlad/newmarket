@@ -21,7 +21,7 @@ const ProfileLink: React.FC = () => {
 
   const logout = () => {
     Cookies.remove("token");
-    router.refresh();
+    router.push("/");
   };
 
   return (

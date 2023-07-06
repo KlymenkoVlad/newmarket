@@ -2,7 +2,7 @@
 
 import { Product } from "@/types/types";
 import baseUrl from "@/utils/baseUrl";
-import InfinitieMyProducts from "./Components/InfiniteMyProducts";
+import InfinitiveScroll from "@/components/Common/Scroll/InfinitiveScroll";
 
 // export const metadata: Metadata = {
 //   title: '',
@@ -19,7 +19,7 @@ export default function Page({ params }: Props) {
       <p className="md:text-left text-center mb-4 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl ">
         That`s all Products that you sold
       </p>
-      <InfinitieMyProducts params={params} />
+      <InfinitiveScroll params={params} type="myproducts" />
     </div>
   );
 }

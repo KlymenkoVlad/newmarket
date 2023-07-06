@@ -1,7 +1,7 @@
 import React from "react";
 import NavMenu from "@/components/Common/NavMenu";
 import type { Metadata } from "next";
-import InfinitieAllProduct from "./InfinitieAllProduct";
+import InfinitiveScroll from "@/components/Common/Scroll/InfinitiveScroll";
 
 export const metadata: Metadata = {
   title: "All Products",
@@ -23,7 +23,7 @@ function Page() {
             <h3 className=" font-semibold text-2xl">Explore Our Products</h3>
           </div>
         </div>
-        <InfinitieAllProduct />
+        <InfinitiveScroll type="all" />
       </div>
     </div>
   );

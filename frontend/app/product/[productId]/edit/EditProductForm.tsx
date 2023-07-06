@@ -7,8 +7,8 @@ import Ripples from "react-ripples";
 
 import { toast } from "react-hot-toast";
 
-import PreviewImage from "./PreviewImage";
-import PreviewMultipleImage from "./PreviewMultipleImage";
+import PreviewImage from "@/components/Common/PrevievImage/PreviewImage";
+import PreviewMultipleImage from "@/components/Common/PrevievImage/PreviewMultipleImage";
 import axios from "axios";
 import baseUrl from "@/utils/baseUrl";
 import Cookies from "js-cookie";

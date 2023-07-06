@@ -46,25 +46,28 @@ const Navigation = ({ name, email, role, id }: NavigationProps) => {
             </button>
           </li>
 
-          <li
-            className={`mt-6 mx-2 mb-8 ${
-              section === "product" ? "text-red-500" : ""
-            }`}
-          >
-            <button onClick={() => setSection("product")}>
-              Create Product
-            </button>
-          </li>
-
-          <li
-            className={`mt-6 mx-2 mb-8 ${
-              section === "payment" ? "text-red-500" : ""
-            }`}
-          >
-            <button onClick={() => setSection("myproducts")}>
-              My Products
-            </button>
-          </li>
+          {role === "seller" && (
+            <>
+              <li
+                className={`mt-6 mx-2 mb-8 ${
+                  section === "product" ? "text-red-500" : ""
+                }`}
+              >
+                <button onClick={() => setSection("product")}>
+                  Create Product
+                </button>
+              </li>
+              <li
+                className={`mt-6 mx-2 mb-8 ${
+                  section === "payment" ? "text-red-500" : ""
+                }`}
+              >
+                <button onClick={() => setSection("myproducts")}>
+                  My Products
+                </button>
+              </li>
+            </>
+          )}
         </ul>
 
         <p className="font-medium">My Orders</p>

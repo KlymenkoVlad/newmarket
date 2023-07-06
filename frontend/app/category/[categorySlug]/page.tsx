@@ -4,7 +4,7 @@ import { Product } from "@/types/types";
 import baseUrl from "@/utils/baseUrl";
 import NavMenu from "@/components/Common/NavMenu";
 import Item from "@/components/Common/Item";
-import InfinitieCategoryProduct from "./InfinitieCategoryProduct";
+import InfinitiveScroll from "@/components/Common/Scroll/InfinitiveScroll";
 
 async function getData(params: string) {
   try {
@@ -58,7 +58,7 @@ export default async function Page({ params }: Props) {
             <h3 className=" font-semibold text-2xl">{categorySlugUpperCase}</h3>
           </div>
         </div>
-        <InfinitieCategoryProduct params={params} />
+        <InfinitiveScroll params={params} type="categories" />
       </div>
     </div>
   );
