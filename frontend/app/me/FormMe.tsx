@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import Ripples from "react-ripples";
 import Link from "next/link";
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 

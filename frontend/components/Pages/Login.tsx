@@ -10,7 +10,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 

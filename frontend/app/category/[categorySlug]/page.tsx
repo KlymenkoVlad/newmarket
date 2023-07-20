@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import NavMenu from "@/components/Common/NavMenu";
 import InfinitiveScroll from "@/components/Common/Scroll/InfinitiveScroll";
 

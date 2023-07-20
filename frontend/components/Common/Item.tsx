@@ -1,4 +1,4 @@
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

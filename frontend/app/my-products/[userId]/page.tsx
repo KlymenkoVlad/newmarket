@@ -1,7 +1,7 @@
 // import type { Metadata } from 'next'
 
 import { Product } from "@/types/types";
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import InfinitiveScroll from "@/components/Common/Scroll/InfinitiveScroll";
 
 // export const metadata: Metadata = {

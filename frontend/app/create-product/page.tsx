@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import PreviewImage from "@/components/Common/PrevievImage/PreviewImage";
 import PreviewMultipleImage from "@/components/Common/PrevievImage/PreviewMultipleImage";
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl, { frontendUrl } from "@/utils/baseUrl";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -162,7 +162,7 @@ export default function Page() {
               console.log(res);
 
               router.push(
-                `http://localhost:3000/product/${res.data._id}-${res.data.name}`
+                `${frontendUrl}/product/${res.data._id}-${res.data.name}`
               );
             } catch (error) {
               console.error(error);

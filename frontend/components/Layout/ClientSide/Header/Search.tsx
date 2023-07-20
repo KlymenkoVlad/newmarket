@@ -1,6 +1,6 @@
 "use client";
 
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 

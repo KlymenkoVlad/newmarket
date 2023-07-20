@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import PreviewImage from "@/components/Common/PrevievImage/PreviewImage";
 import PreviewMultipleImage from "@/components/Common/PrevievImage/PreviewMultipleImage";
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { Product, User } from "@/types/types";
