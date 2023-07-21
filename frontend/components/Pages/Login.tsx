@@ -40,7 +40,10 @@ const Login = () => {
             password: Yup.string()
               .required("No password provided.")
               .min(8, "Password is too short - should be 8 chars minimum.")
-              .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+              .matches(
+                /^(?=.*[0-9])(?=.*[a-z]).{6,}$/,
+                "Password must contain Latin letters and Numbers"
+              ),
           })}
           onSubmit={async (user) => {
             try {
@@ -55,6 +58,7 @@ const Login = () => {
               Cookies.set("token", res.data);
               router.push("/me");
             } catch (error) {
+              toast.dismiss();
               toast.error("Something is went wrong");
               console.error(error);
             }

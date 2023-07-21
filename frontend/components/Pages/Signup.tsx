@@ -79,7 +79,10 @@ const Signup = (props: null) => {
             password: Yup.string()
               .required("No password provided.")
               .min(8, "Password is too short - should be 8 chars minimum.")
-              .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+              .matches(
+                /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$/,
+                "Password must contain at least one only Latin letter and one number."
+              ),
             role: Yup.string().required("Choose your role"),
             terms: Yup.boolean()
               .required("You need to accept our terms")
