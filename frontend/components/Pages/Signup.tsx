@@ -13,6 +13,7 @@ import "../styles.scss";
 import { baseUrl } from "@/utils/baseUrl";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 interface initialValues {
   name: string;
@@ -57,7 +58,24 @@ const Signup = (props: null) => {
               .required("Name is required"),
             email: Yup.string()
               .email("Wrong email")
-              .required("Email is required"),
+              .required("Email is required")
+              .test("EMAIL_USED", "This e-mail is taken.", async (value) => {
+                if (
+                  value &&
+                  Boolean(
+                    value.match(
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                    )
+                  )
+                ) {
+                  const res = await axios.get(`${baseUrl}/api/signup/${value}`);
+                  if (res.data !== "Available") {
+                    console.error("This email is already taken");
+                    return false;
+                  }
+                }
+                return true;
+              }),
             password: Yup.string()
               .required("No password provided.")
               .min(8, "Password is too short - should be 8 chars minimum.")
@@ -69,17 +87,31 @@ const Signup = (props: null) => {
           })}
           onSubmit={async (user) => {
             try {
-              console.log(user);
+              toast.loading(
+                "Wait. We are creating brand new account for you..."
+              );
               await checkEmail(user.email);
 
               const res = await axios.post(`${baseUrl}/api/signup`, {
                 user: user,
               });
 
+              toast.dismiss();
+
+              toast.success(
+                `Congratulations ${user.name}, You are successfully signed up!`,
+                {
+                  duration: 5000,
+                }
+              );
+
               cookies.set("token", res.data);
-              router.push("/");
+              router.push("/me");
             } catch (error) {
+              toast.dismiss();
+              toast.error(`Something is went wrong`);
               console.error(error);
+              router.refresh();
             }
           }}
         >
@@ -181,10 +213,6 @@ const Signup = (props: null) => {
               <ErrorMessage component="div" className="error" name="role" />
             </div>
 
-            <Link href="/login" className="mb-5 link text-red-500">
-              Already have an account?
-            </Link>
-
             <label className="mb-2 ">
               <Field name="terms" type="checkbox" className="mr-2" />
               Agree to the privacy policy
@@ -194,6 +222,13 @@ const Signup = (props: null) => {
               component="div"
               className="mt-2 text-red-500 mb-4"
             />
+
+            <Link href="/login" className="my-8 ">
+              <p className="text-black hover:text-red-400 transition-colors duration-600 ease-in-out ">
+                Already have an account?
+              </p>
+            </Link>
+
             <div className="inline-flex items-center justify-start">
               <Ripples during={800} color="#6eb9f7">
                 <button

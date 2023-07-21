@@ -7,7 +7,9 @@ import AddToCartBtn from "./AddToCartBtn";
 import WishListBtnAddForPage from "@/components/Common/WishListBtnForPage";
 
 import { Product } from "@/types/types";
-import SliderItemPage from "@/app/product/[productId]/SliderItemPage";
+import SliderForItem from "./SliderForItem";
+import SliderItem from "./SliderItem";
+import Link from "next/link";
 
 async function getData(params: string) {
   try {
@@ -62,40 +64,38 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="sm:mx-24 mx-6 mb-16 ms:mt-36 mt-24">
       <p className="mb-8">
-        Account / {product?.category} / {truncateString(product.name, 25)}
+        <Link
+          className="text-black hover:text-red-400 transition-colors duration-600 ease-in-out"
+          href="/"
+        >
+          New Market
+        </Link>
+        <span className="mx-3">/</span>
+        <Link
+          className="text-black hover:text-red-400 transition-colors duration-600 ease-in-out "
+          href={`/category/${product?.category}`}
+        >
+          {product?.category}
+        </Link>
+        <span className="mx-3">/</span>
+        <span className=" text-red-500">
+          {truncateString(product.name, 25)}
+        </span>
       </p>
       <div className="flex justify-center mb-28">
         <div className="flex ">
-          <div className="md:grid hidden gap-4 items-center w-1/2">
-            <div>
-              <img
-                className="h-auto max-w-sm max-h-[400px] rounded-lg mx-auto"
-                src={product.mainPicture}
-                alt={product.name}
-              />
-            </div>
-            <div className={`grid ${entity} gap-4 items-center `}>
-              {product.pictures &&
-                product.pictures.map((picture) => (
-                  <div>
-                    <img
-                      className="max-h-28 max-w-[150px] rounded-lg mx-auto"
-                      src={picture}
-                      alt={product.name}
-                    />
-                  </div>
-                ))}
-            </div>
+          <div className="lg:block hidden h-96 w-[600px]">
+            <SliderItem slideItems={slides} />
           </div>
 
           <div className="xl:ml-24 sm:ml-6 lg:w-1/2 md:w-2/5">
-            <div>
-              <SliderItemPage slides={slides} />
+            <div className="lg:hidden sm:w-[600px] ms:w-[450px] w-[330px]">
+              <SliderForItem slideItems={slides} />
             </div>
-            <h1 className="mb-3 font-semibold text-lg ms:text-left text-center">
+            <h1 className="my-3 font-semibold text-lg ms:text-left text-center">
               {product.name}
             </h1>
-            <div className="flex mb-3 ms:text-left text-center">
+            <div className="flex mb-3 ms:text-left text-center ms:justify-normal justify-center">
               <h3 className="">Rating - {product.rating} | </h3>
               <h3
                 className={` ${
@@ -105,16 +105,16 @@ export default async function BlogPostPage({ params }: Props) {
                 {product.quantity >= 1 ? " In stock" : " Not available"}
               </h3>
             </div>
-            <div className="flex mb-5">
+            <div className="flex mb-5 ms:justify-normal justify-center">
               <h2>
-                <span className="font-bold">${product.price}</span> | Seller:{" "}
+                <span className="font-bold ">${product.price}</span> | Seller:{" "}
                 {product?.user?.name ? product.user.name : "Unknown"}
               </h2>
             </div>
-            <p className="xl:w-[500px] lg:w-[350px] ms:w-[350px]r  w-[250px] mb-5">
+            <p className="xl:w-[400px]  ms:w-[340px] w-[250px] mb-5 ms:text-left ms:mx-0 mx-auto">
               {product.description}
             </p>
-            <div className="h-px lg:w-[400px] w-[300px] bg-gray-400 mb-5"></div>
+            <div className="h-px lg:w-[350px] w-[300px] bg-gray-400 mb-5"></div>
 
             <div className="flex justify-center items-center mb-6">
               <div className="flex justify-around">

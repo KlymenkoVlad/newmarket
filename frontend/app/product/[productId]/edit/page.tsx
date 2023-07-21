@@ -7,7 +7,7 @@ import IncDecBtn from "../IncDecBtn";
 import WishListBtnAddForPage from "@/components/Common/WishListBtnForPage";
 import Btn from "../Btn";
 import AddToCartBtn from "../AddToCartBtn";
-import SliderItemPage from "@/app/product/[productId]/SliderItemPage";
+import SliderForItem from "../SliderForItem";
 
 interface Props {
   params: { productId: string };
@@ -81,7 +81,7 @@ export default async function Page({ params }: Props) {
 
           <div className="xl:ml-24 sm:ml-6 lg:w-1/2 md:w-2/5">
             <div>
-              <SliderItemPage slides={slides} />
+              <SliderForItem slideItems={slides} />
             </div>
             <h1 className="mb-3 font-semibold text-lg">{product.name}</h1>
             <div className="flex mb-3">

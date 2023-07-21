@@ -5,11 +5,11 @@ const { Schema } = mongoose;
 const ProductSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 
-  name: { type: String, required: true },
+  name: { type: String, required: true, maxLength: 25 },
   price: { type: Number, required: true },
   mainPicture: { type: String, required: true },
   pictures: [{ type: String }],
-  description: { type: String, required: true },
+  description: { type: String, required: true, maxLength: 500 },
   quantity: { type: Number, required: true },
   category: {
     type: String,

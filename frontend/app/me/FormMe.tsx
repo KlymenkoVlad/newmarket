@@ -9,6 +9,7 @@ import axios from "axios";
 import { baseUrl } from "@/utils/baseUrl";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 interface FormMeProps {
   name: string;
@@ -39,7 +40,7 @@ const FormMe = ({ email, name, role }: FormMeProps) => {
               (user.name === "" || user.name === name) &&
               user.role === role
             ) {
-              return alert("data are the same or not specified");
+              return toast.error("data are the same or not specified");
             }
             try {
               const token = Cookies.get("token");
@@ -49,7 +50,7 @@ const FormMe = ({ email, name, role }: FormMeProps) => {
               );
 
               if (emailCheckRes.data !== "Available") {
-                alert("This email is already taken and won`t be changed");
+                toast("This email is already taken and won`t be changed");
                 user.email = "";
               }
               const res = await axios.put(
@@ -61,9 +62,10 @@ const FormMe = ({ email, name, role }: FormMeProps) => {
               resetForm();
 
               if (res.status === 200) {
-                alert("Data is successfully updated");
+                toast.success("Data is successfully updated");
+                router.refresh();
               } else {
-                alert("Something is went wrong");
+                toast.error("Something is went wrong");
               }
             } catch (error) {
               console.error(error);

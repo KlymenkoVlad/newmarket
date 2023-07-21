@@ -25,6 +25,14 @@ router.post('/', authMiddleware, async (req, res) => {
       .send('Name and description must be atleast 1 character');
   }
 
+  if (description.length > 500) {
+    return res.status(401).send('Description must be less than 500 characters');
+  }
+
+  if (name.length > 25) {
+    return res.status(401).send('Name must be less than 25 characters');
+  }
+
   if (!quantity) {
     return res.status(401).send('You need to specify quantity');
   }

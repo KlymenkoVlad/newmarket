@@ -18,27 +18,6 @@ export default function Recommend({ name, items }: RecommendProps) {
         </div>
         <div className="flex">
           <h3 className=" font-semibold text-2xl">Flash Sales</h3>
-
-          {/* <div className="ml-64 flex absolute right-4">
-            <div className="w-[46px] h-[46px] bg-gray-200 rounded-[100%] mx-3 flex items-center justify-center ">
-              <Image
-                className="absolute max-w-full max-h-full"
-                src="/icons/vector.png"
-                alt=""
-                width={16}
-                height={14}
-              />
-            </div>
-            <div className="w-[46px] h-[46px] bg-gray-200 rounded-[100%] mx-3 flex items-center justify-center">
-              <Image
-                className="absolute max-w-full max-h-full rotate-180"
-                src="/icons/vector.png"
-                alt=""
-                width={16}
-                height={14}
-              />
-            </div>
-          </div> */}
         </div>
       </div>
 

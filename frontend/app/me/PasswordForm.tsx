@@ -42,7 +42,6 @@ const PasswordForm = () => {
         onSubmit={async (password, { resetForm }) => {
           try {
             const token = Cookies.get("token");
-            console.log(password);
 
             const res = await axios.post(
               `${baseUrl}/api/profile/updatePassword`,

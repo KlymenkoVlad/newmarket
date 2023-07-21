@@ -135,16 +135,19 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
             Yup.ref("price"),
             "Past price must be greater than price"
           ),
-          name: Yup.string().min(2, "Atleast 2 characters"),
+          name: Yup.string()
+            .min(2, "Atleast 2 characters")
+            .max(25, "Name must be less than 25 characters"),
           quantity: Yup.number().moreThan(0),
-          description: Yup.string().min(10, "Atleast 10 characters"),
+          description: Yup.string()
+            .min(10, "Atleast 10 characters")
+            .max(500, "Name must be less than 500 characters"),
           category: Yup.string(),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           const sumbitData = async (token: string) => {
             const formData = new FormData();
             try {
-              console.log("smth is go");
               const editedProduct: Partial<initialValuesInterface> = {};
               const imgArr: string[] = [];
               let mainImg;
@@ -192,8 +195,6 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                 }
               }
 
-              console.log(editedProduct);
-
               const res = await axios.put(
                 `${baseUrl}/api/item/${product._id}`,
                 editedProduct,
@@ -203,8 +204,6 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                   },
                 }
               );
-
-              console.log(res);
 
               router.refresh();
             } catch (error) {

@@ -12,8 +12,6 @@ interface BtnProps {
 }
 
 export default function Btn({ cartItems }: BtnProps) {
-  console.log(cartItems);
-
   const handleCheckout = async () => {
     try {
       toast.loading("Wait...");

@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import PreviewImage from "@/components/Common/PrevievImage/PreviewImage";
 import PreviewMultipleImage from "@/components/Common/PrevievImage/PreviewMultipleImage";
 import axios from "axios";
-import baseUrl, { frontendUrl } from "@/utils/baseUrl";
+import { baseUrl, frontendUrl } from "@/utils/baseUrl";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -96,16 +96,24 @@ export default function Page() {
           ),
           name: Yup.string()
             .min(2, "Atleast 2 characters")
-            .required("Required"),
+            .required("Required")
+            .max(25, "Name must be less than 25 characters"),
+
           quantity: Yup.number().moreThan(0).required("Required"),
           description: Yup.string()
             .min(10, "Atleast 10 characters")
-            .required("Required"),
+            .required("Required")
+            .max(500, "Name must be less than 500 characters"),
+
           category: Yup.string().required("Required"),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           const sumbitData = async () => {
             const formData = new FormData();
+            const token = Cookies.get("token");
+            if (!token) {
+              throw new Error("No token");
+            }
             try {
               formData.append("file", mainPicture);
               formData.append("upload_preset", "NewMarket");
@@ -113,7 +121,6 @@ export default function Page() {
                 `https://api.cloudinary.com/v1_1/dw0j1mmbp/image/upload`,
                 formData
               );
-              console.log(resMain.data.secure_url);
 
               const mainImg = resMain.data.secure_url;
               const imgArr = [];
@@ -125,20 +132,8 @@ export default function Page() {
                   `https://api.cloudinary.com/v1_1/dw0j1mmbp/image/upload`,
                   formData
                 );
-                console.log(resArr.data.secure_url);
                 imgArr.push(resArr.data.secure_url);
               }
-
-              console.log({
-                mainPicture: mainImg,
-                pictures: imgArr,
-                price,
-                name,
-                quantity,
-                description,
-                category,
-                pastPrice,
-              });
 
               const res = await axios.post(
                 `${baseUrl}/api/item`,
@@ -150,28 +145,24 @@ export default function Page() {
                   quantity,
                   description,
                   category,
+                  pastPrice,
                 },
                 {
                   headers: {
-                    Authorization:
-                      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhjN2U4OGNmM2QzM2YxNDRlYzA1NjciLCJpYXQiOjE2ODc3MDg0MzcsImV4cCI6MTY4OTc4MjAzN30.D3OXrXobeRWt8DOw9c7D0vk5M3sGo2KxUExw282Mj24",
+                    Authorization: token,
                   },
                 }
               );
-
-              console.log(res);
 
               router.push(
                 `${frontendUrl}/product/${res.data._id}-${res.data.name}`
               );
             } catch (error) {
+              toast.error("Something went wrong");
               console.error(error);
+              router.refresh();
             }
           };
-          const token = Cookies.get("token");
-          if (!token) {
-            throw new Error("No token");
-          }
 
           const {
             mainPicture,

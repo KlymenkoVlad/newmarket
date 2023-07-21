@@ -65,8 +65,6 @@ export default function InfinitiveScroll({ params, type }: Props) {
     return null; // or display an error message
   }
 
-  console.log(url, type);
-
   const scrollHandler = (e: Event) => {
     if (end) return;
 
@@ -80,6 +78,10 @@ export default function InfinitiveScroll({ params, type }: Props) {
       setFetching(true);
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);

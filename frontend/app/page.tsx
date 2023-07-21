@@ -39,8 +39,8 @@ const page = async ({}) => {
   const { product: cheapItems }: ProductData = await getData("price");
   const { product: newItems }: ProductData = await getData("-date");
   const { product: slideItems }: ProductData = await getData(
-    "price&category=groceries",
-    5
+    "sort=-rating,price",
+    10
   );
 
   return (

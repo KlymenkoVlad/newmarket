@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import WishListBtnAddItem from "./WishListBtnAddItem";
+import WishListBtnAddItem from "../WishListBtnAddItem";
 import { Product } from "@/types/types";
 import truncateString from "@/utils/truncateString";
 
@@ -9,7 +9,7 @@ interface ItemProps {
   itemForEdit?: boolean;
 }
 
-const Item: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
+const SliderItem: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
   return (
     <div className="flex justify-center">
       <div>
@@ -24,10 +24,10 @@ const Item: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
           }
           shallow
         >
-          <div className="w-[260px] h-[240px] border relative rounded-sm">
-            <div className="w-[260px] h-[240px] flex justify-center items-center p-2">
+          <div className="md:w-[660px] sm:h-[340px] ms:h-[300px] h-[250px] border relative rounded-sm">
+            <div className="md:w-[660px] sm:h-[340px] ms:h-[300px] h-[250px] flex justify-center items-center p-4">
               <img
-                className="max-w-full max-h-full "
+                className="max-w-full max-h-full"
                 src={product.mainPicture}
                 alt="Item for Sale"
               />
@@ -68,4 +68,4 @@ const Item: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
   );
 };
 
-export default Item;
+export default SliderItem;
