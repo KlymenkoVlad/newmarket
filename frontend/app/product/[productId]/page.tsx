@@ -85,7 +85,11 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="flex justify-center mb-28">
         <div className="flex ">
           <div className="lg:block hidden h-96 w-[600px]">
-            <SliderItem slideItems={slides} />
+            {slides.length > 1 ? (
+              <SliderItem slideItems={slides} />
+            ) : (
+              <img src={slides[0]} alt={product.name} />
+            )}
           </div>
 
           <div className="xl:ml-24 sm:ml-6 lg:w-1/2 md:w-2/5">

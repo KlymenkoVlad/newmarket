@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import PropTypes from "prop-types";
 import Image from "next/image";
 import * as Yup from "yup";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage, ErrorMessageProps } from "formik";
 import Ripples from "react-ripples";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -35,7 +34,10 @@ const Login = () => {
           }}
           validationSchema={Yup.object({
             email: Yup.string()
-              .email("Wrong email")
+              .matches(
+                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                "Wrong email"
+              )
               .required("Email is required"),
             password: Yup.string()
               .required("No password provided.")
@@ -57,8 +59,15 @@ const Login = () => {
               toast.success("You are successfully log in!");
               Cookies.set("token", res.data);
               router.push("/me");
-            } catch (error) {
+            } catch (error: any) {
               toast.dismiss();
+              if (
+                error.response.data.error === "No such user" ||
+                error.response.data.error === "Invalid credential"
+              ) {
+                toast.error("Invalid credentials");
+                return;
+              }
               toast.error("Something is went wrong");
               console.error(error);
             }
