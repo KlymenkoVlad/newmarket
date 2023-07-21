@@ -1,6 +1,6 @@
 "use client";
 
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import Ripples from "react-ripples";
 import { useStateContext } from "@/context/StateContext";
 import { Product } from "@/types/types";

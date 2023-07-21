@@ -1,6 +1,6 @@
 import React from "react";
 
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import { cookies } from "next/headers";
 
 import Link from "next/link";

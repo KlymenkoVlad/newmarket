@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Product } from "@/types/types";
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import ItemsDisplay from "./ItemsDisplay";
 
 async function getData(url: string) {

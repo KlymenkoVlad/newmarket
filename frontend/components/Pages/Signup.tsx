@@ -10,7 +10,7 @@ import cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 import "../styles.scss";
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -72,7 +72,7 @@ const Signup = (props: null) => {
               console.log(user);
               await checkEmail(user.email);
 
-              const res = await axios.post(`http://localhost:3001/api/signup`, {
+              const res = await axios.post(`${baseUrl}/api/signup`, {
                 user: user,
               });
 

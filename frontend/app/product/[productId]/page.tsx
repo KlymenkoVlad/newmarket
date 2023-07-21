@@ -1,5 +1,5 @@
 import Item from "@/components/Common/Item";
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import Image from "next/image";
 import Btn from "./Btn";
 import IncDecBtn from "./IncDecBtn";

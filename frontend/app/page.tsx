@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Modal from "@/app/Modal";
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import { Product } from "@/types/types";
 
 import BannerSection from "@/components/MainPageComponents/BannerSection";

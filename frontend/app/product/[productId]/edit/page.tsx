@@ -1,5 +1,5 @@
 import { Product } from "@/types/types";
-import baseUrl from "@/utils/baseUrl";
+import { baseUrl } from "@/utils/baseUrl";
 import EditProductForm from "./EditProductForm";
 import Item from "@/components/Common/Item";
 import Image from "next/image";
