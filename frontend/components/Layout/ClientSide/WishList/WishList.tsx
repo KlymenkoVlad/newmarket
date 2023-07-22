@@ -3,6 +3,7 @@
 import IncDecBtn from "@/app/product/[productId]/IncDecBtn";
 import { useStateContext } from "@/context/StateContext";
 import { Product } from "@/types/types";
+import truncateString from "@/utils/truncateString";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -60,9 +61,8 @@ export default function WishList() {
                         >
                           <div className="w-[80px] h-[80px] bg-gray-100 relative rounded-sm">
                             <div className="w-[80px] h-[80px] flex justify-center items-center">
-                              <Image
-                                width={30}
-                                height={30}
+                              <img
+                                className="w-full h-full"
                                 src={item.mainPicture}
                                 alt="Item for Sale"
                               />
@@ -73,7 +73,9 @@ export default function WishList() {
                         <div className="ml-5">
                           <div className="flex">
                             <div>
-                              <p className="text-lg font-medium">{item.name}</p>
+                              <p className="text-lg font-medium">
+                                {truncateString(item.name, 20)}
+                              </p>
                               <p className="text-sm font-normal">
                                 {item.price}$
                               </p>

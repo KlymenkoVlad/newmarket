@@ -7,8 +7,15 @@ import Image from "next/image";
 import Cookies from "js-cookie";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useStateContext } from "@/context/StateContext";
 
-const ProfileLink: React.FC = () => {
+type ProfileLinkProps = {
+  notBurgerMenu?: boolean;
+};
+
+const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
+  const { setShowBurgerMenu } = useStateContext();
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -28,12 +35,26 @@ const ProfileLink: React.FC = () => {
     <>
       <Link
         href={hasTokenCookie ? "/me" : "/login"}
-        className=" h-[100px] w-[100px] cursor-pointer flex items-center"
+        className={` h-[50px] ${
+          notBurgerMenu ? "w-[100px]" : "w-[50px]"
+        }  cursor-pointer flex items-center`}
+        onClick={() => setShowBurgerMenu(false)}
       >
-        <Image src="/icons/user.png" alt="user" width={32} height={32} />
-        <p className="ml-2">
-          {pathname === "/me" || hasTokenCookie ? "Profile" : "Login"}
-        </p>
+        {hasTokenCookie ? (
+          <Image
+            src="/icons/userIn.svg"
+            alt="logged in"
+            width={32}
+            height={32}
+          />
+        ) : (
+          <Image src="/icons/user.png" alt="log in" width={32} height={32} />
+        )}
+        {notBurgerMenu && (
+          <p className="ml-2">
+            {pathname === "/me" || hasTokenCookie ? "Profile" : "Login"}
+          </p>
+        )}
       </Link>
 
       {hasTokenCookie && (

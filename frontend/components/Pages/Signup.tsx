@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import PropTypes from "prop-types";
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import Ripples from "react-ripples";
@@ -15,14 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 
-interface initialValues {
-  name: string;
-  email: string;
-  password: string;
-  terms: boolean;
-  role: string;
-}
-const Signup = (props: null) => {
+const Signup = () => {
   const router = useRouter();
 
   const checkEmail = async (email: string) => {

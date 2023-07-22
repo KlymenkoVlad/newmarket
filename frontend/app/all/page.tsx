@@ -14,7 +14,7 @@ function Page() {
       <NavMenu />
 
       <div className="m-auto py-4 px-4 group">
-        <div className="mb-6">
+        <div className="mb-6 ">
           <div className="flex items-center mb-6">
             <div className="w-[20px] h-[40px] bg-red-500 rounded-[10%] "></div>
             <p className="text-red-500 font-medium ml-5">Find what you need</p>

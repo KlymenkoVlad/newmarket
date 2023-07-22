@@ -17,7 +17,7 @@ interface SliderProps {
 }
 
 // import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 
 export default function SliderItem({ slideItems }: SliderProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -27,8 +27,12 @@ export default function SliderItem({ slideItems }: SliderProps) {
       <Swiper
         spaceBetween={10}
         navigation={true}
+        autoplay={{
+          delay: 4500,
+          disableOnInteraction: true,
+        }}
         thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[FreeMode, Navigation, Thumbs, Autoplay]}
         className="mySwiper2"
       >
         {slideItems &&

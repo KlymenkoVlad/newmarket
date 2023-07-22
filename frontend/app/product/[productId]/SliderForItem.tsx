@@ -25,14 +25,14 @@ interface SliderProps {
 const SliderForItem: React.FC<SliderProps> = ({ slideItems }) => {
   return (
     <Swiper
-      modules={[Navigation, Pagination, Scrollbar, A11y, Zoom]}
+      modules={[Navigation, Pagination, Scrollbar, A11y, Zoom, Autoplay]}
       spaceBetween={50}
       slidesPerView={1}
       navigation
-      //   autoplay={{
-      //     delay: 4500,
-      //     disableOnInteraction: false,
-      //   }}
+      autoplay={{
+        delay: 4500,
+        disableOnInteraction: true,
+      }}
       zoom={true}
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}

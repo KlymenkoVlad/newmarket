@@ -3,6 +3,7 @@ import React from "react";
 import WishListBtnAddItem from "../WishListBtnAddItem";
 import { Product } from "@/types/types";
 import truncateString from "@/utils/truncateString";
+import { renderFilledStars } from "../Item";
 
 interface ItemProps {
   product: Product;
@@ -62,7 +63,9 @@ const SliderItem: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
             <p className=" text-red-500 text-base">{product.price}$</p>
           </div>
         )}
-        <p className="block">Rating - {product.rating}</p>
+        <div className="flex items-center space-x-1">
+          {renderFilledStars(product.rating)}
+        </div>
       </div>
     </div>
   );

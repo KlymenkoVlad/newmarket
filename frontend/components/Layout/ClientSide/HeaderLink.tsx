@@ -1,5 +1,6 @@
 "use client";
 
+import { useStateContext } from "@/context/StateContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

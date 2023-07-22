@@ -84,21 +84,105 @@ router.post('/', authMiddleware, async (req, res) => {
 
 // Get all Product
 
+// router.get('/', async (req, res) => {
+//   try {
+//     const queryObj = { ...req.query };
+//     const excludeFields = ['page', 'sort', 'limit', 'fields'];
+//     excludeFields.forEach((el) => delete queryObj[el]);
+
+//     let queryStr = JSON.stringify(queryObj);
+//     queryStr = JSON.parse(
+//       queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
+//     );
+
+//     let sortBy;
+
+//     if (req.query.sort) {
+//       sortBy = req.query.sort.split(',').join(' ') + ' _id';
+//     }
+
+//     let fieldsDel;
+//     if (req.query.fields) {
+//       fieldsDel = req.query.fields.split(',').join(' ');
+//     } else {
+//       fieldsDel = '-__v';
+//     }
+
+//     const numProducts = await ProductModel.countDocuments();
+
+//     const page = req.query.page * 1 || 1;
+//     const limit = req.query.limit * 1 || 100;
+//     const skip = (page - 1) * limit;
+
+//     let product;
+
+//     if (req.query.search) {
+//       product = await ProductModel.find({
+//         $or: [{ name: { $regex: req.query.search, $options: 'i' } }],
+//       })
+//         .select(fieldsDel)
+//         .skip(skip)
+//         .limit(limit)
+//         .sort(sortBy)
+//         .populate('user');
+//     } else {
+//       product = await ProductModel.find(queryStr)
+//         .select(fieldsDel)
+//         .skip(skip)
+//         .limit(limit)
+//         .sort(sortBy)
+//         .populate('user');
+//     }
+
+//     if (skip > numProducts) {
+//       return res.status(204).json({
+//         status: 'NoItems',
+//         results: [],
+//       });
+//     }
+
+//     res.status(200).json({
+//       status: 'success',
+//       total: numProducts,
+//       results: product.length,
+//       product,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(404).json({
+//       status: 'fail',
+//       message: error,
+//     });
+//   }
+// });
+
 router.get('/', async (req, res) => {
   try {
     const queryObj = { ...req.query };
-    const excludeFields = ['page', 'sort', 'limit', 'fields'];
+    const excludeFields = ['page', 'sort', 'limit', 'fields', 'search'];
     excludeFields.forEach((el) => delete queryObj[el]);
 
-    let queryStr = JSON.stringify(queryObj);
-    queryStr = JSON.parse(
-      queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
-    );
+    if (req.query.search) {
+      queryObj.name = { $regex: req.query.search, $options: 'i' };
+    }
+
+    if (req.query.price) {
+      const priceRange = {};
+      if (req.query.price.gte && !isNaN(req.query.price.gte)) {
+        priceRange.$gte = parseFloat(req.query.price.gte);
+      }
+      if (req.query.price.lte && !isNaN(req.query.price.lte)) {
+        priceRange.$lte = parseFloat(req.query.price.lte);
+      }
+      if (Object.keys(priceRange).length > 0) {
+        queryObj.price = priceRange;
+      }
+    }
 
     let sortBy;
 
     if (req.query.sort) {
-      sortBy = req.query.sort.split(',').join(' ');
+      sortBy = req.query.sort.split(',').join(' ') + ' _id';
     }
 
     let fieldsDel;
@@ -114,25 +198,12 @@ router.get('/', async (req, res) => {
     const limit = req.query.limit * 1 || 100;
     const skip = (page - 1) * limit;
 
-    let product;
-
-    if (req.query.search) {
-      product = await ProductModel.find({
-        $or: [{ name: { $regex: req.query.search, $options: 'i' } }],
-      })
-        .select(fieldsDel)
-        .skip(skip)
-        .limit(limit)
-        .sort(sortBy)
-        .populate('user');
-    } else {
-      product = await ProductModel.find(queryStr)
-        .select(fieldsDel)
-        .skip(skip)
-        .limit(limit)
-        .sort(sortBy)
-        .populate('user');
-    }
+    const product = await ProductModel.find(queryObj)
+      .select(fieldsDel)
+      .skip(skip)
+      .limit(limit)
+      .sort(sortBy)
+      .populate('user');
 
     if (skip > numProducts) {
       return res.status(204).json({

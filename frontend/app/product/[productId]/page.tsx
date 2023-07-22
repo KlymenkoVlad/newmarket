@@ -1,4 +1,4 @@
-import Item from "@/components/Common/Item";
+import Item, { renderFilledStars } from "@/components/Common/Item";
 import { baseUrl } from "@/utils/baseUrl";
 import Image from "next/image";
 import Btn from "./Btn";
@@ -58,12 +58,9 @@ export default async function BlogPostPage({ params }: Props) {
     `/?page=1&limit=4&category=${product?.category}`
   );
 
-  const entity: string = `xl:grid-cols-${product?.pictures
-    ?.length!} grid-cols-2`;
-
   return (
-    <div className="sm:mx-24 mx-6 mb-16 ms:mt-36 mt-24">
-      <p className="mb-8">
+    <div className="sm:mx-24 mx-6 mb-16 sm:mt-36 mt-24">
+      <p className=" ms:mb-4 mb-0">
         <Link
           className="text-black hover:text-red-400 transition-colors duration-600 ease-in-out"
           href="/"
@@ -92,33 +89,48 @@ export default async function BlogPostPage({ params }: Props) {
             )}
           </div>
 
-          <div className="xl:ml-24 sm:ml-6 lg:w-1/2 md:w-2/5">
+          <div className="xl:ml-24 sm:ml-6 ">
             <div className="lg:hidden sm:w-[600px] ms:w-[450px] w-[330px]">
               <SliderForItem slideItems={slides} />
             </div>
-            <h1 className="my-3 font-semibold text-lg ms:text-left text-center">
-              {product.name}
-            </h1>
-            <div className="flex mb-3 ms:text-left text-center ms:justify-normal justify-center">
-              <h3 className="">Rating - {product.rating} | </h3>
-              <h3
-                className={` ${
-                  product.quantity >= 1 ? "text-green-500" : "text-red-500"
-                }`}
-              >
-                {product.quantity >= 1 ? " In stock" : " Not available"}
-              </h3>
+            <div className="mx-4">
+              <h1 className="my-3 font-semibold text-lg ms:text-left text-center">
+                {product.name}
+              </h1>
+              <div className="flex mb-3 ms:text-left text-center ms:justify-normal justify-center">
+                <div className="flex items-center">
+                  {renderFilledStars(product.rating)}
+                  <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                    {product.rating} out of 5
+                  </p>
+                </div>
+              </div>
+              <div className="flex mb-5 ms:justify-normal justify-center">
+                <h2>
+                  <span className="text-lg font-semibold">
+                    ${product.price}
+                  </span>
+                  {product.pastPrice && (
+                    <span className="ml-3 text-sm font-medium text-red-900 line-through ">
+                      ${product?.pastPrice}
+                    </span>
+                  )}
+                  {"  "}| Seller:{" "}
+                  {product?.user?.name ? product.user.name : "Unknown"} |{" "}
+                  <span
+                    className={` ${
+                      product.quantity >= 1 ? "text-green-500" : "text-red-500"
+                    }`}
+                  >
+                    {product.quantity >= 1 ? " In stock" : " Not available"}
+                  </span>
+                </h2>
+              </div>
+              <p className="xl:w-[500px] lg:w-[350px]  sm:w-[480px] ms:w-[430px] w-[300px] mb-5 ms:text-left ms:mx-0 mx-auto">
+                {product.description}
+              </p>
+              <div className="h-px xl:w-[500px] lg:w-[350px]  sm:w-[480px] ms:w-[430px] w-[300px] bg-gray-400 mb-5"></div>
             </div>
-            <div className="flex mb-5 ms:justify-normal justify-center">
-              <h2>
-                <span className="font-bold ">${product.price}</span> | Seller:{" "}
-                {product?.user?.name ? product.user.name : "Unknown"}
-              </h2>
-            </div>
-            <p className="xl:w-[400px]  ms:w-[340px] w-[250px] mb-5 ms:text-left ms:mx-0 mx-auto">
-              {product.description}
-            </p>
-            <div className="h-px lg:w-[350px] w-[300px] bg-gray-400 mb-5"></div>
 
             <div className="flex justify-center items-center mb-6">
               <div className="flex justify-around">
@@ -146,7 +158,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <div>
                   <h4 className=" text-xs font-medium">Free Delivery</h4>
                   <h4 className=" text-xs font-medium underline">
-                    Enter your postal code for Delivery Availability
+                    Enter your postal code for Delivery
                   </h4>
                 </div>
               </div>
@@ -165,7 +177,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <div>
                   <h4 className=" text-sm font-medium">Return Delivery</h4>
                   <h4 className=" text-xs font-medium underline">
-                    Free 30 Days Delivery Returns. Details
+                    Free 30 Days Delivery Returns
                   </h4>
                 </div>
               </div>

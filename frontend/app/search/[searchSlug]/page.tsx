@@ -13,10 +13,12 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   return (
-    <div className="flex mb-16 ms:mt-36 mt-24">
+    <div className="md:flex block md:mx-0 sm:mx-32 ms:mx-16 mx-4 mb-16 ms:mt-36 mt-24">
       <NavMenu />
 
-      <InfinitiveScroll params={params} type="search" />
+      <div>
+        <InfinitiveScroll params={params} type="search" />
+      </div>
     </div>
   );
 }

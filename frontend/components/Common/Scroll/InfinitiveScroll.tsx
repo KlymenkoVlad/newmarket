@@ -46,23 +46,61 @@ export default function InfinitiveScroll({ params, type }: Props) {
   const [totalCount, setTotalCount] = useState<number>(0);
   const [end, setEnd] = useState(false);
 
+  const [selectedValue, setSelectedValue] = useState<string>("-date");
+
+  const [tempPriceFrom, setTempPriceFrom] = useState<number>(0);
+  const [tempPriceTo, setTempPriceTo] = useState<number>(999999);
+
+  const [priceFrom, setPriceFrom] = useState<number>(0);
+  const [priceTo, setPriceTo] = useState<number>(999999);
+
+  const handlePriceFromChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTempPriceFrom(Number(event.target.value));
+  };
+
+  const handlePriceToChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTempPriceTo(Number(event.target.value));
+  };
+
+  const handleApplyPrice = () => {
+    setPriceFrom(tempPriceFrom);
+    setPriceTo(tempPriceTo);
+    setItems([]);
+    setCurrentPage(1);
+    setTotalCount(0);
+    setEnd(false);
+    setFetching(true);
+  };
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedValue(event.target.value);
+    setItems([]);
+    setCurrentPage(1);
+    setTotalCount(0);
+    setEnd(false);
+
+    setFetching(true);
+  };
+
   const limit = 10;
 
   let url: string;
   let categorySlugUpperCase: string | null = null;
   if (type === "all") {
-    url = `/item?page=${currentPage}&limit=${limit}`;
+    url = `/item?page=${currentPage}&limit=${limit}&sort=${selectedValue}&price[lte]=${priceTo}&price[gte]=${priceFrom}`;
   } else if (params && type === "myproducts" && "userId" in params) {
-    url = `/item/user/${params.userId}?page=${currentPage}&limit=${limit}`;
+    url = `/item/user/${params.userId}?page=${currentPage}&limit=${limit}&price[lte]=${priceTo}&price[gte]=${priceFrom}&sort=${selectedValue}`;
   } else if (params && type === "categories" && "categorySlug" in params) {
-    url = `/item?page=${currentPage}&limit=${limit}&category=${params.categorySlug}`;
+    url = `/item?page=${currentPage}&limit=${limit}&category=${params.categorySlug}&price[lte]=${priceTo}&price[gte]=${priceFrom}&sort=${selectedValue}`;
   } else if (params && type === "search" && "searchSlug" in params) {
-    url = `/item?page=${currentPage}&limit=${limit}&search=${params.searchSlug}`;
+    url = `/item?page=${currentPage}&limit=${limit}&price[lte]=${priceTo}&price[gte]=${priceFrom}&search=${params.searchSlug}&sort=${selectedValue}`;
     categorySlugUpperCase =
       params.searchSlug.charAt(0).toUpperCase() + params.searchSlug.slice(1);
   } else {
     console.error("Invalid params");
-    return null; // or display an error message
+    return null;
   }
 
   const scrollHandler = (e: Event) => {
@@ -99,6 +137,7 @@ export default function InfinitiveScroll({ params, type }: Props) {
           return setEnd(true);
         }
         setItems((prevItems) => [...prevItems, ...product]);
+        console.log(items);
         setCurrentPage((prevPage) => prevPage + 1);
         setTotalCount(+total);
         if (product.length < limit) {
@@ -118,6 +157,65 @@ export default function InfinitiveScroll({ params, type }: Props) {
 
   return (
     <>
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-3 items-center md:mx-4">
+        <div className="block ">
+          <div>
+            <label
+              htmlFor="Sort"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              Select an option
+            </label>
+            <select
+              id="Sort"
+              name="select"
+              value={selectedValue}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5 md:w-64 w-full mb-8 "
+              onChange={handleSelectChange}
+            >
+              <option value="-date">Novelties</option>
+              <option value="price">Cheap to expensive</option>
+              <option value="-price">Expensive to cheap</option>
+              <option value="-rating">By rating</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="md:flex block justify-center items-center ">
+          <p className="mr-4">Price:</p>
+          <div className="flex items-center">
+            <input
+              type="number"
+              id="priceFrom"
+              onChange={handlePriceFromChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 "
+              placeholder="0"
+              required
+            />
+          </div>
+          <div className="mx-4 text-center">-</div>
+          <div className="flex items-center">
+            <input
+              type="number"
+              id="priceTo"
+              onChange={handlePriceToChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 "
+              placeholder="99999"
+              required
+            />
+          </div>
+          <div className="md:flex block justify-start">
+            <button
+              type="button"
+              onClick={handleApplyPrice}
+              className=" text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center md:ml-4 md:my-0 my-4"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      </div>
+
       <ItemsDisplay
         items={items}
         end={end}
