@@ -5,7 +5,7 @@ import { useStateContext } from "@/context/StateContext";
 import Image from "next/image";
 import Btn from "./cartBuyBtn";
 import truncateString from "@/utils/truncateString";
-
+import "@/components/styles.scss";
 export default function Cart() {
   const {
     cartItems,

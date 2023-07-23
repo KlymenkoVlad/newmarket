@@ -22,6 +22,12 @@ const Navigation = ({ name, email, role, id }: NavigationProps) => {
     if (section === "myproducts") {
       return redirect(`my-products/${id}`);
     }
+    if (section === "wishlist") {
+      return redirect("/wishlist");
+    }
+    if (section === "cart") {
+      return redirect("cart");
+    }
   }, [section]);
 
   return (
@@ -70,26 +76,23 @@ const Navigation = ({ name, email, role, id }: NavigationProps) => {
           )}
         </ul>
 
-        <p className="font-medium">My Orders</p>
+        <p className="font-medium">My Lists</p>
         <ul className="ml-6 text-gray-400 mr-20 md:block flex justify-around">
           <li
             className={`mt-6 mx-2 mb-8 ${
               section === "returns" ? "text-red-500" : ""
             }`}
           >
-            <button onClick={() => setSection("returns")}>My Returns</button>
+            <button onClick={() => setSection("wishlist")}>My Wish List</button>
           </li>
           <li
             className={`mt-6 mx-2 mb-8 ${
               section === "cancellations" ? "text-red-500" : ""
             }`}
           >
-            <button onClick={() => setSection("cancellations")}>
-              My Cancellations
-            </button>
+            <button onClick={() => setSection("cart")}>My Cart</button>
           </li>
         </ul>
-        <p className="font-medium">My Wishlist</p>
       </div>
       <div className="md:ml-20 mx-3 ">
         {section === "profile" && (

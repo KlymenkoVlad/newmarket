@@ -22,9 +22,12 @@ export default function BuregerMenu() {
           <div
             className={`fixed top-0 right-0 bottom-0 opacity-95    ${
               showBurgerMenu ? "block" : "hidden"
-            } bg-black bg-opacity-50 z-50`}
+            } bg-black bg-opacity-50 z-50 `}
           >
-            <div className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-4">
+            <div
+              className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-4 "
+              style={{ transition: "opacity 1s ease-in-out" }}
+            >
               <div className="flex">
                 <div
                   className="flex cursor-pointer"

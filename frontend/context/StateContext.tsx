@@ -87,6 +87,9 @@ export const StateContext: React.FC<{ children: React.ReactNode }> = ({
   let index: number;
 
   const onAddWishList = (product: Product) => {
+    if (wishListItems.length > 20) {
+      return toast.error("You already have 20 products in wish list.");
+    }
     const checkUpdatedWishListItems = wishListItems.find(
       (item) => item._id === product._id
     );
@@ -152,29 +155,47 @@ export const StateContext: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const toggleCartItemQuanitity = (id: string, value: "inc" | "dec") => {
-    foundProduct = cartItems.find((item) => item._id === id);
-    index = cartItems.findIndex((product) => product._id === id);
-    const newCartItems = cartItems.filter((item) => item._id !== id);
+    const foundProduct = cartItems.find((item) => item._id === id);
 
     if (!foundProduct) return;
 
+    let updatedCartItems;
+    let updatedTotalPrice = totalPrice;
+    let updatedTotalQuantities = totalQuantities;
+
     if (value === "inc") {
-      setCartItems([
-        ...newCartItems,
-        { ...foundProduct!, quantity: foundProduct!.quantity + 1 },
-      ]);
-      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct!.price);
-      setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
+      updatedCartItems = cartItems.map((cartProduct) => {
+        if (cartProduct._id === id) {
+          updatedTotalPrice += cartProduct.price;
+          updatedTotalQuantities += 1;
+          return { ...cartProduct, quantity: cartProduct.quantity + 1 };
+        }
+        return cartProduct;
+      });
     } else if (value === "dec") {
-      if (foundProduct!.quantity > 1) {
-        setCartItems([
-          ...newCartItems,
-          { ...foundProduct!, quantity: foundProduct!.quantity - 1 },
-        ]);
-        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct!.price);
-        setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
+      if (foundProduct.quantity > 1) {
+        updatedCartItems = cartItems.map((cartProduct) => {
+          if (cartProduct._id === id) {
+            updatedTotalPrice -= cartProduct.price;
+            updatedTotalQuantities -= 1;
+            return { ...cartProduct, quantity: cartProduct.quantity - 1 };
+          }
+          return cartProduct;
+        });
+      } else {
+        updatedCartItems = cartItems.filter(
+          (cartProduct) => cartProduct._id !== id
+        );
       }
     }
+
+    setCartItems(updatedCartItems!);
+    setTotalPrice(updatedTotalPrice);
+    setTotalQuantities(updatedTotalQuantities);
+
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    localStorage.setItem("totalPrice", updatedTotalPrice.toString());
+    localStorage.setItem("totalQuantities", updatedTotalQuantities.toString());
   };
 
   const onRemoveWishList = (product: Product) => {

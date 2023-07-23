@@ -1,8 +1,10 @@
-import Benefits from "@/components/MainPageComponents/Benefits";
+"use client";
+
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/dist/client/link";
 
+import Benefits from "@/components/MainPageComponents/Benefits";
 export const metadata: Metadata = {
   title: "Contact",
   description: "",

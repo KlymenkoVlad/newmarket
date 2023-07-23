@@ -51,6 +51,7 @@ export default function WishList() {
                 )}
 
                 {wishListItems.length >= 1 &&
+                  wishListItems.length < 7 &&
                   wishListItems.map((item: Product, index: number) => (
                     <div key={index} className="mt-4">
                       <div className="flex mb-5">
@@ -108,6 +109,79 @@ export default function WishList() {
                       </div>
                     </div>
                   ))}
+
+                {wishListItems.length >= 7 &&
+                  wishListItems
+                    .slice(0, 7)
+                    .map((item: Product, index: number) => (
+                      <div key={index} className="mt-4">
+                        <div className="flex mb-5">
+                          <Link
+                            href="/product/[id]-[name]"
+                            as={`/product/${item._id}-${item.name}`}
+                            shallow
+                          >
+                            <div className="w-[80px] h-[80px] bg-gray-100 relative rounded-sm">
+                              <div className="w-[80px] h-[80px] flex justify-center items-center">
+                                <img
+                                  className="w-full h-full"
+                                  src={item.mainPicture}
+                                  alt="Item for Sale"
+                                />
+                              </div>
+                            </div>
+                          </Link>
+
+                          <div className="ml-5">
+                            <div className="flex">
+                              <div>
+                                <p className="text-lg font-medium">
+                                  {truncateString(item.name, 20)}
+                                </p>
+                                <p className="text-sm font-normal">
+                                  {item.price}$
+                                </p>
+                              </div>
+
+                              <button
+                                type="button"
+                                onClick={() => onRemoveWishList(item)}
+                                className="ml-5 h-8 w-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+                              >
+                                <span className="sr-only">Close menu</span>
+                                <svg
+                                  className="h-[30px] w-[30px]"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                {wishListItems.length >= 7 && (
+                  <div className="text-center">
+                    <Link href="/wishlist">
+                      <button
+                        type="button"
+                        className=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 "
+                      >
+                        See all {wishListItems.length} products in list
+                      </button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>

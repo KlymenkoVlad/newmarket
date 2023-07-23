@@ -51,7 +51,7 @@ export default function Search() {
         />
         <button
           type="submit"
-          className="text-white absolute right-2.5 bottom-1.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          className="xl:hidden lg:flex md:hidden sm:hidden flex text-white absolute right-2.5 bottom-1.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
         >
           <svg
             aria-hidden="true"
@@ -71,7 +71,7 @@ export default function Search() {
         </button>
         <button
           type="submit"
-          className="text-white sm:flex hidden absolute right-2.5 bottom-1.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          className=" text-white xl:flex lg:hidden md:flex sm:flex hidden absolute right-2.5 bottom-1.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
         >
           Search
           <svg

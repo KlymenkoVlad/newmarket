@@ -7,6 +7,7 @@ import truncateString from "@/utils/truncateString";
 interface ItemProps {
   product: Product;
   itemForEdit?: boolean;
+  itemForWishList?: boolean;
 }
 
 export const filledStar = () => (
@@ -45,7 +46,11 @@ export const renderFilledStars = (rating: number) => {
   return filledStars;
 };
 
-const Item: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
+const Item: React.FC<ItemProps> = ({
+  product,
+  itemForEdit = false,
+  itemForWishList = false,
+}) => {
   return (
     <div className="flex justify-center">
       <div>

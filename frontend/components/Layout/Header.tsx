@@ -16,7 +16,7 @@ const Header = () => {
       <div className=" flex items-center justify-around mx-auto p-4">
         <div className="flex justify-around items-center">
           <Link href="/">
-            <h1 className="text-xl sm:text-2xl font-medium ms:block hidden">
+            <h1 className="xl:block lg:hidden text-xl sm:text-2xl font-medium ms:block hidden">
               New Market
             </h1>
           </Link>
