@@ -5,10 +5,6 @@ import Image from "next/image";
 import Link from "next/dist/client/link";
 
 import Benefits from "@/components/MainPageComponents/Benefits";
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "",
-};
 
 interface WorkerProps {
   name: string;
