@@ -107,11 +107,10 @@ export default function InfinitiveScroll({ params, type }: Props) {
     if (end) return;
 
     if (
-      !end ||
-      (document.documentElement?.scrollHeight -
+      document.documentElement?.scrollHeight -
         (document.documentElement.scrollTop + window.innerHeight) <=
         300 &&
-        items.length - totalCount !== 0)
+      items.length - totalCount !== 0
     ) {
       setFetching(true);
     }

@@ -103,7 +103,9 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
           </Link>
         </li>
       </ul>
-      {notBurgerMenu && <div className=" h-[500px] w-px bg-gray-400 "></div>}
+      {notBurgerMenu && (
+        <div className=" mt-[-70px] h-[550px] w-px bg-gray-300 "></div>
+      )}
     </div>
   );
 };
