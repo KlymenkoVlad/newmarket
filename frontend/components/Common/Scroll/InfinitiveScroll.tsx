@@ -136,7 +136,6 @@ export default function InfinitiveScroll({ params, type }: Props) {
           return setEnd(true);
         }
         setItems((prevItems) => [...prevItems, ...product]);
-        console.log(items);
         setCurrentPage((prevPage) => prevPage + 1);
         setTotalCount(+total);
         if (product.length < limit) {

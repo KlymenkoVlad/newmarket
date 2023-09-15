@@ -10,7 +10,10 @@ interface ItemProps {
   itemForEdit?: boolean;
 }
 
-const SliderItem: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
+const SliderItemMainPage: React.FC<ItemProps> = ({
+  product,
+  itemForEdit = false,
+}) => {
   return (
     <div className="flex justify-center">
       <div>
@@ -71,4 +74,4 @@ const SliderItem: React.FC<ItemProps> = ({ product, itemForEdit = false }) => {
   );
 };
 
-export default SliderItem;
+export default SliderItemMainPage;

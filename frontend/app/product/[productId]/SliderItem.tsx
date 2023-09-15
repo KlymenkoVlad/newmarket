@@ -23,7 +23,7 @@ export default function SliderItem({ slideItems }: SliderProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <>
+    <div>
       <Swiper
         spaceBetween={10}
         navigation={true}
@@ -59,6 +59,6 @@ export default function SliderItem({ slideItems }: SliderProps) {
             </SwiperSlide>
           ))}
       </Swiper>
-    </>
+    </div>
   );
 }

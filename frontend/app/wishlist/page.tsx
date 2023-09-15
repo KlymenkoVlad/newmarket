@@ -8,7 +8,6 @@ import React from "react";
 
 const page = () => {
   const { wishListItems, onRemoveWishList } = useStateContext();
-  console.log(wishListItems);
   return (
     <div className="md:mx-0 sm:mx-32 ms:mx-16 mx-4 mb-16 ms:mt-36 mt-24">
       <h1 className="text-center font-bold text-3xl mb-8">Your Wish List</h1>

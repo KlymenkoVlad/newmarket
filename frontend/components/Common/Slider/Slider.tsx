@@ -11,7 +11,7 @@ import {
   Autoplay,
 } from "swiper/modules";
 import "swiper/css";
-import SliderItem from "./SliderItem";
+import SliderItemMainPage from "./SliderItemMainPage";
 
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -41,7 +41,7 @@ const Slider: React.FC<SliderProps> = ({ slideItems }) => {
       {slideItems &&
         slideItems.map((slide) => (
           <SwiperSlide key={slide._id} className="p-10">
-            <SliderItem product={slide} />
+            <SliderItemMainPage product={slide} />
           </SwiperSlide>
         ))}
     </Swiper>
