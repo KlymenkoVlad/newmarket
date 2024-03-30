@@ -2,7 +2,7 @@
 
 import { useStateContext } from "@/context/StateContext";
 
-export default function BuregerMenuBtn() {
+export default function BurgerMenuBtn() {
   const { showBurgerMenu, setShowBurgerMenu, setShowWishList, setShowCart } =
     useStateContext();
 

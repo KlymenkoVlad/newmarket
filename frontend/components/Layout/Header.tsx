@@ -6,8 +6,8 @@ import Cart from "./ClientSide/Cart/Cart";
 import WishListBtn from "./ClientSide/WishListAndCartBtn";
 import WishList from "./ClientSide/WishList/WishList";
 import Search from "./ClientSide/Header/Search";
-import BuregerMenuBtn from "./ClientSide/Header/BuregerMenuBtn";
-import BuregerMenu from "./ClientSide/BurgerMenu";
+import BurgerMenuBtn from "./ClientSide/Header/BuregerMenuBtn";
+import BurgerMenu from "./ClientSide/BurgerMenu";
 import Link from "next/link";
 
 const Header = () => {
@@ -21,7 +21,7 @@ const Header = () => {
             </h1>
           </Link>
           <Search />
-          <BuregerMenuBtn />
+          <BurgerMenuBtn />
         </div>
         <div
           className="items-center justify-around hidden w-full lg:flex md:w-auto md:order-1"
@@ -34,7 +34,7 @@ const Header = () => {
       </div>
       <Cart />
       <WishList />
-      <BuregerMenu />
+      <BurgerMenu />
     </nav>
   );
 };

@@ -11,7 +11,7 @@ import ProfileLink from "./ProfileLink";
 import { usePathname } from "next/navigation";
 import NavMenu from "@/components/Common/NavMenu";
 
-export default function BuregerMenu() {
+export default function BurgerMenu() {
   const { showBurgerMenu, setShowBurgerMenu } = useStateContext();
   const pathname = usePathname();
 

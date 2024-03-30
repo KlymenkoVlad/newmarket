@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Modal from "@/app/Modal";
 import { baseUrl } from "@/utils/baseUrl";
 import { Product } from "@/types/types";
@@ -16,7 +15,7 @@ async function getData(sortParam: string, limit = 4) {
     const res = await fetch(
       `${baseUrl}/api/item?sort=${sortParam}&limit=${limit}`,
       {
-        next: { revalidate: 420 },
+        next: { revalidate: 1 },
         method: "GET",
       }
     );

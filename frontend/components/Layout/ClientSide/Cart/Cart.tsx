@@ -22,11 +22,11 @@ export default function Cart() {
       {showCart && (
         <div>
           <div
-            className={`fixed top-0 right-0 bottom-0  ${
+            className={`fixed top-0 right-0 bottom-0 h-full  ${
               showCart ? "block" : "hidden"
             } bg-black bg-opacity-50 z-50`}
           >
-            <div className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-4">
+            <div className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-2">
               <div
                 className="flex cursor-pointer"
                 onClick={() => setShowCart(false)}
@@ -41,7 +41,7 @@ export default function Cart() {
                 <span className="text-red-500">{`(items: ${totalQuantities} )`}</span>
               </div>
 
-              <div>
+              <div className=" overflow-y-auto h-full ">
                 {cartItems.length < 1 && (
                   <div className="flex justify-center mt-8">
                     <div>
@@ -138,7 +138,7 @@ export default function Cart() {
                       <h3>Subtotal:</h3>
                       <h3>{totalPrice}$</h3>
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center mb-7">
                       <Btn cartItems={cartItems} />
                     </div>
                   </>

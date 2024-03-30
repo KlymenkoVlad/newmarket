@@ -20,7 +20,7 @@ export default function WishList() {
               showWishList ? "block" : "hidden"
             } bg-black bg-opacity-50 z-50`}
           >
-            <div className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-4">
+            <div className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-2">
               <div
                 className="flex cursor-pointer"
                 onClick={() => setShowWishList(false)}
@@ -33,7 +33,7 @@ export default function WishList() {
                 />
               </div>
 
-              <div>
+              <div className=" overflow-y-auto h-full">
                 {wishListItems.length < 1 && (
                   <div className="flex justify-center mt-8">
                     <div>
@@ -170,14 +170,16 @@ export default function WishList() {
                         </div>
                       </div>
                     ))}
-                {wishListItems.length >= 7 && (
-                  <div className="text-center">
+                {wishListItems.length > 4 && (
+                  <div className="flex text-center mx-auto mb-4">
                     <Link href="/wishlist">
                       <button
                         type="button"
-                        className=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 "
+                        onClick={() => setShowWishList(false)}
+                        className="justify-self-start focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2.5 mb-2 "
                       >
-                        See all {wishListItems.length} products in list
+                        Show all {wishListItems.length} wished products on a
+                        page
                       </button>
                     </Link>
                   </div>
