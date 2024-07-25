@@ -16,49 +16,37 @@ interface SliderProps {
   slideItems: string[];
 }
 
-// import required modules
+//! fix ts ignore
+
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 
 export default function SliderItem({ slideItems }: SliderProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div>
-      <Swiper
-        spaceBetween={10}
-        navigation={true}
-        autoplay={{
-          delay: 4500,
-          disableOnInteraction: true,
-        }}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs, Autoplay]}
-        className="mySwiper2"
-      >
-        {slideItems &&
-          slideItems.map((slide, i) => (
-            <SwiperSlide key={i}>
-              <img src={slide} className="mx-auto max-h-96" />
-            </SwiperSlide>
-          ))}
-      </Swiper>
-      <Swiper
-        // @ts-ignore
-        onSwiper={setThumbsSwiper}
-        spaceBetween={10}
-        slidesPerView={4}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
-      >
-        {slideItems &&
-          slideItems.map((slide, i) => (
-            <SwiperSlide key={i}>
-              <img src={slide} className="mx-auto max-h-36" />
-            </SwiperSlide>
-          ))}
-      </Swiper>
-    </div>
+    <>
+      {slideItems && slideItems.length > 0 && (
+        <div>
+          <Swiper
+            spaceBetween={10}
+            navigation={true}
+            autoplay={{
+              delay: 4500,
+              disableOnInteraction: true,
+            }}
+            thumbs={{ swiper: thumbsSwiper }}
+            modules={[FreeMode, Navigation, Thumbs, Autoplay]}
+            className="mySwiper2"
+          >
+            {slideItems &&
+              slideItems.map((slide, i) => (
+                <SwiperSlide key={i}>
+                  <img src={slide} className="mx-auto max-h-96" />
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </div>
+      )}
+    </>
   );
 }

@@ -78,23 +78,19 @@ export default async function BlogPostPage({ params }: Props) {
       </p>
       <div className="mb-28 flex justify-center">
         <div className="flex">
-          <div className="hidden h-96 w-[600px] lg:block">
-            {slides.length > 1 ? (
-              <SliderItem slideItems={slides} />
-            ) : (
-              <img src={slides[0]} alt={product.name} />
-            )}
+          <div className="hidden w-[330px] ms:w-[450px] sm:w-[600px] lg:block">
+            <SliderForItem slideItems={slides} />
           </div>
 
-          {/* <div className="xl:ml-24 sm:ml-6 ">
-            <div className="lg:hidden sm:w-[600px] ms:w-[450px] w-[330px]">
+          <div className="sm:ml-6 xl:ml-24">
+            <div className="w-[330px] ms:w-[450px] sm:w-[600px] lg:hidden">
               <SliderForItem slideItems={slides} />
             </div>
             <div className="mx-4">
-              <h1 className="my-3 font-semibold text-lg ms:text-left text-center">
+              <h1 className="my-3 text-center text-lg font-semibold ms:text-left">
                 {product.name}
               </h1>
-              <div className="flex mb-3 ms:text-left text-center ms:justify-normal justify-center">
+              <div className="mb-3 flex justify-center text-center ms:justify-normal ms:text-left">
                 <div className="flex items-center">
                   {renderFilledStars(product.rating)}
                   <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -102,13 +98,13 @@ export default async function BlogPostPage({ params }: Props) {
                   </p>
                 </div>
               </div>
-              <div className="flex mb-5 ms:justify-normal justify-center">
+              <div className="mb-5 flex justify-center ms:justify-normal">
                 <h2>
                   <span className="text-lg font-semibold">
                     ${product.price}
                   </span>
                   {product.pastPrice && (
-                    <span className="ml-3 text-sm font-medium text-red-900 line-through ">
+                    <span className="ml-3 text-sm font-medium text-red-900 line-through">
                       ${product?.pastPrice}
                     </span>
                   )}
@@ -123,13 +119,13 @@ export default async function BlogPostPage({ params }: Props) {
                   </span>
                 </h2>
               </div>
-              <p className="xl:w-[500px] lg:w-[350px]  sm:w-[480px] ms:w-[430px] w-[300px] mb-5 ms:text-left ms:mx-0 mx-auto">
+              <p className="mx-auto mb-5 w-[300px] ms:mx-0 ms:w-[430px] ms:text-left sm:w-[480px] lg:w-[350px] xl:w-[500px]">
                 {product.description}
               </p>
-              <div className="h-px xl:w-[500px] lg:w-[350px]  sm:w-[480px] ms:w-[430px] w-[300px] bg-gray-400 mb-5"></div>
+              <div className="mb-5 h-px w-[300px] bg-gray-400 ms:w-[430px] sm:w-[480px] lg:w-[350px] xl:w-[500px]"></div>
             </div>
 
-            <div className="flex justify-center items-center mb-6">
+            <div className="mb-6 flex items-center justify-center">
               <div className="flex justify-around">
                 <IncDecBtn />
 
@@ -137,14 +133,14 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
             </div>
 
-            <div className="flex justify-around mb-6">
+            <div className="mb-6 flex justify-around">
               <Btn text={"Buy Now"} product={product} />
               <AddToCartBtn text={"Add to Cart"} product={product} />
             </div>
 
             <div className="border">
-              <div className="flex h-[90px] border items-center ">
-                <div className="h-[40px] mx-5">
+              <div className="flex h-[90px] items-center border">
+                <div className="mx-5 h-[40px]">
                   <Image
                     src="/icons/icon-delivery-dark.png"
                     alt="wishlist"
@@ -153,15 +149,15 @@ export default async function BlogPostPage({ params }: Props) {
                   />
                 </div>
                 <div>
-                  <h4 className=" text-xs font-medium">Free Delivery</h4>
-                  <h4 className=" text-xs font-medium underline">
+                  <h4 className="text-xs font-medium">Free Delivery</h4>
+                  <h4 className="text-xs font-medium underline">
                     Enter your postal code for Delivery
                   </h4>
                 </div>
               </div>
 
-              <div className="flex h-[90px] border items-center ">
-                <div className="h-[40px] mx-5 ">
+              <div className="flex h-[90px] items-center border">
+                <div className="mx-5 h-[40px]">
                   <button type="button">
                     <Image
                       src="/icons/Icon-return.svg"
@@ -172,14 +168,14 @@ export default async function BlogPostPage({ params }: Props) {
                   </button>
                 </div>
                 <div>
-                  <h4 className=" text-sm font-medium">Return Delivery</h4>
-                  <h4 className=" text-xs font-medium underline">
+                  <h4 className="text-sm font-medium">Return Delivery</h4>
+                  <h4 className="text-xs font-medium underline">
                     Free 30 Days Delivery Returns
                   </h4>
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="mb-6 ml-16">
@@ -188,9 +184,9 @@ export default async function BlogPostPage({ params }: Props) {
           <p className="ml-5 font-medium text-red-500">Related Item</p>
         </div>
       </div>
-      {/* <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 mb-8">
+      <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
         {relatedItems && relatedItems.map((item) => <Item product={item} />)}
-      </div> */}
+      </div>
     </div>
   );
 }
