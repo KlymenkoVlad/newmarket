@@ -83,7 +83,7 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
   };
 
   return (
-    <div className="lg:mx-24 md:mx-12 mx-3 lg:mt-40 mt-32 ">
+    <div className="mx-3 mt-32 md:mx-12 lg:mx-24 lg:mt-40">
       <Formik
         initialValues={initialValues}
         validationSchema={Yup.object({
@@ -107,7 +107,7 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
             .test(
               "MAX_IMAGES",
               "Exceeded maximum number of pictures (4)",
-              (value) => (value as FileList).length <= 4
+              (value) => (value as FileList).length <= 4,
             )
             .test("FILE_SIZE", "Too big!", (value) => {
               for (let i = 0; i < (value as FileList).length; i++) {
@@ -121,7 +121,7 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
               for (let i = 0; i < (value as FileList).length; i++) {
                 if (
                   !["image/png", "image/jpeg"].includes(
-                    (value as FileList)[i].type
+                    (value as FileList)[i].type,
                   )
                 ) {
                   return false;
@@ -133,7 +133,7 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
           price: Yup.number().moreThan(0),
           pastPrice: Yup.number().moreThan(
             Yup.ref("price"),
-            "Past price must be greater than price"
+            "Past price must be greater than price",
           ),
           name: Yup.string()
             .min(2, "Atleast 2 characters")
@@ -156,7 +156,7 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                 formData.append("upload_preset", "NewMarket");
                 const resMain = await axios.post(
                   `https://api.cloudinary.com/v1_1/dw0j1mmbp/image/upload`,
-                  formData
+                  formData,
                 );
 
                 mainImg = resMain.data.secure_url;
@@ -167,7 +167,7 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                   formData.append("upload_preset", "NewMarket");
                   const resArr = await axios.post(
                     `https://api.cloudinary.com/v1_1/dw0j1mmbp/image/upload`,
-                    formData
+                    formData,
                   );
                   imgArr.push(resArr.data.secure_url);
                 }
@@ -202,7 +202,7 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                   headers: {
                     Authorization: token.toString(),
                   },
-                }
+                },
               );
 
               router.refresh();
@@ -241,28 +241,24 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
       >
         {({ setFieldValue, values, errors }) => (
           <Form
-            className="lg:px-8 pt-6 pb-8 flex flex-col m-auto xl:w-[1000px] ms:w-[80%] w-[250px]  justify-center"
+            className="m-auto flex w-[250px] flex-col justify-center pb-8 pt-6 ms:w-[80%] lg:px-8 xl:w-[1000px]"
             encType="multipart/form-data"
           >
-            <h2 className="font-bold text-2xl mb-6 text-red-500">
+            <h2 className="mb-6 text-2xl font-bold text-red-500">
               Edit Your Product
             </h2>
 
-            <div className="xl:flex block justify-center">
+            <div className="block justify-center xl:flex">
               <div className="w-full">
-                <div className="bg-white mb-10 ">
+                <div className="mb-10 bg-white">
                   <label
-                    className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
+                    className="bottom-8 left-0 -translate-y-2 text-sm text-gray-500 transition-transform duration-300"
                     htmlFor="name"
                   >
                     Name
                   </label>
                   <Field
-                    className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                invalid:border-pink-500 invalid:text-pink-600
-                focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                    className="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder-slate-400 shadow-sm invalid:border-pink-500 invalid:text-pink-600 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none"
                     name="name"
                     type="text"
                     placeholder={`Previous name - ${product.name}`}
@@ -274,19 +270,15 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                   />
                 </div>
 
-                <div className="bg-white mb-10 ">
+                <div className="mb-10 bg-white">
                   <label
-                    className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
+                    className="bottom-8 left-0 -translate-y-2 text-sm text-gray-500 transition-transform duration-300"
                     htmlFor="name"
                   >
                     Price
                   </label>
                   <Field
-                    className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                invalid:border-pink-500 invalid:text-pink-600
-                focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                    className="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder-slate-400 shadow-sm invalid:border-pink-500 invalid:text-pink-600 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none"
                     name="price"
                     type="number"
                     placeholder={`Previous price - ${product.price}`}
@@ -298,19 +290,15 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                   />
                 </div>
 
-                <div className="bg-white mb-10 ">
+                <div className="mb-10 bg-white">
                   <label
-                    className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
+                    className="bottom-8 left-0 -translate-y-2 text-sm text-gray-500 transition-transform duration-300"
                     htmlFor="name"
                   >
                     Quantity
                   </label>
                   <Field
-                    className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                invalid:border-pink-500 invalid:text-pink-600
-                focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                    className="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder-slate-400 shadow-sm invalid:border-pink-500 invalid:text-pink-600 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none"
                     name="quantity"
                     type="number"
                     placeholder={`Previous quantity - ${product.quantity}`}
@@ -322,20 +310,16 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                   />
                 </div>
 
-                <div className="bg-white mb-10 ">
+                <div className="mb-10 bg-white">
                   <label
-                    className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
+                    className="bottom-8 left-0 -translate-y-2 text-sm text-gray-500 transition-transform duration-300"
                     htmlFor="pastPrice"
                   >
                     Price before discount
                     <span className="text-red-500"> (Not Required)</span>
                   </label>
                   <Field
-                    className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                invalid:border-pink-500 invalid:text-pink-600
-                focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                    className="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder-slate-400 shadow-sm invalid:border-pink-500 invalid:text-pink-600 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none"
                     name="pastPrice"
                     type="number"
                     placeholder="Your product`s price before discount"
@@ -347,19 +331,15 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                   />
                 </div>
 
-                <div className="bg-white mb-10 ">
+                <div className="mb-10 bg-white">
                   <label
-                    className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
+                    className="bottom-8 left-0 -translate-y-2 text-sm text-gray-500 transition-transform duration-300"
                     htmlFor="name"
                   >
                     Description
                   </label>
                   <Field
-                    className="h-[200px] mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                invalid:border-pink-500 invalid:text-pink-600
-                focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                    className="mt-1 block h-[200px] w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder-slate-400 shadow-sm invalid:border-pink-500 invalid:text-pink-600 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none"
                     name="description"
                     type="text"
                     as="textarea"
@@ -372,21 +352,17 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                   />
                 </div>
 
-                <div className="bg-white  mb-10">
+                <div className="mb-10 bg-white">
                   <label
                     htmlFor="role"
-                    className=" bottom-8 left-0 text-gray-500 transition-transform duration-300 -translate-y-2 text-sm"
+                    className="bottom-8 left-0 -translate-y-2 text-sm text-gray-500 transition-transform duration-300"
                   >
                     Category
                   </label>
                   <Field
                     name="category"
                     as="select"
-                    className=" block  w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                invalid:border-pink-500 invalid:text-pink-600
-                focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                    className="block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder-slate-400 shadow-sm invalid:border-pink-500 invalid:text-pink-600 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none"
                   >
                     <option value="womanfashion">Woman Fashion</option>
                     <option value="menfashion">Men Fashion</option>
@@ -405,17 +381,17 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                 </div>
               </div>
 
-              <div className="ml-5 w-full xl:block flex justify-center">
+              <div className="ml-5 flex w-full justify-center xl:block">
                 <div className="w-full">
-                  <div className="bg-white mb-10">
+                  <div className="mb-10 bg-white">
                     <label
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                       htmlFor="file_input"
                     >
                       Choose main picture of product
                     </label>
                     <input
-                      className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-sky-700 dark:border-sky-600 dark:placeholder-gray-400"
+                      className="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-sky-600 dark:bg-sky-700 dark:text-gray-400 dark:placeholder-gray-400"
                       id="file_input"
                       accept="image/*"
                       name="mainPicture"
@@ -438,12 +414,12 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                     )}
                   </div>
 
-                  <div className="bg-white mb-10">
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <div className="mb-10 bg-white">
+                    <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                       Choose extra pictures(no more than 4)
                     </label>
                     <input
-                      className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-sky-700 dark:border-sky-600 dark:placeholder-gray-400"
+                      className="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-sky-600 dark:bg-sky-700 dark:text-gray-400 dark:placeholder-gray-400"
                       id="file_input"
                       accept="image/*"
                       type="file"
@@ -467,10 +443,10 @@ export default function EditProductForm({ product }: PropsEditProductForm) {
                 </div>
               </div>
             </div>
-            <div className="inline-flex items-center justify-start sm:mx-0 mx-auto">
+            <div className="mx-auto inline-flex items-center justify-start sm:mx-0">
               <Ripples during={800} color="#6eb9f7">
                 <button
-                  className="border-0 rounded-md px-4 py-2 text-base font-medium text-white uppercase transition-colors duration-500 ease-in-out bg-blue-500 shadow-md focus:outline-none hover:bg-blue-600 active:bg-blue-400"
+                  className="rounded-md border-0 bg-blue-500 px-4 py-2 text-base font-medium uppercase text-white shadow-md transition-colors duration-500 ease-in-out hover:bg-blue-600 focus:outline-none active:bg-blue-400"
                   type="submit"
                 >
                   Edit Your Product

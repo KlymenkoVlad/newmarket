@@ -55,7 +55,7 @@ export default function InfinitiveScroll({ params, type }: Props) {
   const [priceTo, setPriceTo] = useState<number>(999999);
 
   const handlePriceFromChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setTempPriceFrom(Number(event.target.value));
   };
@@ -155,12 +155,12 @@ export default function InfinitiveScroll({ params, type }: Props) {
 
   return (
     <>
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-3 items-center md:mx-4">
-        <div className="block ">
+      <div className="grid grid-cols-1 items-center gap-3 md:mx-4 md:grid-cols-2">
+        <div className="block">
           <div>
             <label
               htmlFor="Sort"
-              className="block mb-2 text-sm font-medium text-gray-900 "
+              className="mb-2 block text-sm font-medium text-gray-900"
             >
               Select an option
             </label>
@@ -168,7 +168,7 @@ export default function InfinitiveScroll({ params, type }: Props) {
               id="Sort"
               name="select"
               value={selectedValue}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5 md:w-64 w-full mb-8 "
+              className="mb-8 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-red-500 focus:ring-red-500 md:w-64"
               onChange={handleSelectChange}
             >
               <option value="-date">Novelties</option>
@@ -179,14 +179,14 @@ export default function InfinitiveScroll({ params, type }: Props) {
           </div>
         </div>
 
-        <div className="md:flex block justify-center items-center ">
+        <div className="block items-center justify-center md:flex">
           <p className="mr-4">Price:</p>
           <div className="flex items-center">
             <input
               type="number"
               id="priceFrom"
               onChange={handlePriceFromChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 "
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-red-500 focus:ring-red-500"
               placeholder="0"
               required
             />
@@ -197,16 +197,16 @@ export default function InfinitiveScroll({ params, type }: Props) {
               type="number"
               id="priceTo"
               onChange={handlePriceToChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 "
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-red-500 focus:ring-red-500"
               placeholder="99999"
               required
             />
           </div>
-          <div className="md:flex block justify-start">
+          <div className="block justify-start md:flex">
             <button
               type="button"
               onClick={handleApplyPrice}
-              className=" text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center md:ml-4 md:my-0 my-4"
+              className="my-4 rounded-lg border border-red-700 px-5 py-2.5 text-center text-sm font-medium text-red-700 hover:bg-red-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 md:my-0 md:ml-4"
             >
               Apply
             </button>

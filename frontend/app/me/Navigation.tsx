@@ -31,19 +31,19 @@ const Navigation = ({ name, email, role, id }: NavigationProps) => {
   }, [section]);
 
   return (
-    <div className="md:flex block justify-center">
+    <div className="block justify-center md:flex">
       <div>
         <p className="font-medium">Manage My Account</p>
-        <ul className="md:ml-6 text-gray-400 md:mr-20 mx-4 md:block flex justify-around">
+        <ul className="mx-4 flex justify-around text-gray-400 md:ml-6 md:mr-20 md:block">
           <li
-            className={`mt-6 mx-2 mb-8 ${
+            className={`mx-2 mb-8 mt-6 ${
               section === "profile" ? "text-red-500" : ""
             }`}
           >
             <button onClick={() => setSection("profile")}>My Profile</button>
           </li>
           <li
-            className={`mt-6 mx-2 mb-8 ${
+            className={`mx-2 mb-8 mt-6 ${
               section === "password" ? "text-red-500" : ""
             }`}
           >
@@ -55,7 +55,7 @@ const Navigation = ({ name, email, role, id }: NavigationProps) => {
           {role === "seller" && (
             <>
               <li
-                className={`mt-6 mx-2 mb-8 ${
+                className={`mx-2 mb-8 mt-6 ${
                   section === "product" ? "text-red-500" : ""
                 }`}
               >
@@ -64,7 +64,7 @@ const Navigation = ({ name, email, role, id }: NavigationProps) => {
                 </button>
               </li>
               <li
-                className={`mt-6 mx-2 mb-8 ${
+                className={`mx-2 mb-8 mt-6 ${
                   section === "payment" ? "text-red-500" : ""
                 }`}
               >
@@ -77,16 +77,16 @@ const Navigation = ({ name, email, role, id }: NavigationProps) => {
         </ul>
 
         <p className="font-medium">My Lists</p>
-        <ul className="ml-6 text-gray-400 mr-20 md:block flex justify-around">
+        <ul className="ml-6 mr-20 flex justify-around text-gray-400 md:block">
           <li
-            className={`mt-6 mx-2 mb-8 ${
+            className={`mx-2 mb-8 mt-6 ${
               section === "returns" ? "text-red-500" : ""
             }`}
           >
             <button onClick={() => setSection("wishlist")}>My Wish List</button>
           </li>
           <li
-            className={`mt-6 mx-2 mb-8 ${
+            className={`mx-2 mb-8 mt-6 ${
               section === "cancellations" ? "text-red-500" : ""
             }`}
           >
@@ -94,7 +94,7 @@ const Navigation = ({ name, email, role, id }: NavigationProps) => {
           </li>
         </ul>
       </div>
-      <div className="md:ml-20 mx-3 ">
+      <div className="mx-3 md:ml-20">
         {section === "profile" && (
           <FormMe name={name} email={email} role={role} />
         )}

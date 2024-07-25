@@ -22,7 +22,7 @@ export default function WishListBtnAddItem({ product }: ItemProps) {
         onAddWishList(product);
       }}
     >
-      <div className="w-[30px] h-[30px] bg-white hover:bg-gray-200 transition-colors duration-500 ease-in-out focus:bg-gray-600 rounded-[100%] mx-3 flex items-center justify-center absolute right-1 top-4">
+      <div className="absolute right-1 top-4 mx-3 flex h-[30px] w-[30px] items-center justify-center rounded-[100%] bg-white transition-colors duration-500 ease-in-out hover:bg-gray-200 focus:bg-gray-600">
         <Image
           className="mt-0.5"
           src="/icons/Icon-wishlist.svg"

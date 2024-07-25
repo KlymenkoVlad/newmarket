@@ -19,7 +19,7 @@ const PreviewImage: React.FC<PreviewImageProps> = ({ file }) => {
   }
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center">
       {preview && (
         <Image
           src={preview.toString()} // Cast preview to string

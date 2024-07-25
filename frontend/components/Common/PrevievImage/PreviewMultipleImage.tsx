@@ -29,7 +29,7 @@ export default function PreviewMultipleImage({ files }: { files: FileList }) {
 
   return (
     <div className="flex justify-center">
-      <div className="flex justify-center md:flex-row flex-col">
+      <div className="flex flex-col justify-center md:flex-row">
         {previewList.map((preview, index) => (
           <img
             width={120}

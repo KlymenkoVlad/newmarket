@@ -39,8 +39,8 @@ const SliderForItem: React.FC<SliderProps> = ({ slideItems }) => {
     >
       {slideItems &&
         slideItems.map((slide, i) => (
-          <SwiperSlide key={i} className="p-10 ">
-            <img src={slide} alt="slide" className="max-h-80 mx-auto" />
+          <SwiperSlide key={i} className="p-10">
+            <img src={slide} alt="slide" className="mx-auto max-h-80" />
           </SwiperSlide>
         ))}
     </Swiper>

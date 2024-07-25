@@ -4,17 +4,17 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-white ">
+    <footer className="bg-white">
       <div className="h-px bg-gray-400"></div>
       <div className="mx-auto w-full max-w-screen-xl">
-        <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 px-4 py-6 md:grid-cols-4 lg:py-8">
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
+            <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900">
               New Market
             </h2>
-            <ul className="text-gray-500  font-medium">
+            <ul className="font-medium text-gray-500">
               <li className="mb-4">
-                <Link href="/about" className=" hover:underline">
+                <Link href="/about" className="hover:underline">
                   About
                 </Link>
               </li>
@@ -29,10 +29,10 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
+            <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900">
               Help center
             </h2>
-            <ul className="text-gray-500  font-medium">
+            <ul className="font-medium text-gray-500">
               <li className="mb-4">
                 <span className="hover:underline">
                   111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.
@@ -45,10 +45,10 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
+            <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900">
               Legal
             </h2>
-            <ul className="text-gray-500 0 font-medium">
+            <ul className="0 font-medium text-gray-500">
               <li className="mb-4">
                 <Link href="#" className="hover:underline">
                   Privacy Policy
@@ -67,10 +67,10 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
+            <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900">
               Account
             </h2>
-            <ul className="text-gray-500  font-medium">
+            <ul className="font-medium text-gray-500">
               <li className="mb-4">
                 <Link href="/me" className="hover:underline">
                   My Account
@@ -84,14 +84,14 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="px-4 py-6 bg-gray-100  md:flex md:items-center md:justify-between">
-          <span className="text-sm text-gray-500 0 sm:text-center">
+        <div className="bg-gray-100 px-4 py-6 md:flex md:items-center md:justify-between">
+          <span className="0 text-sm text-gray-500 sm:text-center">
             © 2023 New Market™. All Rights Reserved.
           </span>
-          <div className="flex mt-4 space-x-6 sm:justify-center md:mt-0">
-            <Link href="#" className="text-gray-400 hover:text-gray-900 ">
+          <div className="mt-4 flex space-x-6 sm:justify-center md:mt-0">
+            <Link href="#" className="text-gray-400 hover:text-gray-900">
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -104,9 +104,9 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Facebook page</span>
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-gray-900 ">
+            <Link href="#" className="text-gray-400 hover:text-gray-900">
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -119,9 +119,9 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Instagram page</span>
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-gray-900 ">
+            <Link href="#" className="text-gray-400 hover:text-gray-900">
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -130,9 +130,9 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Twitter page</span>
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-gray-900 ">
+            <Link href="#" className="text-gray-400 hover:text-gray-900">
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -145,9 +145,9 @@ const Footer = () => {
               </svg>
               <span className="sr-only">GitHub account</span>
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-gray-900 ">
+            <Link href="#" className="text-gray-400 hover:text-gray-900">
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"

@@ -22,11 +22,11 @@ export default function Cart() {
       {showCart && (
         <div>
           <div
-            className={`fixed top-0 right-0 bottom-0 h-full  ${
+            className={`fixed bottom-0 right-0 top-0 h-full ${
               showCart ? "block" : "hidden"
-            } bg-black bg-opacity-50 z-50`}
+            } z-50 bg-black bg-opacity-50`}
           >
-            <div className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-2">
+            <div className="absolute right-0 top-0 h-screen w-80 bg-white p-2 shadow-2xl">
               <div
                 className="flex cursor-pointer"
                 onClick={() => setShowCart(false)}
@@ -37,19 +37,19 @@ export default function Cart() {
                   src="/icons/arrow-left-black.svg"
                   alt="arrow"
                 />
-                <span className="block ml-5">Your cart</span>
+                <span className="ml-5 block">Your cart</span>
                 <span className="text-red-500">{`(items: ${totalQuantities} )`}</span>
               </div>
 
-              <div className=" overflow-y-auto h-full ">
+              <div className="h-full overflow-y-auto">
                 {cartItems.length < 1 && (
-                  <div className="flex justify-center mt-8">
+                  <div className="mt-8 flex justify-center">
                     <div>
-                      <h3 className="mb-4  font-semibold leading-none tracking-tight text-gray-900  ">
+                      <h3 className="mb-4 font-semibold leading-none tracking-tight text-gray-900">
                         Your shopping bag is empty
                       </h3>
                       <button
-                        className="text-white transition-colors duration-500 ease-in-out bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                        className="mb-2 mr-2 rounded-full bg-red-700 px-5 py-2.5 text-center text-sm font-medium text-white transition-colors duration-500 ease-in-out hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                         onClick={() => setShowCart(false)}
                       >
                         Continue shopping
@@ -61,11 +61,11 @@ export default function Cart() {
                 {cartItems.length >= 1 &&
                   cartItems.map((item, index) => (
                     <div key={index} className="mt-4">
-                      <div className="flex mb-5">
-                        <div className="w-[80px] h-[80px] bg-gray-100 relative rounded-sm">
-                          <div className="w-[80px] h-[80px] flex justify-center items-center">
+                      <div className="mb-5 flex">
+                        <div className="relative h-[80px] w-[80px] rounded-sm bg-gray-100">
+                          <div className="flex h-[80px] w-[80px] items-center justify-center">
                             <img
-                              className="w-full h-full"
+                              className="h-full w-full"
                               src={item.mainPicture}
                               alt="Item for Sale"
                             />
@@ -86,7 +86,7 @@ export default function Cart() {
                             <button
                               type="button"
                               onClick={() => onRemove(item)}
-                              className="ml-5 h-8 w-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+                              className="ml-5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                             >
                               <span className="sr-only">Close menu</span>
                               <svg
@@ -134,11 +134,11 @@ export default function Cart() {
 
                 {cartItems.length >= 1 && (
                   <>
-                    <div className="mt-14 m-5 flex justify-between">
+                    <div className="m-5 mt-14 flex justify-between">
                       <h3>Subtotal:</h3>
                       <h3>{totalPrice}$</h3>
                     </div>
-                    <div className="flex justify-center mb-7">
+                    <div className="mb-7 flex justify-center">
                       <Btn cartItems={cartItems} />
                     </div>
                   </>

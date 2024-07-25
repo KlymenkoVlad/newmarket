@@ -11,24 +11,25 @@ export default function Search() {
     event.preventDefault();
     const formElement = event.currentTarget as HTMLFormElement;
     const searchInput = formElement.querySelector(
-      'input[type="search"]'
+      'input[type="search"]',
     ) as HTMLInputElement | null;
     router.push(`/search/${searchInput?.value}`);
     formElement.reset();
   };
+
   return (
-    <form onSubmit={handleSubmit} className="sm:ml-8 ml-2">
+    <form onSubmit={handleSubmit} className="ml-2 sm:ml-8">
       <label
         htmlFor="default-search"
-        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+        className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >
         Search
       </label>
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
             aria-hidden="true"
-            className="w-5 h-5 text-gray-500 dark:text-gray-400"
+            className="h-5 w-5 text-gray-500 dark:text-gray-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -45,17 +46,17 @@ export default function Search() {
         <input
           type="search"
           id="default-search"
-          className="block  2xl:w-[700px] xl:w-[450px] lg:w-[320px] md:w-[400px] sm:w-[380px] h-[50px] p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:border-gray-300 dark:placeholder-gray-400 dark:text-black dark:focus:ring-red-500 dark:focus:border-red-500"
+          className="block h-[50px] rounded-lg border border-gray-300 bg-white p-4 pl-10 text-sm text-gray-900 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:w-[380px] md:w-[400px] lg:w-[320px] xl:w-[450px] 2xl:w-[700px] dark:border-gray-300 dark:text-black dark:placeholder-gray-400 dark:focus:border-red-500 dark:focus:ring-red-500"
           placeholder="Search apples, tie..."
           required
         />
         <button
           type="submit"
-          className="xl:hidden lg:flex md:hidden sm:hidden flex text-white absolute right-2.5 bottom-1.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          className="absolute bottom-1.5 right-2.5 flex rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 sm:hidden md:hidden lg:flex xl:hidden dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
         >
           <svg
             aria-hidden="true"
-            className="w-5 h-5 text-white "
+            className="h-5 w-5 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -71,12 +72,12 @@ export default function Search() {
         </button>
         <button
           type="submit"
-          className=" text-white xl:flex lg:hidden md:flex sm:flex hidden absolute right-2.5 bottom-1.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          className="absolute bottom-1.5 right-2.5 hidden rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 sm:flex md:flex lg:hidden xl:flex dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
         >
           Search
           <svg
             aria-hidden="true"
-            className="w-5 h-5 text-white ml-3"
+            className="ml-3 h-5 w-5 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

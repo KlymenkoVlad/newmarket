@@ -16,13 +16,13 @@ export default function Page() {
   }, []);
 
   return (
-    <div className=" text-center flex flex-col items-center justify-center h-[500px]">
-      <h1 className="text-3xl font-bold mb-6">Success!</h1>
-      <p className="text-lg mb-4">
+    <div className="flex h-[500px] flex-col items-center justify-center text-center">
+      <h1 className="mb-6 text-3xl font-bold">Success!</h1>
+      <p className="mb-4 text-lg">
         Your purchase was successful. Thank you for your order!
       </p>
 
-      <p className="text-lg mb-4">
+      <p className="mb-4 text-lg">
         if you have any question, you can email me{" "}
         <a className="text-gray-500" href="mailto:klymenvlad@gmail.com">
           klymenvlad@gmail.com
@@ -31,7 +31,7 @@ export default function Page() {
 
       <Link
         href="/"
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        className="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
       >
         Go to Homepage
       </Link>

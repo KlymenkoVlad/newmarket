@@ -16,11 +16,11 @@ export default function WishList() {
       {showWishList && (
         <div>
           <div
-            className={`fixed top-0 right-0 bottom-0  ${
+            className={`fixed bottom-0 right-0 top-0 ${
               showWishList ? "block" : "hidden"
-            } bg-black bg-opacity-50 z-50`}
+            } z-50 bg-black bg-opacity-50`}
           >
-            <div className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-2">
+            <div className="absolute right-0 top-0 h-screen w-80 bg-white p-2 shadow-2xl">
               <div
                 className="flex cursor-pointer"
                 onClick={() => setShowWishList(false)}
@@ -33,15 +33,15 @@ export default function WishList() {
                 />
               </div>
 
-              <div className=" overflow-y-auto h-full">
+              <div className="h-full overflow-y-auto">
                 {wishListItems.length < 1 && (
-                  <div className="flex justify-center mt-8">
+                  <div className="mt-8 flex justify-center">
                     <div>
-                      <h3 className="mb-4  font-bold leading-none tracking-tight text-gray-900  ">
+                      <h3 className="mb-4 font-bold leading-none tracking-tight text-gray-900">
                         Your wish list is empty
                       </h3>
                       <button
-                        className="text-white transition-colors duration-500 ease-in-out bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                        className="mb-2 mr-2 rounded-full bg-red-700 px-5 py-2.5 text-center text-sm font-medium text-white transition-colors duration-500 ease-in-out hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                         onClick={() => setShowWishList(false)}
                       >
                         Continue shopping
@@ -54,16 +54,16 @@ export default function WishList() {
                   wishListItems.length < 7 &&
                   wishListItems.map((item: Product, index: number) => (
                     <div key={index} className="mt-4">
-                      <div className="flex mb-5">
+                      <div className="mb-5 flex">
                         <Link
                           href="/product/[id]-[name]"
                           as={`/product/${item._id}-${item.name}`}
                           shallow
                         >
-                          <div className="w-[80px] h-[80px] bg-gray-100 relative rounded-sm">
-                            <div className="w-[80px] h-[80px] flex justify-center items-center">
+                          <div className="relative h-[80px] w-[80px] rounded-sm bg-gray-100">
+                            <div className="flex h-[80px] w-[80px] items-center justify-center">
                               <img
-                                className="w-full h-full"
+                                className="h-full w-full"
                                 src={item.mainPicture}
                                 alt="Item for Sale"
                               />
@@ -85,7 +85,7 @@ export default function WishList() {
                             <button
                               type="button"
                               onClick={() => onRemoveWishList(item)}
-                              className="ml-5 h-8 w-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+                              className="ml-5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                             >
                               <span className="sr-only">Close menu</span>
                               <svg
@@ -115,16 +115,16 @@ export default function WishList() {
                     .slice(0, 7)
                     .map((item: Product, index: number) => (
                       <div key={index} className="mt-4">
-                        <div className="flex mb-5">
+                        <div className="mb-5 flex">
                           <Link
                             href="/product/[id]-[name]"
                             as={`/product/${item._id}-${item.name}`}
                             shallow
                           >
-                            <div className="w-[80px] h-[80px] bg-gray-100 relative rounded-sm">
-                              <div className="w-[80px] h-[80px] flex justify-center items-center">
+                            <div className="relative h-[80px] w-[80px] rounded-sm bg-gray-100">
+                              <div className="flex h-[80px] w-[80px] items-center justify-center">
                                 <img
-                                  className="w-full h-full"
+                                  className="h-full w-full"
                                   src={item.mainPicture}
                                   alt="Item for Sale"
                                 />
@@ -146,7 +146,7 @@ export default function WishList() {
                               <button
                                 type="button"
                                 onClick={() => onRemoveWishList(item)}
-                                className="ml-5 h-8 w-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+                                className="ml-5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                               >
                                 <span className="sr-only">Close menu</span>
                                 <svg
@@ -171,12 +171,12 @@ export default function WishList() {
                       </div>
                     ))}
                 {wishListItems.length > 4 && (
-                  <div className="flex text-center mx-auto mb-4">
+                  <div className="mx-auto mb-4 flex text-center">
                     <Link href="/wishlist">
                       <button
                         type="button"
                         onClick={() => setShowWishList(false)}
-                        className="justify-self-start focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2.5 mb-2 "
+                        className="mb-2 justify-self-start rounded-lg bg-red-700 px-2 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
                       >
                         Show all {wishListItems.length} wished products on a
                         page

@@ -8,12 +8,12 @@ export default function HeaderLink() {
   const pathname = usePathname();
 
   return (
-    <div className="flex ml-6">
+    <div className="ml-6 flex">
       <Link className="ml-4" href="/">
         <p
           className={`${
-            pathname == "/" && " text-red-600"
-          } hover:text-red-400 transition-colors duration-600 ease-in-out`}
+            pathname == "/" && "text-red-600"
+          } duration-600 transition-colors ease-in-out hover:text-red-400`}
         >
           Home
         </p>
@@ -21,8 +21,8 @@ export default function HeaderLink() {
       <Link className="ml-4" href="/contact">
         <p
           className={`${
-            pathname == "/contact" && " text-red-600"
-          } hover:text-red-400 transition-colors duration-600 ease-in-out`}
+            pathname == "/contact" && "text-red-600"
+          } duration-600 transition-colors ease-in-out hover:text-red-400`}
         >
           Contact
         </p>
@@ -30,8 +30,8 @@ export default function HeaderLink() {
       <Link className="ml-4" href="/about">
         <p
           className={`${
-            pathname == "/about" && " text-red-600"
-          } hover:text-red-400 transition-colors duration-600 ease-in-out`}
+            pathname == "/about" && "text-red-600"
+          } duration-600 transition-colors ease-in-out hover:text-red-400`}
         >
           About
         </p>
@@ -39,8 +39,8 @@ export default function HeaderLink() {
       <Link className="ml-4" href="/all">
         <p
           className={`${
-            pathname == "/all" && " text-red-600"
-          } hover:text-red-400 transition-colors duration-600 ease-in-out`}
+            pathname == "/all" && "text-red-600"
+          } duration-600 transition-colors ease-in-out hover:text-red-400`}
         >
           All Products
         </p>

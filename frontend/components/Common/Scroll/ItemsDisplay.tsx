@@ -21,13 +21,13 @@ export default function ItemsDisplay({
     <>
       {categorySlugUpperCase ? (
         <>
-          <div className="m-auto py-4 px-4 group">
+          <div className="group m-auto px-4 py-4">
             {items.length >= 1 && (
-              <h3 className="font-semibold text-2xl mb-6">
+              <h3 className="mb-6 text-2xl font-semibold">
                 Items by your search: {categorySlugUpperCase}
               </h3>
             )}
-            <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
+            <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
               {items.map((item) => (
                 <Item product={item} key={item._id} />
               ))}
@@ -37,12 +37,12 @@ export default function ItemsDisplay({
                 ))}
             </div>
             {end && items.length !== 0 && (
-              <h3 className="text-center my-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+              <h3 className="my-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
                 That's All
               </h3>
             )}
             {items.length <= 0 && !fetching && (
-              <h3 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+              <h3 className="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
                 Nothing was found
               </h3>
             )}
@@ -50,7 +50,7 @@ export default function ItemsDisplay({
         </>
       ) : (
         <>
-          <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
+          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             {items.map((item) => (
               <Item
                 product={item}
@@ -62,12 +62,12 @@ export default function ItemsDisplay({
               Array.from({ length: 5 }).map((_, i) => <ItemLoading key={i} />)}
           </div>
           {end && items.length !== 0 && (
-            <h3 className="text-center my-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+            <h3 className="my-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
               That's All
             </h3>
           )}
           {items.length <= 0 && !fetching && (
-            <h3 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+            <h3 className="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
               Nothing was found
             </h3>
           )}

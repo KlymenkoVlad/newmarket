@@ -12,7 +12,7 @@ interface CategoryProps {
 const Category = ({ name, img, link }: CategoryProps) => {
   return (
     <Link href={link}>
-      <div className="flex justify-around items-center w-[170px] h-[140px] rounded-md border-gray-200 border-2 border-solid">
+      <div className="flex h-[140px] w-[170px] items-center justify-around rounded-md border-2 border-solid border-gray-200">
         <div className="">
           <Image
             width={56}
@@ -30,17 +30,17 @@ const Category = ({ name, img, link }: CategoryProps) => {
 
 const Categories = () => {
   return (
-    <div className="sm:mx-24 mx-6 relative">
+    <div className="relative mx-6 sm:mx-24">
       <div className="mb-6">
-        <div className="flex items-center mb-6">
-          <div className="w-[20px] h-[40px] bg-red-500 rounded-[10%] "></div>
-          <p className="text-red-500 font-medium ml-5">Categories</p>
+        <div className="mb-6 flex items-center">
+          <div className="h-[40px] w-[20px] rounded-[10%] bg-red-500"></div>
+          <p className="ml-5 font-medium text-red-500">Categories</p>
         </div>
-        <h3 className=" font-semibold text-2xl">Browse By Category</h3>
+        <h3 className="text-2xl font-semibold">Browse By Category</h3>
       </div>
 
       <div className="flex justify-center">
-        <div className="grid 2xl:grid-cols-8 lg:grid-cols-4 ms:grid-cols-2 grid-cols-1 grid-flow-dense gap-14 mb-12">
+        <div className="mb-12 grid grid-flow-dense grid-cols-1 gap-14 ms:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-8">
           <Category
             link="category/womanfashion"
             name="Woman’s Fashion"
@@ -83,7 +83,7 @@ const Categories = () => {
           />
         </div>
       </div>
-      <div className="h-px bg-gray-400 mb-12"></div>
+      <div className="mb-12 h-px bg-gray-400"></div>
     </div>
   );
 };

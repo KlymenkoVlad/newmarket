@@ -13,7 +13,7 @@ interface ItemProps {
 const FilledStar = () => {
   return (
     <svg
-      className="w-4 h-4 text-yellow-300 mr-px"
+      className="mr-px h-4 w-4 text-yellow-300"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -27,7 +27,7 @@ const FilledStar = () => {
 const UnfilledStar = () => {
   return (
     <svg
-      className="w-4 h-4 text-gray-300 mr-px"
+      className="mr-px h-4 w-4 text-gray-300"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -71,21 +71,21 @@ const Item: React.FC<ItemProps> = ({
           }
           shallow
         >
-          <div className="w-[260px] h-[240px] border relative rounded-sm">
-            <div className="w-[260px] h-[240px] flex justify-center items-center p-2">
+          <div className="relative h-[240px] w-[260px] rounded-sm border">
+            <div className="flex h-[240px] w-[260px] items-center justify-center p-2">
               <img
-                className="max-w-full max-h-full "
+                className="max-h-full max-w-full"
                 src={product.mainPicture}
                 alt="Item for Sale"
               />
             </div>
             {product.pastPrice && (
-              <div className="w-[55px] h-[26px] bg-red-500 absolute left-4 top-5 rounded-md flex justify-around items-center text-white">
+              <div className="absolute left-4 top-5 flex h-[26px] w-[55px] items-center justify-around rounded-md bg-red-500 text-white">
                 <p>
                   -
                   {Math.floor(
                     ((product.pastPrice - product.price) / product.pastPrice) *
-                      100
+                      100,
                   )}
                   %
                 </p>
@@ -94,19 +94,19 @@ const Item: React.FC<ItemProps> = ({
             <WishListBtnAddItem product={product} />
           </div>
         </Link>
-        <p className="block text-base font-medium ">
+        <p className="block text-base font-medium">
           {truncateString(product.name, 25)}
         </p>
         {product.pastPrice ? (
           <div className="flex">
-            <p className=" text-red-500 text-base">{product.price}$</p>
-            <p className="ml-4 line-through text-gray-500 text-base">
+            <p className="text-base text-red-500">{product.price}$</p>
+            <p className="ml-4 text-base text-gray-500 line-through">
               {product.pastPrice}$
             </p>
           </div>
         ) : (
           <div className="flex">
-            <p className=" text-red-500 text-base">{product.price}$</p>
+            <p className="text-base text-red-500">{product.price}$</p>
           </div>
         )}
 

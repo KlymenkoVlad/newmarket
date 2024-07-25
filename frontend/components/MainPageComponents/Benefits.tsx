@@ -11,13 +11,13 @@ interface IconProps {
 
 const Icon = ({ title, desc, img, alt }: IconProps) => {
   return (
-    <div className="flex justify-center flex-col items-center">
-      <div className="w-[70px] h-[70px] bg-gray-500 rounded-[100%] flex justify-around items-center mb-4">
-        <div className="w-[58px] h-[58px] bg-black rounded-[100%] flex justify-around items-center">
+    <div className="flex flex-col items-center justify-center">
+      <div className="mb-4 flex h-[70px] w-[70px] items-center justify-around rounded-[100%] bg-gray-500">
+        <div className="flex h-[58px] w-[58px] items-center justify-around rounded-[100%] bg-black">
           <Image src={img} alt={alt} width={30} height={30} />
         </div>
       </div>
-      <p className=" font-bold">{title}</p>
+      <p className="font-bold">{title}</p>
       <p className="text-center">{desc}</p>
     </div>
   );
@@ -25,7 +25,7 @@ const Icon = ({ title, desc, img, alt }: IconProps) => {
 
 const Benefits = () => {
   return (
-    <div className="grid gap-2 md:grid-cols-3 sm:grid-cols-1 items-center mx-auto md:mb-40 mb-16">
+    <div className="mx-auto mb-16 grid items-center gap-2 sm:grid-cols-1 md:mb-40 md:grid-cols-3">
       <Icon
         title="FREE AND FAST DELIVERY"
         desc="Free delivery for all orders"

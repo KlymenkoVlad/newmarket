@@ -9,9 +9,9 @@ import React from "react";
 const page = () => {
   const { wishListItems, onRemoveWishList } = useStateContext();
   return (
-    <div className="md:mx-0 sm:mx-32 ms:mx-16 mx-4 mb-16 ms:mt-36 mt-24">
-      <h1 className="text-center font-bold text-3xl mb-8">Your Wish List</h1>
-      <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
+    <div className="mx-4 mb-16 mt-24 ms:mx-16 ms:mt-36 sm:mx-32 md:mx-0">
+      <h1 className="mb-8 text-center text-3xl font-bold">Your Wish List</h1>
+      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {wishListItems &&
           wishListItems.length > 1 &&
           wishListItems.map((item) => <Item product={item} key={item._id} />)}
@@ -19,11 +19,11 @@ const page = () => {
 
       {wishListItems.length < 1 && (
         <>
-          <h1 className="font-bold text-3xl mb-8 text-center">
+          <h1 className="mb-8 text-center text-3xl font-bold">
             You don't seem to have added anything here....
           </h1>
           <div className="flex justify-center">
-            <button className=" text-white transition-colors duration-500 ease-in-out bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+            <button className="mb-2 mr-2 rounded-full bg-red-700 px-5 py-2.5 text-center text-sm font-medium text-white transition-colors duration-500 ease-in-out hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
               <Link href="/all">Continue shopping</Link>
             </button>
           </div>

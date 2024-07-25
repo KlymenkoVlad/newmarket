@@ -35,9 +35,9 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
     <>
       <Link
         href={hasTokenCookie ? "/me" : "/login"}
-        className={` h-[50px] ${
+        className={`h-[50px] ${
           notBurgerMenu ? "w-[100px]" : "w-[50px]"
-        }  cursor-pointer flex items-center`}
+        } flex cursor-pointer items-center`}
         onClick={() => setShowBurgerMenu(false)}
       >
         {hasTokenCookie ? (
@@ -60,7 +60,7 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
       {hasTokenCookie && (
         <Image
           onClick={logout}
-          className="ml-1 cursor-pointer flex items-center mt-1"
+          className="ml-1 mt-1 flex cursor-pointer items-center"
           src="/signup/logout.svg"
           alt="user"
           width={22}

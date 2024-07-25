@@ -18,7 +18,7 @@ export default function WishListBtnAddForPage({ product }: ItemProps) {
       className="ml-10"
       onClick={() => onAddWishList(product)}
     >
-      <div className="w-[40px] h-[40px] border flex justify-center items-center hover:bg-neutral-300 transition-colors duration-500 ease-in-out">
+      <div className="flex h-[40px] w-[40px] items-center justify-center border transition-colors duration-500 ease-in-out hover:bg-neutral-300">
         <Image
           src="/icons/Icon-wishlist.svg"
           alt="wishlist"

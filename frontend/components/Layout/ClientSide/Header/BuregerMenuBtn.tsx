@@ -7,11 +7,11 @@ export default function BurgerMenuBtn() {
     useStateContext();
 
   return (
-    <div className="flex md:order-2 ml-3">
+    <div className="ml-3 flex md:order-2">
       <button
         data-collapse-toggle="navbar-sticky"
         type="button"
-        className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  "
+        className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
         aria-controls="navbar-sticky"
         aria-expanded="false"
         onClick={() => {
@@ -22,7 +22,7 @@ export default function BurgerMenuBtn() {
       >
         <span className="sr-only">Open main menu</span>
         <svg
-          className="w-6 h-6"
+          className="h-6 w-6"
           aria-hidden="true"
           fill="currentColor"
           viewBox="0 0 20 20"

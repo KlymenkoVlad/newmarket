@@ -15,8 +15,8 @@ interface Props {
 
 export default function Page({ params }: Props) {
   return (
-    <div className="sm:mx-24 mx-6 lg:mt-40 mt-32 mb-16">
-      <p className="md:text-left text-center mb-4 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl ">
+    <div className="mx-6 mb-16 mt-32 sm:mx-24 lg:mt-40">
+      <p className="mb-4 text-center text-xl font-bold leading-none tracking-tight text-gray-900 md:text-left md:text-2xl lg:text-3xl">
         That`s all Products that you sold
       </p>
       <InfinitiveScroll params={params} type="myproducts" />

@@ -17,7 +17,7 @@ async function getData(sortParam: string, limit = 4) {
       {
         next: { revalidate: 1 },
         method: "GET",
-      }
+      },
     );
 
     if (!res.ok) {
@@ -39,11 +39,11 @@ const page = async ({}) => {
   const { product: newItems }: ProductData = await getData("-date");
   const { product: slideItems }: ProductData = await getData(
     "sort=-rating,price",
-    10
+    10,
   );
 
   return (
-    <div className="ms:mt-20 mt-6">
+    <div className="mt-6 ms:mt-20">
       <Modal />
       <BannerSection slideItems={slideItems} />
       <Recommend name="The cheapest" items={cheapItems} />

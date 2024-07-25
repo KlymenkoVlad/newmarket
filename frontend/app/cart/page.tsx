@@ -17,20 +17,20 @@ const page = () => {
     totalQuantities,
   } = useStateContext();
   return (
-    <div className="md:mx-16 sm:mx-32 ms:mx-16 mx-4 mb-16 ms:mt-36 mt-24">
-      <h1 className="text-center font-bold text-3xl mb-8">
+    <div className="mx-4 mb-16 mt-24 ms:mx-16 ms:mt-36 sm:mx-32 md:mx-16">
+      <h1 className="mb-8 text-center text-3xl font-bold">
         Your Cart{" "}
         <span className="text-red-500">{`(items: ${totalQuantities} )`}</span>
       </h1>
-      <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
+      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
         {cartItems.length >= 1 &&
           cartItems.map((item, index) => (
             <div key={index} className="mt-4">
-              <div className="flex mb-5 justify-center">
-                <div className="w-[80px] h-[80px] bg-gray-100 relative rounded-sm">
-                  <div className="w-[80px] h-[80px] flex justify-center items-center">
+              <div className="mb-5 flex justify-center">
+                <div className="relative h-[80px] w-[80px] rounded-sm bg-gray-100">
+                  <div className="flex h-[80px] w-[80px] items-center justify-center">
                     <img
-                      className="w-full h-full"
+                      className="h-full w-full"
                       src={item.mainPicture}
                       alt="Item for Sale"
                     />
@@ -49,7 +49,7 @@ const page = () => {
                     <button
                       type="button"
                       onClick={() => onRemove(item)}
-                      className="ml-5 h-8 w-8 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+                      className="ml-5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                     >
                       <span className="sr-only">Close menu</span>
                       <svg
@@ -94,7 +94,7 @@ const page = () => {
 
       {cartItems.length >= 1 && (
         <>
-          <div className="mt-14 m-5 flex justify-around text-xl font-bold">
+          <div className="m-5 mt-14 flex justify-around text-xl font-bold">
             <h3>Subtotal:</h3>
             <h3>{totalPrice}$</h3>
           </div>
@@ -106,11 +106,11 @@ const page = () => {
 
       {cartItems.length < 1 && (
         <>
-          <h1 className="font-bold text-3xl mb-8 text-center">
+          <h1 className="mb-8 text-center text-3xl font-bold">
             You don't seem to have added anything here....
           </h1>
           <div className="flex justify-center">
-            <button className=" text-white transition-colors duration-500 ease-in-out bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+            <button className="mb-2 mr-2 rounded-full bg-red-700 px-5 py-2.5 text-center text-sm font-medium text-white transition-colors duration-500 ease-in-out hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
               <Link href="/all">Continue shopping</Link>
             </button>
           </div>

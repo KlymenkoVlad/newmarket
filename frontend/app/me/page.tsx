@@ -58,13 +58,13 @@ export default async function Page() {
   const { user }: User = await getData();
 
   return (
-    <div className="sm:mx-24 mx-6 lg:mt-40 mt-32 mb-16">
-      <div className="flex justify-between mb-16 ">
+    <div className="mx-6 mb-16 mt-32 sm:mx-24 lg:mt-40">
+      <div className="mb-16 flex justify-between">
         <div className="flex">
           <Link href="/" className="text-gray-500">
             Home
           </Link>
-          <p className="ml-3 ">/</p>
+          <p className="ml-3">/</p>
           <p className="ml-3">My Account</p>
         </div>
 

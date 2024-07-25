@@ -38,7 +38,7 @@ export default function SliderItem({ slideItems }: SliderProps) {
         {slideItems &&
           slideItems.map((slide, i) => (
             <SwiperSlide key={i}>
-              <img src={slide} className="max-h-96 mx-auto" />
+              <img src={slide} className="mx-auto max-h-96" />
             </SwiperSlide>
           ))}
       </Swiper>
@@ -55,7 +55,7 @@ export default function SliderItem({ slideItems }: SliderProps) {
         {slideItems &&
           slideItems.map((slide, i) => (
             <SwiperSlide key={i}>
-              <img src={slide} className="max-h-36 mx-auto" />
+              <img src={slide} className="mx-auto max-h-36" />
             </SwiperSlide>
           ))}
       </Swiper>

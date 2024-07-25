@@ -91,7 +91,7 @@ export const StateContext: React.FC<{ children: React.ReactNode }> = ({
       return toast.error("You already have 20 products in wish list.");
     }
     const checkUpdatedWishListItems = wishListItems.find(
-      (item) => item._id === product._id
+      (item) => item._id === product._id,
     );
 
     if (checkUpdatedWishListItems) {
@@ -108,14 +108,14 @@ export const StateContext: React.FC<{ children: React.ReactNode }> = ({
 
   const onAdd = (product: Product, quantity: number) => {
     const checkProductInCart = cartItems.find(
-      (item) => item._id === product._id
+      (item) => item._id === product._id,
     );
 
     const newTotalPrice = totalPrice + product.price * quantities;
     setTotalPrice(newTotalPrice);
 
     setTotalQuantities(
-      (prevTotalQuantities) => prevTotalQuantities + quantities
+      (prevTotalQuantities) => prevTotalQuantities + quantities,
     );
 
     if (checkProductInCart) {
@@ -184,7 +184,7 @@ export const StateContext: React.FC<{ children: React.ReactNode }> = ({
         });
       } else {
         updatedCartItems = cartItems.filter(
-          (cartProduct) => cartProduct._id !== id
+          (cartProduct) => cartProduct._id !== id,
         );
       }
     }
@@ -202,7 +202,7 @@ export const StateContext: React.FC<{ children: React.ReactNode }> = ({
     foundProduct = wishListItems.find((item) => item._id === product._id);
     if (!foundProduct) return;
     const newWishListItems = wishListItems.filter(
-      (item) => item._id !== product._id
+      (item) => item._id !== product._id,
     );
 
     setWishListItems(newWishListItems);
@@ -218,17 +218,17 @@ export const StateContext: React.FC<{ children: React.ReactNode }> = ({
 
       setTotalPrice(
         (prevTotalPrice) =>
-          prevTotalPrice - foundProduct!.price * foundProduct!.quantity
+          prevTotalPrice - foundProduct!.price * foundProduct!.quantity,
       );
       setTotalQuantities(
-        (prevTotalQuantities) => prevTotalQuantities - foundProduct!.quantity
+        (prevTotalQuantities) => prevTotalQuantities - foundProduct!.quantity,
       );
       setCartItems(newCartItems);
 
       localStorage.setItem("cartItems", JSON.stringify(newCartItems));
       localStorage.setItem(
         "totalPrice",
-        (totalPrice - foundProduct!.price * foundProduct!.quantity).toString()
+        (totalPrice - foundProduct!.price * foundProduct!.quantity).toString(),
       );
       localStorage.setItem("totalQuantities", totalQuantities.toString());
     }

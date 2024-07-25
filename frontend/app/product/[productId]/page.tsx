@@ -45,7 +45,6 @@ function truncateString(str: string, maxLength: number) {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  // const product: Product = await getData(params.productId.split("-")[0]);
   const product: Product = await getData(params.productId.split("-")[0]);
 
   const slides = [product.mainPicture];
@@ -55,33 +54,31 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const { product: relatedItems }: ProductData = await getData(
-    `/?page=1&limit=4&category=${product?.category}`
+    `/?page=1&limit=4&category=${product?.category}`,
   );
 
   return (
-    <div className="sm:mx-24 mx-6 mb-16 sm:mt-36 mt-24">
-      <p className=" ms:mb-4 mb-0">
+    <div className="mx-6 mb-16 mt-24 sm:mx-24 sm:mt-36">
+      <p className="mb-0 ms:mb-4">
         <Link
-          className="text-black hover:text-red-400 transition-colors duration-600 ease-in-out"
+          className="duration-600 text-black transition-colors ease-in-out hover:text-red-400"
           href="/"
         >
           New Market
         </Link>
         <span className="mx-3">/</span>
         <Link
-          className="text-black hover:text-red-400 transition-colors duration-600 ease-in-out "
+          className="duration-600 text-black transition-colors ease-in-out hover:text-red-400"
           href={`/category/${product?.category}`}
         >
           {product?.category}
         </Link>
         <span className="mx-3">/</span>
-        <span className=" text-red-500">
-          {truncateString(product.name, 25)}
-        </span>
+        <span className="text-red-500">{truncateString(product.name, 25)}</span>
       </p>
-      <div className="flex justify-center mb-28">
-        <div className="flex ">
-          <div className="lg:block hidden h-96 w-[600px]">
+      <div className="mb-28 flex justify-center">
+        <div className="flex">
+          <div className="hidden h-96 w-[600px] lg:block">
             {slides.length > 1 ? (
               <SliderItem slideItems={slides} />
             ) : (
@@ -89,7 +86,7 @@ export default async function BlogPostPage({ params }: Props) {
             )}
           </div>
 
-          <div className="xl:ml-24 sm:ml-6 ">
+          {/* <div className="xl:ml-24 sm:ml-6 ">
             <div className="lg:hidden sm:w-[600px] ms:w-[450px] w-[330px]">
               <SliderForItem slideItems={slides} />
             </div>
@@ -182,18 +179,18 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="mb-6 ml-16">
-        <div className="flex items-center mb-6">
-          <div className="w-[20px] h-[40px] bg-red-500 rounded-[10%] "></div>
-          <p className="text-red-500 font-medium ml-5">Related Item</p>
+        <div className="mb-6 flex items-center">
+          <div className="h-[40px] w-[20px] rounded-[10%] bg-red-500"></div>
+          <p className="ml-5 font-medium text-red-500">Related Item</p>
         </div>
       </div>
-      <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 mb-8">
+      {/* <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 mb-8">
         {relatedItems && relatedItems.map((item) => <Item product={item} />)}
-      </div>
+      </div> */}
     </div>
   );
 }

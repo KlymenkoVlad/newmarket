@@ -20,12 +20,12 @@ export default function BurgerMenu() {
       {showBurgerMenu && (
         <div>
           <div
-            className={`fixed top-0 right-0 bottom-0 opacity-95    ${
+            className={`fixed bottom-0 right-0 top-0 opacity-95 ${
               showBurgerMenu ? "block" : "hidden"
-            } bg-black bg-opacity-50 z-50 `}
+            } z-50 bg-black bg-opacity-50`}
           >
             <div
-              className="shadow-2xl absolute top-0 right-0 h-screen w-80 bg-white p-4 "
+              className="absolute right-0 top-0 h-screen w-80 bg-white p-4 shadow-2xl"
               style={{ transition: "opacity 1s ease-in-out" }}
             >
               <div className="flex">
@@ -47,55 +47,55 @@ export default function BurgerMenu() {
                 </div>
               </div>
               <div className="flex">
-                <div className=" ml-6">
+                <div className="ml-6">
                   <Link
-                    className={`ml-4  `}
+                    className={`ml-4`}
                     href="/"
                     onClick={() => setShowBurgerMenu(false)}
                   >
                     <p
                       className={`${
-                        pathname == "/" && " text-red-600"
-                      } hover:text-red-400 transition-colors duration-600 ease-in-out`}
+                        pathname == "/" && "text-red-600"
+                      } duration-600 transition-colors ease-in-out hover:text-red-400`}
                     >
                       Home
                     </p>
                   </Link>
                   <Link
-                    className={`ml-4 `}
+                    className={`ml-4`}
                     href="/contact"
                     onClick={() => setShowBurgerMenu(false)}
                   >
                     <p
                       className={`${
-                        pathname == "/contact" && " text-red-600"
-                      } hover:text-red-400 transition-colors duration-600 ease-in-out`}
+                        pathname == "/contact" && "text-red-600"
+                      } duration-600 transition-colors ease-in-out hover:text-red-400`}
                     >
                       Contact
                     </p>
                   </Link>
                   <Link
-                    className={`ml-4 `}
+                    className={`ml-4`}
                     href="/about"
                     onClick={() => setShowBurgerMenu(false)}
                   >
                     <p
                       className={`${
-                        pathname == "/about" && " text-red-600"
-                      } hover:text-red-400 transition-colors duration-600 ease-in-out`}
+                        pathname == "/about" && "text-red-600"
+                      } duration-600 transition-colors ease-in-out hover:text-red-400`}
                     >
                       About
                     </p>
                   </Link>
                   <Link
-                    className={`ml-4 `}
+                    className={`ml-4`}
                     href="/all"
                     onClick={() => setShowBurgerMenu(false)}
                   >
                     <p
                       className={`${
-                        pathname == "/all" && " text-red-600"
-                      } hover:text-red-400 transition-colors duration-600 ease-in-out`}
+                        pathname == "/all" && "text-red-600"
+                      } duration-600 transition-colors ease-in-out hover:text-red-400`}
                       onClick={() => setShowBurgerMenu(false)}
                     >
                       All Products

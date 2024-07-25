@@ -9,7 +9,7 @@ export default function IncDecBtn() {
     useStateContext();
 
   return (
-    <div className="container ">
+    <div className="container">
       <span className="minus" onClick={decrementQuantities}>
         <span></span>
       </span>

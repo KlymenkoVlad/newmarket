@@ -40,9 +40,9 @@ interface WorkerProps {
 
 const Worker = ({ name, desc, img }: WorkerProps) => {
   return (
-    <div className="flex justify-around mb-4">
+    <div className="mb-4 flex justify-around">
       <div>
-        <div className="ms:w-[370px] w-[300px] h-[420px] bg-gray-100 flex justify-center items-end">
+        <div className="flex h-[420px] w-[300px] items-end justify-center bg-gray-100 ms:w-[370px]">
           <Image src={img} width={236} height={391} alt="worker" />
         </div>
         <h3 className="text-3xl font-semibold">{name}</h3>
@@ -54,15 +54,15 @@ const Worker = ({ name, desc, img }: WorkerProps) => {
 
 export default function Page() {
   return (
-    <div className="ms:mx-24 mx-12 lg:mt-40 mt-32">
-      <div className="flex mb-16">
+    <div className="mx-12 mt-32 ms:mx-24 lg:mt-40">
+      <div className="mb-16 flex">
         <Link href="/" className="text-gray-500">
           Home
         </Link>
-        <p className="ml-3 ">/</p>
+        <p className="ml-3">/</p>
         <p className="ml-3">About</p>
       </div>
-      <div className="flex items-center justify-around mb-20">
+      <div className="mb-20 flex items-center justify-around">
         <div className="w-[600px]">
           <h1 className="mb-12 text-5xl font-semibold">Our Story</h1>
           <p className="mb-6 text-base">
@@ -85,18 +85,18 @@ export default function Page() {
             width={705}
             height={609}
             alt="Our customers"
-            className="ml-4 sm:block hidden"
+            className="ml-4 hidden sm:block"
           />
         </div>
       </div>
 
       <div className="flex justify-center">
-        <div className="flex lg:flex-row flex-col justify-around mb-20 ">
+        <div className="mb-20 flex flex-col justify-around lg:flex-row">
           {stats &&
             stats.map((statsObj) => (
-              <div className="w-[270px] h-[230px] border flex justify-center flex-col items-center mb-4 mx-4">
-                <div className="w-[80px] h-[80px] bg-gray-500 rounded-[100%] flex justify-around items-center mb-4">
-                  <div className="w-[58px] h-[58px] bg-black rounded-[100%] flex justify-around items-center">
+              <div className="mx-4 mb-4 flex h-[230px] w-[270px] flex-col items-center justify-center border">
+                <div className="mb-4 flex h-[80px] w-[80px] items-center justify-around rounded-[100%] bg-gray-500">
+                  <div className="flex h-[58px] w-[58px] items-center justify-around rounded-[100%] bg-black">
                     <Image
                       src={statsObj.img}
                       alt="delivery"
@@ -105,14 +105,14 @@ export default function Page() {
                     />
                   </div>
                 </div>
-                <p className=" font-bold">{statsObj.header}</p>
+                <p className="font-bold">{statsObj.header}</p>
                 <p>{statsObj.paragraph}</p>
               </div>
             ))}
         </div>
       </div>
 
-      <div className="flex xl:flex-row flex-col justify-around mb-24">
+      <div className="mb-24 flex flex-col justify-around xl:flex-row">
         <Worker
           name="Tom Cruise"
           desc="Founder & Chairman"

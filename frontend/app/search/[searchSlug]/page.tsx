@@ -13,7 +13,7 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   return (
-    <div className="md:flex block md:mx-0 sm:mx-32 ms:mx-16 mx-4 mb-16 ms:mt-36 mt-24">
+    <div className="mx-4 mb-16 mt-24 block ms:mx-16 ms:mt-36 sm:mx-32 md:mx-0 md:flex">
       <NavMenu />
 
       <div>

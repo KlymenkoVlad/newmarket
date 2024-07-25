@@ -28,21 +28,21 @@ const SliderItemMainPage: React.FC<ItemProps> = ({
           }
           shallow
         >
-          <div className="md:w-[660px] sm:h-[340px] ms:h-[300px] h-[250px] border relative rounded-sm">
-            <div className="md:w-[660px] sm:h-[340px] ms:h-[300px] h-[250px] flex justify-center items-center p-4">
+          <div className="relative h-[250px] rounded-sm border ms:h-[300px] sm:h-[340px] md:w-[660px]">
+            <div className="flex h-[250px] items-center justify-center p-4 ms:h-[300px] sm:h-[340px] md:w-[660px]">
               <img
-                className="max-w-full max-h-full"
+                className="max-h-full max-w-full"
                 src={product.mainPicture}
                 alt="Item for Sale"
               />
             </div>
             {product.pastPrice && (
-              <div className="w-[55px] h-[26px] bg-red-500 absolute left-4 top-5 rounded-md flex justify-around items-center text-white">
+              <div className="absolute left-4 top-5 flex h-[26px] w-[55px] items-center justify-around rounded-md bg-red-500 text-white">
                 <p>
                   -
                   {Math.floor(
                     ((product.pastPrice - product.price) / product.pastPrice) *
-                      100
+                      100,
                   )}
                   %
                 </p>
@@ -51,19 +51,19 @@ const SliderItemMainPage: React.FC<ItemProps> = ({
             <WishListBtnAddItem product={product} />
           </div>
         </Link>
-        <p className="block text-base font-medium ">
+        <p className="block text-base font-medium">
           {truncateString(product.name, 25)}
         </p>
         {product.pastPrice ? (
           <div className="flex">
-            <p className=" text-red-500 text-base">{product.price}$</p>
-            <p className="ml-4 line-through text-gray-500 text-base">
+            <p className="text-base text-red-500">{product.price}$</p>
+            <p className="ml-4 text-base text-gray-500 line-through">
               {product.pastPrice}$
             </p>
           </div>
         ) : (
           <div className="flex">
-            <p className=" text-red-500 text-base">{product.price}$</p>
+            <p className="text-base text-red-500">{product.price}$</p>
           </div>
         )}
         <div className="flex items-center space-x-1">

@@ -10,17 +10,17 @@ export const metadata: Metadata = {
 
 function Page() {
   return (
-    <div className="flex mb-16 lg:mt-36 mt-24">
+    <div className="mb-16 mt-24 flex lg:mt-36">
       <NavMenu />
 
-      <div className="m-auto py-4 px-4 group">
-        <div className="mb-6 ">
-          <div className="flex items-center mb-6">
-            <div className="w-[20px] h-[40px] bg-red-500 rounded-[10%] "></div>
-            <p className="text-red-500 font-medium ml-5">Find what you need</p>
+      <div className="group m-auto px-4 py-4">
+        <div className="mb-6">
+          <div className="mb-6 flex items-center">
+            <div className="h-[40px] w-[20px] rounded-[10%] bg-red-500"></div>
+            <p className="ml-5 font-medium text-red-500">Find what you need</p>
           </div>
           <div className="flex">
-            <h3 className=" font-semibold text-2xl">Explore Our Products</h3>
+            <h3 className="text-2xl font-semibold">Explore Our Products</h3>
           </div>
         </div>
         <InfinitiveScroll type="all" />

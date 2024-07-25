@@ -18,22 +18,22 @@ export default async function Page({ params }: Props) {
     params.categorySlug.charAt(0).toUpperCase() + params.categorySlug.slice(1);
 
   return (
-    <div className="flex mb-16 ms:mt-32 mt-24">
+    <div className="mb-16 mt-24 flex ms:mt-32">
       <NavMenu />
 
-      <div className="m-auto py-4 px-4 group">
-        <div className="flex items-center mb-6">
-          <h1 className=" text-black text-3xl font-medium ml-5">
+      <div className="group m-auto px-4 py-4">
+        <div className="mb-6 flex items-center">
+          <h1 className="ml-5 text-3xl font-medium text-black">
             Find what you need
           </h1>
         </div>
         <div className="mb-6">
-          <div className="flex items-center mb-6">
-            <div className="w-[20px] h-[40px] bg-red-500 rounded-[10%] "></div>
-            <p className="text-red-500 font-medium ml-5">Hot New Releases</p>
+          <div className="mb-6 flex items-center">
+            <div className="h-[40px] w-[20px] rounded-[10%] bg-red-500"></div>
+            <p className="ml-5 font-medium text-red-500">Hot New Releases</p>
           </div>
           <div className="flex">
-            <h3 className=" font-semibold text-2xl">{categorySlugUpperCase}</h3>
+            <h3 className="text-2xl font-semibold">{categorySlugUpperCase}</h3>
           </div>
         </div>
         <InfinitiveScroll params={params} type="categories" />
