@@ -21,8 +21,8 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
         notBurgerMenu ? "ml-[40px] hidden lg:flex" : "ml-[24px] flex"
       }`}
     >
-      <ul className="mr-[30px]">
-        <li className="duration-600 mb-8 mt-6 transition-colors ease-in-out hover:text-red-400">
+      <ul className="mr-[30px] space-y-6">
+        <li className="duration-600 mt-6 transition-colors ease-in-out hover:text-red-400">
           <Link
             href="category/womanfashion"
             as={`/category/womanfashion`}
@@ -32,7 +32,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
             Woman’s Fashion
           </Link>
         </li>
-        <li className="duration-600 mb-8 transition-colors ease-in-out hover:text-red-400">
+        <li className="duration-600 transition-colors ease-in-out hover:text-red-400">
           <Link
             href="category/menfashion"
             as={`/category/menfashion`}
@@ -42,7 +42,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
             Men’s Fashion
           </Link>
         </li>
-        <li className="duration-600 mb-8 transition-colors ease-in-out hover:text-red-400">
+        <li className="duration-600 transition-colors ease-in-out hover:text-red-400">
           <Link
             href="category/electronics"
             as={`/category/electronics`}
@@ -52,7 +52,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
             Electronics
           </Link>
         </li>
-        <li className="duration-600 mb-8 transition-colors ease-in-out hover:text-red-400">
+        <li className="duration-600 transition-colors ease-in-out hover:text-red-400">
           <Link
             href="category/accessories"
             as={`/category/accessories`}
@@ -62,7 +62,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
             Accessories
           </Link>
         </li>
-        <li className="duration-600 mb-8 transition-colors ease-in-out hover:text-red-400">
+        <li className="duration-600 transition-colors ease-in-out hover:text-red-400">
           <Link
             href="category/furniture"
             as={`/category/furniture`}
@@ -72,7 +72,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
             Furniture
           </Link>
         </li>
-        <li className="duration-600 mb-8 transition-colors ease-in-out hover:text-red-400">
+        <li className="duration-600 transition-colors ease-in-out hover:text-red-400">
           <Link
             href="category/football"
             as={`/category/football`}
@@ -82,7 +82,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
             Football
           </Link>
         </li>
-        <li className="duration-600 mb-8 transition-colors ease-in-out hover:text-red-400">
+        <li className="duration-600 transition-colors ease-in-out hover:text-red-400">
           <Link
             href="category/groceries"
             as={`/category/groceries`}
@@ -92,7 +92,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
             Groceries
           </Link>
         </li>
-        <li className="duration-600 mb-8 transition-colors ease-in-out hover:text-red-400">
+        <li className="duration-600 transition-colors ease-in-out hover:text-red-400">
           <Link
             href="category/other"
             as={`/category/other`}

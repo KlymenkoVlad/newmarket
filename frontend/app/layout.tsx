@@ -3,8 +3,11 @@ import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
 import Footer from "@/components/Layout/Footer";
-import Header from "@/components/Layout/Header";
 import { StateContext } from "@/context/StateContext";
+import Header from "@/components/Layout/Header/Header";
+import BurgerMenu from "@/components/Layout/ClientSide/BurgerMenu";
+import Cart from "@/components/Layout/ClientSide/Cart/Cart";
+import WishList from "@/components/Layout/ClientSide/WishList/WishList";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +28,9 @@ export default function RootLayout({
           <Header />
           <Toaster />
           {children}
+          <BurgerMenu />
+          <Cart />
+          <WishList />
 
           <Footer />
         </StateContext>

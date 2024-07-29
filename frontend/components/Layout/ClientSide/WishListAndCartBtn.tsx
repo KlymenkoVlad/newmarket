@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 import { useStateContext } from "@/context/StateContext";
+import { MdFavoriteBorder, MdOutlineShoppingCart } from "react-icons/md";
 
 export default function WishListBtn() {
   const {
@@ -14,21 +15,16 @@ export default function WishListBtn() {
   } = useStateContext();
 
   return (
-    <>
+    <div className="flex items-center justify-center space-x-4">
       <button
         onClick={() => {
           setShowWishList(!showWishList);
           setShowCart(false);
           setShowBurgerMenu(false);
         }}
-        className="ml-10 h-[50px] w-[50px] cursor-pointer"
+        className="cursor-pointer"
       >
-        <Image
-          src="/icons/Icon-wishlist.svg"
-          alt="wishlist"
-          width={32}
-          height={32}
-        />
+        <MdFavoriteBorder className="inline-block text-2xl" />
       </button>
 
       <button
@@ -37,10 +33,10 @@ export default function WishListBtn() {
           setShowWishList(false);
           setShowBurgerMenu(false);
         }}
-        className="h-[50px] w-[50px] cursor-pointer"
+        className="cursor-pointer"
       >
-        <Image src="/icons/cart.png" alt="cart" width={32} height={32} />
+        <MdOutlineShoppingCart className="inline-block text-2xl" />
       </button>
-    </>
+    </div>
   );
 }

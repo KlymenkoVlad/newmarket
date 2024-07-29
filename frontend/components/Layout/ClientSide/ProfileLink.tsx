@@ -8,6 +8,8 @@ import Cookies from "js-cookie";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useStateContext } from "@/context/StateContext";
+import { IoMdPerson } from "react-icons/io";
+import { MdOutlinePerson } from "react-icons/md";
 
 type ProfileLinkProps = {
   notBurgerMenu?: boolean;
@@ -32,12 +34,10 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
   };
 
   return (
-    <>
+    <div>
       <Link
         href={hasTokenCookie ? "/me" : "/login"}
-        className={`h-[50px] ${
-          notBurgerMenu ? "w-[100px]" : "w-[50px]"
-        } flex cursor-pointer items-center`}
+        className={`flex cursor-pointer items-center p-2`}
         onClick={() => setShowBurgerMenu(false)}
       >
         {hasTokenCookie ? (
@@ -48,13 +48,12 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
             height={32}
           />
         ) : (
-          <Image src="/icons/user.png" alt="log in" width={32} height={32} />
+          <MdOutlinePerson className="inline-block text-2xl" />
         )}
-        {notBurgerMenu && (
-          <p className="ml-2">
-            {pathname === "/me" || hasTokenCookie ? "Profile" : "Login"}
-          </p>
-        )}
+
+        <p className="ml-2">
+          {pathname === "/me" || hasTokenCookie ? "Profile" : "Login"}
+        </p>
       </Link>
 
       {hasTokenCookie && (
@@ -67,7 +66,7 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
           height={22}
         />
       )}
-    </>
+    </div>
   );
 };
 
