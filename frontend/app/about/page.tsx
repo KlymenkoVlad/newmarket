@@ -54,17 +54,19 @@ const Worker = ({ name, desc, img }: WorkerProps) => {
 
 export default function Page() {
   return (
-    <div className="mx-12 mt-32 ms:mx-24 lg:mt-40">
-      <div className="mb-16 flex">
+    <div className="px-4">
+      <div className="mb-16 flex w-full justify-center text-3xl">
         <Link href="/" className="text-gray-500">
           Home
         </Link>
         <p className="ml-3">/</p>
         <p className="ml-3">About</p>
       </div>
-      <div className="mb-20 flex items-center justify-around">
-        <div className="w-[600px]">
-          <h1 className="mb-12 text-5xl font-semibold">Our Story</h1>
+      <div className="mb-20 flex flex-wrap items-center justify-around gap-4">
+        <div className="w-[700px] text-justify">
+          <h1 className="mb-12 text-center text-5xl font-semibold">
+            Our Story
+          </h1>
           <p className="mb-6 text-base">
             Launced in 2015, New Market is South Asia’s premier online shopping
             makterplace with an active presense in Bangladesh. Supported by wide

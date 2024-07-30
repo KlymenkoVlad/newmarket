@@ -58,7 +58,7 @@ export default async function Page() {
   const { user }: User = await getData();
 
   return (
-    <div className="mx-6 mb-16 mt-32 sm:mx-24 lg:mt-40">
+    <div className="px-6">
       <div className="mb-16 flex justify-between">
         <div className="flex">
           <Link href="/" className="text-gray-500">

@@ -1,7 +1,6 @@
 import { Product } from "@/types/types";
 import { baseUrl } from "@/utils/baseUrl";
 import EditProductForm from "./EditProductForm";
-import Item from "@/components/Common/Item";
 import Image from "next/image";
 import IncDecBtn from "../IncDecBtn";
 import WishListBtnAddForPage from "@/components/Common/WishListBtnForPage";
@@ -51,7 +50,7 @@ export default async function Page({ params }: Props) {
     ?.length!} grid-cols-2`;
 
   return (
-    <div className="mx-6 mb-16 mt-24 ms:mt-36 sm:mx-24">
+    <div className="px-6">
       <h2 className="my-20 mb-6 text-center text-2xl font-bold text-red-500">
         {`Your product (${product.name}) before changes`}
       </h2>

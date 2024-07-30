@@ -27,7 +27,7 @@ export default function ItemsDisplay({
                 Items by your search: {categorySlugUpperCase}
               </h3>
             )}
-            <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+            <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
               {items.map((item) => (
                 <Item product={item} key={item._id} />
               ))}
@@ -50,7 +50,7 @@ export default function ItemsDisplay({
         </>
       ) : (
         <>
-          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             {items.map((item) => (
               <Item
                 product={item}

@@ -43,7 +43,7 @@ const page = async ({}) => {
   );
 
   return (
-    <div className="mt-6 ms:mt-20">
+    <div className="">
       <Modal />
       <BannerSection slideItems={slideItems} />
       <Recommend name="The cheapest" items={cheapItems} />

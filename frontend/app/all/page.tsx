@@ -1,5 +1,4 @@
 import React from "react";
-import NavMenu from "@/components/Common/NavMenu";
 import type { Metadata } from "next";
 import InfinitiveScroll from "@/components/Common/Scroll/InfinitiveScroll";
 
@@ -10,9 +9,7 @@ export const metadata: Metadata = {
 
 function Page() {
   return (
-    <div className="mb-16 mt-24 flex lg:mt-36">
-      <NavMenu />
-
+    <div className="mb-16 flex">
       <div className="group m-auto px-4 py-4">
         <div className="mb-6">
           <div className="mb-6 flex items-center">

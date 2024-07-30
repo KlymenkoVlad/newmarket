@@ -17,9 +17,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ notBurgerMenu = true }) => {
 
   return (
     <div
-      className={`mr-5 ${
-        notBurgerMenu ? "ml-[40px] hidden lg:flex" : "ml-[24px] flex"
-      }`}
+      className={`mr-5 ${notBurgerMenu ? "ml-[40px] flex" : "ml-[24px] flex"}`}
     >
       <ul className="mr-[30px] space-y-6">
         <li className="duration-600 mt-6 transition-colors ease-in-out hover:text-red-400">

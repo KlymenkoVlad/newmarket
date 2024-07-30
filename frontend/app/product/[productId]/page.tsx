@@ -58,7 +58,7 @@ export default async function BlogPostPage({ params }: Props) {
   );
 
   return (
-    <div className="mx-6 mb-16 mt-24 sm:mx-24 sm:mt-36">
+    <div className="px-6">
       <p className="mb-0 ms:mb-4">
         <Link
           className="duration-600 text-black transition-colors ease-in-out hover:text-red-400"

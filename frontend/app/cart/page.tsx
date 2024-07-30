@@ -17,7 +17,7 @@ const page = () => {
     totalQuantities,
   } = useStateContext();
   return (
-    <div className="mx-4 mb-16 mt-24 ms:mx-16 ms:mt-36 sm:mx-32 md:mx-16">
+    <div className="px-6">
       <h1 className="mb-8 text-center text-3xl font-bold">
         Your Cart{" "}
         <span className="text-red-500">{`(items: ${totalQuantities} )`}</span>

@@ -9,7 +9,7 @@ import React from "react";
 const page = () => {
   const { wishListItems, onRemoveWishList } = useStateContext();
   return (
-    <div className="mx-4 mb-16 mt-24 ms:mx-16 ms:mt-36 sm:mx-32 md:mx-0">
+    <div className="mx-4 my-24">
       <h1 className="mb-8 text-center text-3xl font-bold">Your Wish List</h1>
       <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {wishListItems &&

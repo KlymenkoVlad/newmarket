@@ -25,16 +25,16 @@ const Worker = ({ name, desc, img }: WorkerProps) => {
 
 export default function Page() {
   return (
-    <div className="mx-12 mt-32 ms:mx-24 lg:mt-40">
-      <div className="mb-16 flex">
+    <div className="px-4">
+      <div className="mb-16 flex w-full justify-center text-3xl">
         <Link href="/" className="text-gray-500">
           Home
         </Link>
         <p className="ml-3">/</p>
         <p className="ml-3">Contact</p>
       </div>
-      <div className="my-20 flex flex-col justify-around md:flex-row">
-        <div className="mx-4 mb-8">
+      <div className="mb-8 flex flex-wrap justify-around gap-4">
+        <div className="mx-4 w-64">
           <div className="mb-5 flex items-center">
             <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-red-500">
               <Image
@@ -50,7 +50,7 @@ export default function Page() {
           <p>Phone: +8801611112222</p>
         </div>
 
-        <div className="mx-4">
+        <div className="mx-4 w-64">
           <div className="mb-5 flex items-center">
             <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-red-500">
               <Image
@@ -72,7 +72,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="mb-24 flex flex-col justify-around xl:flex-row">
+      <div className="mb-6 flex flex-col justify-around xl:flex-row">
         <Worker
           name="Tom Cruise"
           desc="Founder & Chairman"

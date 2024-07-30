@@ -16,7 +16,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="flex h-[500px] flex-col items-center justify-center text-center">
+    <div className="my-24 flex flex-col items-center justify-center text-center">
       <h1 className="mb-6 text-3xl font-bold">Success!</h1>
       <p className="mb-4 text-lg">
         Your purchase was successful. Thank you for your order!

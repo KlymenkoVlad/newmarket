@@ -26,7 +26,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="mx-3 mb-10 mt-20 ms:mx-12 md:mx-32 lg:mb-20 lg:mt-48">
+    <div className="mx-3 ms:mx-12 md:mx-32">
       <div className="flex">
         <Image
           src="/signup/signupimg.png"

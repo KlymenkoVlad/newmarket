@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useStateContext } from "@/context/StateContext";
 import { IoMdPerson } from "react-icons/io";
-import { MdOutlinePerson } from "react-icons/md";
+import { MdAccountCircle, MdOutlinePerson } from "react-icons/md";
 
 type ProfileLinkProps = {
   notBurgerMenu?: boolean;
@@ -34,32 +34,27 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
   };
 
   return (
-    <div>
+    <div className="ml-3 flex items-center justify-center">
       <Link
         href={hasTokenCookie ? "/me" : "/login"}
-        className={`flex cursor-pointer items-center p-2`}
+        className={`flex cursor-pointer items-center`}
         onClick={() => setShowBurgerMenu(false)}
       >
         {hasTokenCookie ? (
-          <Image
-            src="/icons/userIn.svg"
-            alt="logged in"
-            width={32}
-            height={32}
-          />
+          <MdAccountCircle className="inline-block text-2xl text-red-500" />
         ) : (
           <MdOutlinePerson className="inline-block text-2xl" />
         )}
 
         <p className="ml-2">
-          {pathname === "/me" || hasTokenCookie ? "Profile" : "Login"}
+          {pathname === "/me" || (!hasTokenCookie && "Login")}
         </p>
       </Link>
 
       {hasTokenCookie && (
         <Image
           onClick={logout}
-          className="ml-1 mt-1 flex cursor-pointer items-center"
+          className="flex cursor-pointer items-center"
           src="/signup/logout.svg"
           alt="user"
           width={22}

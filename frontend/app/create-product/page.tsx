@@ -40,7 +40,7 @@ export default function Page() {
   const router = useRouter();
 
   return (
-    <div className="mx-3 mt-32 md:mx-12 lg:mx-24 lg:mt-40">
+    <div className="px-6">
       <Formik
         initialValues={initialValues}
         validationSchema={Yup.object({

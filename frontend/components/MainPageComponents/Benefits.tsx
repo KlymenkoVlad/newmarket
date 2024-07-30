@@ -25,7 +25,7 @@ const Icon = ({ title, desc, img, alt }: IconProps) => {
 
 const Benefits = () => {
   return (
-    <div className="mx-auto mb-16 grid items-center gap-2 sm:grid-cols-1 md:mb-40 md:grid-cols-3">
+    <div className="mx-auto grid items-center gap-2 sm:grid-cols-1 md:grid-cols-3">
       <Icon
         title="FREE AND FAST DELIVERY"
         desc="Free delivery for all orders"

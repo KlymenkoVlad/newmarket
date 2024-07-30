@@ -15,7 +15,7 @@ interface Props {
 
 export default function Page({ params }: Props) {
   return (
-    <div className="mx-6 mb-16 mt-32 sm:mx-24 lg:mt-40">
+    <div className="px-6">
       <p className="mb-4 text-center text-xl font-bold leading-none tracking-tight text-gray-900 md:text-left md:text-2xl lg:text-3xl">
         That`s all Products that you sold
       </p>

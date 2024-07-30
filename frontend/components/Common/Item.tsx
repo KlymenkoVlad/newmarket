@@ -3,6 +3,7 @@ import React from "react";
 import WishListBtnAddItem from "./WishListBtnAddItem";
 import { Product } from "@/types/types";
 import truncateString from "@/utils/truncateString";
+import { MdNoPhotography } from "react-icons/md";
 
 interface ItemProps {
   product: Product;
@@ -71,13 +72,17 @@ const Item: React.FC<ItemProps> = ({
           }
           shallow
         >
-          <div className="relative h-[240px] w-[260px] rounded-sm border">
+          <div className="relative h-[240px] w-[260px] rounded-sm border-2">
             <div className="flex h-[240px] w-[260px] items-center justify-center p-2">
-              <img
-                className="max-h-full max-w-full"
-                src={product.mainPicture}
-                alt="Item for Sale"
-              />
+              {product?.mainPicture ? (
+                <img
+                  className="max-h-full max-w-full"
+                  src={product.mainPicture}
+                  alt={"Item for Sale"}
+                />
+              ) : (
+                <MdNoPhotography />
+              )}
             </div>
             {product.pastPrice && (
               <div className="absolute left-4 top-5 flex h-[26px] w-[55px] items-center justify-around rounded-md bg-red-500 text-white">

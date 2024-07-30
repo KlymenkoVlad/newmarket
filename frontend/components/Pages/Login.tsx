@@ -17,7 +17,7 @@ const Login = () => {
   const router = useRouter();
 
   return (
-    <div className="mx-3 mb-20 mt-48 ms:mx-12 md:mx-32">
+    <div className="mx-3 ms:mx-12 md:mx-32">
       <div className="flex">
         <Image
           src="/signup/signupimg.png"
