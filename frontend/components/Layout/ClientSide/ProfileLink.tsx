@@ -9,7 +9,11 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useStateContext } from "@/context/StateContext";
 import { IoMdPerson } from "react-icons/io";
-import { MdAccountCircle, MdOutlinePerson } from "react-icons/md";
+import {
+  MdAccountCircle,
+  MdOutlineLogout,
+  MdOutlinePerson,
+} from "react-icons/md";
 
 type ProfileLinkProps = {
   notBurgerMenu?: boolean;
@@ -30,7 +34,7 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
 
   const logout = () => {
     Cookies.remove("token");
-    router.push("/");
+    router.refresh();
   };
 
   return (
@@ -41,7 +45,7 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
         onClick={() => setShowBurgerMenu(false)}
       >
         {hasTokenCookie ? (
-          <MdAccountCircle className="inline-block text-2xl text-red-500" />
+          <MdAccountCircle className="inline-block text-2xl text-red-500 transition-colors hover:text-red-600" />
         ) : (
           <MdOutlinePerson className="inline-block text-2xl" />
         )}
@@ -52,19 +56,15 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
       </Link>
 
       {hasTokenCookie && (
-        <Image
+        <button
           onClick={logout}
-          className="flex cursor-pointer items-center"
-          src="/signup/logout.svg"
-          alt="user"
-          width={22}
-          height={22}
-        />
+          className="flex items-center justify-center transition-colors hover:text-gray-600"
+        >
+          <MdOutlineLogout className="text-2xl" />
+        </button>
       )}
     </div>
   );
 };
-
-ProfileLink.propTypes = {};
 
 export default ProfileLink;

@@ -1,5 +1,4 @@
 import React from "react";
-import Modal from "@/app/Modal";
 import { baseUrl } from "@/utils/baseUrl";
 import { Product } from "@/types/types";
 
@@ -44,7 +43,6 @@ const page = async ({}) => {
 
   return (
     <div className="">
-      <Modal />
       <BannerSection slideItems={slideItems} />
       <Recommend name="The cheapest" items={cheapItems} />
       <Categories />

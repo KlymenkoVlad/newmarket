@@ -7,6 +7,7 @@ import WishListBtnAddForPage from "@/components/Common/WishListBtnForPage";
 import Btn from "../Btn";
 import AddToCartBtn from "../AddToCartBtn";
 import SliderForItem from "../SliderForItem";
+import { MdAutorenew, MdDeliveryDining } from "react-icons/md";
 
 interface Props {
   params: { productId: string };
@@ -119,13 +120,8 @@ export default async function Page({ params }: Props) {
 
             <div className="border">
               <div className="flex h-[90px] items-center border">
-                <div className="mx-5 h-[40px]">
-                  <Image
-                    src="/icons/icon-delivery-dark.png"
-                    alt="wishlist"
-                    width={40}
-                    height={40}
-                  />
+                <div className="mx-5 flex h-[40px] items-center justify-center">
+                  <MdDeliveryDining className="text-4xl" />
                 </div>
                 <div>
                   <h4 className="text-xs font-medium">Free Delivery</h4>
@@ -136,15 +132,8 @@ export default async function Page({ params }: Props) {
               </div>
 
               <div className="flex h-[90px] items-center border">
-                <div className="mx-5 h-[40px]">
-                  <button type="button">
-                    <Image
-                      src="/icons/Icon-return.svg"
-                      alt="wishlist"
-                      width={40}
-                      height={40}
-                    />
-                  </button>
+                <div className="mx-5 flex h-[40px] items-center justify-center">
+                  <MdAutorenew className="text-4xl" />
                 </div>
                 <div>
                   <h4 className="text-sm font-medium">Return Delivery</h4>

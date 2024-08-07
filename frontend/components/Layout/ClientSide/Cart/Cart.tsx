@@ -6,6 +6,7 @@ import Image from "next/image";
 import Btn from "./cartBuyBtn";
 import truncateString from "@/utils/truncateString";
 import "@/components/styles.scss";
+import { MdArrowBackIosNew, MdOutlineClose } from "react-icons/md";
 export default function Cart() {
   const {
     cartItems,
@@ -30,13 +31,12 @@ export default function Cart() {
         onClick={() => setShowCart(false)}
       />
       <div className="absolute right-0 top-0 h-screen w-80 bg-white p-2 shadow-2xl">
-        <div className="flex cursor-pointer" onClick={() => setShowCart(false)}>
-          <Image
-            width={15}
-            height={15}
-            src="/icons/arrow-left-black.svg"
-            alt="arrow"
-          />
+        <div
+          className="flex cursor-pointer items-center"
+          onClick={() => setShowCart(false)}
+        >
+          <MdArrowBackIosNew className="text-xl" />
+
           <span className="ml-5 block">Your cart</span>
           <span className="text-red-500">{`(items: ${totalQuantities} )`}</span>
         </div>
@@ -87,21 +87,7 @@ export default function Cart() {
                         className="ml-5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                       >
                         <span className="sr-only">Close menu</span>
-                        <svg
-                          className="h-[30px] w-[30px]"
-                          // xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
+                        <MdOutlineClose />
                       </button>
                     </div>
 

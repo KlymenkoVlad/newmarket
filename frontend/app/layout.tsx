@@ -8,7 +8,8 @@ import Header from "@/components/Layout/Header/Header";
 import BurgerMenu from "@/components/Layout/ClientSide/BurgerMenu";
 import Cart from "@/components/Layout/ClientSide/Cart/Cart";
 import WishList from "@/components/Layout/ClientSide/WishList/WishList";
-import NewNavMenu from "@/components/Common/NewNavMenu";
+import NewNavMenu from "@/components/Common/NavMenu";
+import NavMenu from "@/components/Common/NavMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <StateContext>
           <Header />
-          <NewNavMenu />
+          <NavMenu />
 
           <Toaster />
           {children}

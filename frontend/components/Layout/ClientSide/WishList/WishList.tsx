@@ -5,6 +5,7 @@ import { Product } from "@/types/types";
 import truncateString from "@/utils/truncateString";
 import Image from "next/image";
 import Link from "next/link";
+import { MdArrowBackIosNew, MdOutlineClose } from "react-icons/md";
 
 export default function WishList() {
   const { wishListItems, showWishList, setShowWishList, onRemoveWishList } =
@@ -26,15 +27,10 @@ export default function WishList() {
       />
       <div className="absolute right-0 top-0 h-screen w-80 bg-white p-2 shadow-2xl">
         <div
-          className="flex cursor-pointer"
+          className="flex cursor-pointer items-center"
           onClick={() => setShowWishList(false)}
         >
-          <Image
-            width={15}
-            height={15}
-            src="/icons/arrow-left-black.svg"
-            alt="arrow"
-          />
+          <MdArrowBackIosNew className="text-xl" />
         </div>
 
         <div className="h-full overflow-y-auto">
@@ -90,21 +86,7 @@ export default function WishList() {
                         className="ml-5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                       >
                         <span className="sr-only">Close menu</span>
-                        <svg
-                          className="h-[30px] w-[30px]"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
+                        <MdOutlineClose />
                       </button>
                     </div>
                   </div>
@@ -147,21 +129,7 @@ export default function WishList() {
                         className="ml-5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                       >
                         <span className="sr-only">Close menu</span>
-                        <svg
-                          className="h-[30px] w-[30px]"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
+                        <MdOutlineClose />
                       </button>
                     </div>
                   </div>

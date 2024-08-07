@@ -1,16 +1,27 @@
 "use client";
 
 import React from "react";
-import IncDecBtn from "@/app/product/[productId]/IncDecBtn";
 import { useStateContext } from "@/context/StateContext";
-import { Product } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
-import HeaderLink from "./HeaderLink";
 import WishListBtn from "./WishListAndCartBtn";
 import ProfileLink from "./ProfileLink";
 import { usePathname } from "next/navigation";
-import NavMenu from "@/components/Common/NavMenu";
+import {
+  MdArrowBackIosNew,
+  MdContacts,
+  MdFoodBank,
+  MdLaptop,
+  MdMan,
+  MdOutlineContactSupport,
+  MdOutlineShoppingBag,
+  MdOutlineShoppingCart,
+  MdShoppingCartCheckout,
+  MdTableRestaurant,
+  MdWatch,
+  MdWoman,
+} from "react-icons/md";
+import { IoMdFootball } from "react-icons/io";
 
 export default function BurgerMenu() {
   const { showBurgerMenu, setShowBurgerMenu } = useStateContext();
@@ -36,89 +47,173 @@ export default function BurgerMenu() {
       >
         <div className="flex space-x-4">
           <div
-            className="flex cursor-pointer"
+            className="flex cursor-pointer items-center justify-center text-xl"
             onClick={() => setShowBurgerMenu(false)}
           >
-            <Image
-              width={15}
-              height={15}
-              src="/icons/arrow-left-black.svg"
-              alt="arrow"
-            />
+            <MdArrowBackIosNew />
           </div>
 
           <WishListBtn />
           <ProfileLink notBurgerMenu={false} />
         </div>
         <div className="flex">
-          <ul className="ml-6">
-            <li>
+          <ul className="ml-6 space-y-6">
+            <li className="mt-6">
               <Link
-                className="ml-4"
+                className={`${
+                  pathname == "/" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
                 href="/"
                 onClick={() => setShowBurgerMenu(false)}
               >
-                <p
-                  className={`${
-                    pathname == "/" && "text-red-600"
-                  } duration-600 transition-colors ease-in-out hover:text-red-400`}
-                >
-                  Home
-                </p>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="ml-4"
-                href="/contact"
-                onClick={() => setShowBurgerMenu(false)}
-              >
-                <p
-                  className={`${
-                    pathname == "/contact" && "text-red-600"
-                  } duration-600 transition-colors ease-in-out hover:text-red-400`}
-                >
-                  Contact
-                </p>
+                <MdOutlineShoppingBag className="inline-block text-2xl" />
+                <p>Home</p>
               </Link>
             </li>
 
             <li>
               <Link
-                className="ml-4"
-                href="/about"
-                onClick={() => setShowBurgerMenu(false)}
-              >
-                <p
-                  className={`${
-                    pathname == "/about" && "text-red-600"
-                  } duration-600 transition-colors ease-in-out hover:text-red-400`}
-                >
-                  About
-                </p>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="ml-4"
+                className={`${
+                  pathname == "/all" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
                 href="/all"
                 onClick={() => setShowBurgerMenu(false)}
               >
-                <p
-                  className={`${
-                    pathname == "/all" && "text-red-600"
-                  } duration-600 transition-colors ease-in-out hover:text-red-400`}
-                  onClick={() => setShowBurgerMenu(false)}
-                >
-                  All Products
-                </p>
+                <MdOutlineShoppingCart className="inline-block text-2xl" />
+                <p> All Products</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/contact" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/contact"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdContacts className="inline-block text-2xl" />
+                <p>Contacts</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/about" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/about"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdOutlineContactSupport className="inline-block text-2xl" />
+                <p>About</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/category/womanfashion" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/category/womanfashion"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdWoman className="inline-block text-2xl" />
+                <p>Woman’s Fashion</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/category/menfashion" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/category/menfashion"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdMan className="inline-block text-2xl" />
+                <p> Men’s Fashion</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/category/electronics" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/category/electronics"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdLaptop className="inline-block text-2xl" />
+                <p>Electronics</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/category/accessories" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/category/accessories"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdWatch className="inline-block text-2xl" />
+                <p>Accessories</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/category/furniture" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/category/furniture"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdTableRestaurant className="inline-block text-2xl" />
+                <p>Furniture</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/category/football" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/category/football"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <IoMdFootball className="inline-block text-2xl" />
+                <p>Football</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/category/groceries" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/category/groceries"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdFoodBank className="inline-block text-2xl" />
+                <p>Groceries</p>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className={`${
+                  pathname == "/category/other" && "text-red-600"
+                } duration-600 flex items-center justify-start gap-1 transition-colors ease-in-out hover:text-red-400`}
+                href="/category/other"
+                onClick={() => setShowBurgerMenu(false)}
+              >
+                <MdShoppingCartCheckout className="inline-block text-2xl" />
+                <p>Other</p>
               </Link>
             </li>
           </ul>
-        </div>
-
-        <div>
-          <NavMenu notBurgerMenu={false} />
         </div>
       </div>
     </div>
