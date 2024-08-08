@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <header className="fixed left-0 top-0 z-20 flex w-full items-center justify-around space-x-2 border-b border-gray-200 bg-white p-2">
       <Link
-        className="hidden w-fit whitespace-nowrap p-1 text-2xl font-semibold lg:block"
+        className="hidden w-fit whitespace-nowrap p-1 text-2xl font-semibold transition-colors hover:text-red-500 lg:block"
         href="/"
       >
         New Market

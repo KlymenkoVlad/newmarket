@@ -24,7 +24,7 @@ export default function WishListBtn() {
         }}
         className="cursor-pointer"
       >
-        <MdFavoriteBorder className="inline-block text-2xl" />
+        <MdFavoriteBorder className="inline-block text-2xl transition-colors hover:text-red-500" />
       </button>
 
       <button
@@ -35,7 +35,7 @@ export default function WishListBtn() {
         }}
         className="cursor-pointer"
       >
-        <MdOutlineShoppingCart className="inline-block text-2xl" />
+        <MdOutlineShoppingCart className="inline-block text-2xl transition-colors hover:text-red-500" />
       </button>
     </div>
   );

@@ -41,7 +41,7 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ notBurgerMenu = true }) => {
     <div className="ml-3 flex items-center justify-center">
       <Link
         href={hasTokenCookie ? "/me" : "/login"}
-        className={`flex cursor-pointer items-center`}
+        className={`flex cursor-pointer items-center transition-colors hover:text-red-500`}
         onClick={() => setShowBurgerMenu(false)}
       >
         {hasTokenCookie ? (

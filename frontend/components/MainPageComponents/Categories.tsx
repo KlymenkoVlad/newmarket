@@ -2,25 +2,29 @@ import React from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  MdFoodBank,
+  MdLaptop,
+  MdMan,
+  MdShoppingCart,
+  MdTableRestaurant,
+  MdWatch,
+  MdWoman,
+} from "react-icons/md";
+import { IoMdFootball } from "react-icons/io";
 
 interface CategoryProps {
   name: string;
-  img: string;
+  Icon: React.ComponentType<{ className?: string }>; // Updated type to accept className
   link: string;
 }
 
-const Category = ({ name, img, link }: CategoryProps) => {
+const Category = ({ name, Icon, link }: CategoryProps) => {
   return (
     <Link href={link}>
-      <div className="flex h-[140px] w-[170px] items-center justify-around rounded-md border-2 border-solid border-gray-200">
-        <div className="">
-          <Image
-            width={56}
-            height={56}
-            src={img}
-            alt={name}
-            className="mx-auto"
-          />
+      <div className="h-[140px] w-[170px] items-center justify-center rounded-md border-2 border-gray-200">
+        <div className="flex h-full w-full flex-col items-center justify-center">
+          <Icon className="inline-block text-6xl" />
           <p className="block">{name}</p>
         </div>
       </div>
@@ -44,43 +48,39 @@ const Categories = () => {
           <Category
             link="category/womanfashion"
             name="Woman’s Fashion"
-            img="/categories/woman.png"
+            Icon={MdWoman}
           />
           <Category
             link="category/menfashion"
             name="Men’s Fashion"
-            img="/categories/man.png"
+            Icon={MdMan}
           />
           <Category
             link="category/electronics"
             name="Electronics"
-            img="/categories/CellPhone.png"
+            Icon={MdLaptop}
           />
           <Category
             link="category/furniture"
             name="Furniture"
-            img="/categories/furniture.png"
+            Icon={MdTableRestaurant}
           />
           <Category
             link="category/football"
             name="Football"
-            img="/categories/football.png"
+            Icon={IoMdFootball}
           />
           <Category
             link="category/groceries"
             name="Groceries"
-            img="/categories/groceries.png"
+            Icon={MdFoodBank}
           />
           <Category
             link="category/accessories"
             name="Accessories"
-            img="/categories/accessories.png"
+            Icon={MdWatch}
           />
-          <Category
-            link="category/other"
-            name="Other"
-            img="/categories/other.png"
-          />
+          <Category link="category/other" name="Other" Icon={MdShoppingCart} />
         </div>
       </div>
       <div className="mb-12 h-px bg-gray-400"></div>

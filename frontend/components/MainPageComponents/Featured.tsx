@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
+import { MdArrowForward } from "react-icons/md";
 
 const Featured = () => {
   return (
@@ -26,16 +27,9 @@ const Featured = () => {
             </p>
             <Link
               href="/product/64a01f7c5904d6a0b0773e84-Playstation%205"
-              className="flex underline underline-offset-4"
+              className="flex items-center underline underline-offset-4 transition-colors hover:text-red-500"
             >
-              Shop Now
-              <Image
-                className="ml-2"
-                src="/icons/arrow-right.png"
-                alt="link"
-                width={16}
-                height={14}
-              />
+              <p>Shop Now</p> <MdArrowForward />
             </Link>
           </div>
         </div>
@@ -49,16 +43,9 @@ const Featured = () => {
             </p>
             <Link
               href="/product/649215cd1df9c54e0b387814-Blazer"
-              className="flex underline underline-offset-4"
+              className="flex items-center underline underline-offset-4 transition-colors hover:text-red-500"
             >
-              Shop Now
-              <Image
-                className="ml-2"
-                src="/icons/arrow-right.png"
-                alt="link"
-                width={16}
-                height={14}
-              />
+              <p>Shop Now</p> <MdArrowForward />
             </Link>
           </div>
         </div>
@@ -75,16 +62,9 @@ const Featured = () => {
             <p className="mb-4">Wireless speakers </p>
             <Link
               href="/product/64a01e675904d6a0b0773e65-Jbl"
-              className="flex underline underline-offset-4"
+              className="flex items-center underline underline-offset-4 transition-colors hover:text-red-500"
             >
-              Shop Now
-              <Image
-                className="ml-2"
-                src="/icons/arrow-right.png"
-                alt="link"
-                width={16}
-                height={14}
-              />
+              <p>Shop Now</p> <MdArrowForward />
             </Link>
           </div>
         </div>
@@ -102,16 +82,9 @@ const Featured = () => {
             <p className="mb-4">GUCCI INTENSE OUD EDP </p>
             <Link
               href="/product/64a021095904d6a0b0773f6d-Guilty%20Pour%20Homme"
-              className="flex underline underline-offset-4"
+              className="flex items-center underline underline-offset-4 transition-colors hover:text-red-500"
             >
-              Shop Now
-              <Image
-                className="ml-2"
-                src="/icons/arrow-right.png"
-                alt="link"
-                width={16}
-                height={14}
-              />
+              <p>Shop Now</p> <MdArrowForward />
             </Link>
           </div>
         </div>

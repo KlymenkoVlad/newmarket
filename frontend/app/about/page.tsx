@@ -17,7 +17,7 @@ const BenefitItem = ({
 }: {
   paragraph: string;
   header: string;
-  Icon: React.ComponentType<{ className?: string }>; // Updated type to accept className
+  Icon: React.ComponentType<{ className?: string }>;
 }) => {
   return (
     <AnimationItem>
@@ -105,7 +105,6 @@ export default function About() {
         </div>
       </div>
       <div className="mb-20 flex flex-col items-center justify-center lg:flex-row">
-        {/* <div className="mb-20 flex flex-col items-center justify-center lg:flex-row"> */}
         <BenefitItem
           header="10.5k "
           paragraph="Sallers active our site"
@@ -114,14 +113,13 @@ export default function About() {
         <BenefitItem
           header="45.5k"
           paragraph="Customer active in our site"
-          Icon={MdOutlineCases} // Pass the component type, not the JSX element
+          Icon={MdOutlineCases}
         />
         <BenefitItem
           header="25k"
           paragraph="Anual gross sale in our site"
           Icon={MdAttachMoney}
         />
-        {/* </div> */}
       </div>
       <div className="mb-24 flex flex-col justify-around xl:flex-row">
         <AnimationItem>
